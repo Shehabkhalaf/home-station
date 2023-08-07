@@ -6,6 +6,11 @@ module.exports = {
       colors: {
         main: '#74B8B9',
         secondery: '#6DC4E8',
+        dark: '#222',
+        gr: {
+          1: '#f0f0f0',
+          2: '#e9d7d3',
+        },
       },
       screens: {
         sm: '640px',

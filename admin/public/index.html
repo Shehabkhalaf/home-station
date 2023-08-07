@@ -3,10 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="https://res.cloudinary.com/dvagmtn4y/image/upload/v1679078730/home%20station/334207739_608659187398631_5067190693077913909_n_v94z5r.jpg"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <script
+      src="https://kit.fontawesome.com/49f02d4a75.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Main CSS file -->
     <link rel="stylesheet" href="./css/styles.css" />
     <title>Dashboard | Home Staion</title>
   </head>
   <body>
-    <h1 class="text-red-500">Admin</h1>
+    <div
+      class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:h-screen relative flex items-center justify-between px-8 md:px-0 md:block"
+    >
+      <div class="md:mx-auto md:px-6">
+        <img
+          src="https://res.cloudinary.com/dvagmtn4y/image/upload/v1679078730/home%20station/334207739_608659187398631_5067190693077913909_n_v94z5r.jpg"
+          alt="logo"
+          class="md:w-[200px] w-[150px]"
+        />
+      </div>
+
+      <ul
+        class="flex flex-col gap-8 md:mt-10 md:relative md:bg-gr-1 md:top-auto md:left-auto md:w-auto md:py-0 absolute bg-white top-0 w-[250px] py-12 -left-[999px] duration-100"
+      >
+        <button
+          id="close-side"
+          class="block md:hidden absolute top-4 right-4 cursor-pointer text-lg"
+        >
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <li>
+          <a
+            href="./users.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-user-group"></i>
+            <p class="capitalize">users</p>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./categories.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-store"></i>
+            <p class="capitalize">categories</p>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./products.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-bag-shopping"></i>
+            <p class="capitalize">products</p>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./orders.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-box"></i>
+            <p class="capitalize">orders</p>
+          </a>
+        </li>
+      </ul>
+
+      <button id="open" class="cursor-pointer block md:hidden">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
   </body>
 </html>
