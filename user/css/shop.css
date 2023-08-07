@@ -1,0 +1,365 @@
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f9f9f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #238975de;
+    border-radius: 30px;
+}
+
+.buttonStyle {
+    padding: 10px 35px !important;
+    border-radius: 20px;
+    background-color: #238975de;
+    border: 1px solid #238975de;
+    transition: 0.5s;
+    cursor: pointer;
+    color: white;
+}
+
+.buttonStyle:focus {
+    background-color:#238975de;
+    border: 2px solid #238975de;
+}
+
+.buttonStyle:hover {
+    border: 1px solid #238975de;
+    background-color: white;
+    color: #238975de;
+}
+
+.buttonStyleBack {
+    display: block;
+    border-radius: 10px;
+    border: 1px solid #238975de;
+    color: #238975de;
+    padding: 5px 40px;
+    text-align: center;
+    width: fit-content;
+    margin: 5px auto;
+    background-color: transparent;
+    font-size: 25px;
+    font-weight: 600;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+
+@media(max-width:767px) {
+    .buttonStyleBack {
+        padding: 5px 20px;
+        margin: 50px auto 0;
+        font-size: 20px;
+        transition: 0.5s;
+    }
+}
+
+@media(max-width:992px) {
+    .buttonStyleBack {
+        margin: 20px auto 0;
+    }
+}
+
+.buttonStyleBack i {
+    font-size: 20px;
+    margin: 0 10px 0 0;
+}
+
+.buttonStyleBack:hover {
+    border: 1px solid #238975de;
+    background-color: #238975de;
+    color: white;
+}
+
+@media(max-width:767px) {
+    .top-nav .container {
+        flex-direction: column;
+    }
+    .top-nav div{
+        height: 100%;
+    }
+}
+.titleH1 {
+    font-weight: 800;
+    color: #238975de;
+}
+
+.product-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.product-item {
+    width: 100% !important; 
+}
+
+.product-item .titleName {
+    border: none;
+    background-color: transparent;
+    display: block;
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+}
+
+/* start Dateilas product */
+.offcanvas-bottom {
+    height: 100% !important;
+    z-index: 150000;
+}
+
+.offcanvas .image {
+    height: 500px;
+}
+
+@media(max-width:767px) {
+    .offcanvas .image {
+        height: 400px;
+    }
+}
+
+.offcanvas-bottom .slider-container {
+    position: relative;
+    height: 100%;
+    margin: 10px 0;
+}
+
+
+.offcanvas-bottom .slider-container img {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.offcanvas-bottom .slider-container img.active {
+    opacity: 1;
+}
+
+
+.offcanvas-bottom .slider-controls {
+    margin: 20px 10px;
+    overflow: hidden;
+}
+
+
+
+.offcanvas-bottom .slider-controls .indicators ul {
+    margin: 0;
+    text-align: center;
+    list-style: none;
+}
+
+.slider-controls .indicators ul li {
+    margin: 10px 5px;
+    display: inline-block;
+    background-color: #F6F6F6;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 28px;
+}
+
+
+.slider-controls .indicators ul li.active {
+    background-color: #238975de;
+    color: white;
+}
+
+
+
+.offcanvas-bottom h2 {
+    color:#238975de;
+}
+
+.offcanvas-bottom .price {
+    color:#238975de;
+    font-size: 20px;
+    margin: 10px 0 0 0;
+}
+
+
+
+.offcanvas .add-card  {
+    width: fit-content;
+    margin: 0 auto;
+    display: block;
+}
+
+
+
+.offcanvas-bottom label {
+    color: #999999;
+    font-size: 18px;
+    margin: 10px 0;
+
+}
+
+.offcanvas-bottom input {
+    border: 1px solid #238975de;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    outline: none;
+    border-radius: 10px;
+    display: block;
+}
+
+.offcanvas-bottom input:focus {
+    border-color: #28b8c08c;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #28b8c08c;
+}
+
+.offcanvas del {
+    margin: 0 20px;
+    color: #999999;
+}
+
+.offcanvas .form-select:focus {
+    border-color: #28b8c08c;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #28b8c08c;
+}
+/* end Dateilas product */
+/* start Cart */
+
+.cart {
+    margin: 20px auto;
+    min-height: 70vh;
+}
+.cart ul li {
+    list-style: none;
+    margin: 0 30px;
+    color: var(--primary-color);
+}
+
+.cart .check {
+    width: 330px;
+    font-size: 25px;
+    font-weight: 600;
+    border-radius: 20px !important;
+    display: block;
+    margin: 15px auto;
+}
+
+.cart .stylefooter {
+    padding: 4px;
+    font-size: 16px !important;
+}
+
+
+.totalPrice {
+    color: var(--primary-color);
+    font-size: 17px !important;
+}
+
+.totalPrice:nth-of-type(1) {
+    padding: 5px 0px;
+}
+
+.cart .card-product {
+    display: flex;
+}
+
+.cart .card-product * {
+    margin: 0 10px 0 0;
+}
+
+.cart .total-price {
+    border-top: 1px solid #28b8c031;
+}
+
+.cart .total {
+    padding: 10px 0px;
+    font-size: 20px !important;
+}
+
+.cart thead tr td {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #28b8c031;
+}
+
+.cart tfoot {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 20px;
+    padding: 20px;
+    border-top: 1px solid #28b8c031;
+}
+
+.cart table {
+    margin: 0 auto;
+}
+
+.cart .body {
+    border-bottom: 1px solid #28b8c031;
+}
+
+
+.cart td input {
+    border: 1px solid #238975de;
+    width: 80px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    outline: none;
+    border-radius: 10px;
+    display: block;
+}
+
+.cart .remove {
+    border: 1px solid #238975de;
+    background-color: transparent;
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #238975de;
+    cursor: pointer;
+}
+
+.cart .title {
+    color: #999999;
+    font-size: 24px;
+}
+
+.cart .priceproduct {
+    color:#999999;
+    font-size: 20px;
+}
+
+
+@media(max-width:767px) {
+    .cart thead tr td {
+        padding: 10px;
+    }
+
+    .cart td {
+        padding: 10px;
+    }
+
+}
+
+.checkNone {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.tablefooternone {
+    display: none;
+}
