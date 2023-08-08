@@ -35,7 +35,7 @@ Route::prefix('admin')->controller(ContactUsController::class)->group(function (
     ROute::controller(CategoryController::class)->group(function () {
         Route::post('add_category', 'addCategory');
         Route::get('all_categories', 'allCategories');
-        Route::get('update_category/{id}', 'updateStatus');
+        Route::post('update_category/{id}', 'updateStatus');
     });
     ##########/*Product Module*/##########
     Route::controller(ProductController::class)->group(function () {
