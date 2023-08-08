@@ -19,6 +19,7 @@ class MessageFactory extends Factory
         return [
             'email' => fake()->email(),
             'name' => fake()->name('male'),
+            'phone' => fake()->phoneNumber(),
             'message' => fake()->text(100)
         ];
     }
