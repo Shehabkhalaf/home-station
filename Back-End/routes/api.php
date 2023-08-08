@@ -53,13 +53,24 @@ Route::prefix('user')->group(function () {
         Route::post('login', 'login');
         Route::post('/email/verification-notification', 'sendVerification')->middleware('auth:sanctum');
         Route::get('/email/verify/{id}/{hash}', 'verify')->middleware('auth:sanctum')->name('verification.verify');
-        Route::middleware('auth:sanctum', 'verified')->controller(UserUserController::class)->group(function () {
+        /*Route::middleware('auth:sanctum', 'verified')->controller(UserUserController::class)->group(function () {
             Route::get('home', 'index');
             Route::get('products', 'allProducts');
             Route::post('update', 'updateData');
-            Route::post('Contact Us', 'contactUs')->withoutMiddleware(['auth:sanctum','verified']);
+            Route::post('Contact Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
         });
         Route::middleware('auth:sanctum')->controller(OrderController::class)->group(function () {
+            Route::get('all_orders', 'allOrders');
+        });*/
+    });
+    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+        Route::controller(UserUserController::class)->group(function () {
+            Route::get('home', 'index');
+            Route::get('products', 'allProducts');
+            Route::post('update', 'updateData');
+            Route::post('Contact Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
+        });
+        Route::controller(OrderController::class)->group(function () {
             Route::get('all_orders', 'allOrders');
         });
     });
