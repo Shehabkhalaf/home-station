@@ -30,11 +30,14 @@ async function getAllCategories() {
 }
 
 function updateTable() {
-  tableBody.innerHTML = '';
+  tableBody.innerHTML = `<span class="loader"></span>`;
 
   getAllProducts().then((data) => {
+    tableBody.innerHTML = '';
+
     allProducts = data.data.filter((cat) => cat.category_id == catSelect.value);
     const catName = allProducts[0].category_name;
+
     if (allProducts[0].products.length > 0) {
       allProducts[0].products.forEach((product) => {
         const tr = document.createElement('tr');

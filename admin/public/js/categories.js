@@ -8,22 +8,27 @@ let allCategories = [];
 const tableBody = document.getElementById('cat-body');
 
 function updateTable() {
-  tableBody.innerHTML = '';
-
+  tableBody.innerHTML = `<span class="loader"></span>`;
   getAllCategories().then((data) => {
     allCategories = data.data;
-    data.data.forEach((cat) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-      <td class="p-3 text-gray-700 whitespace-nowrap">${cat.id}</td>
-      <td class="p-3 text-gray-700 whitespace-nowrap">${cat.title}</td>
-      <td class="p-3 text-gray-700 whitespace-nowrap">
-        ${cat.status}
-      </td>
-      `;
 
-      tableBody.append(tr);
-    });
+    if (allCategories.count === 0) {
+      tableBody.innerHTML = `<tr><td class="text-lg whitespace-nowrap">Not Found!</td></tr>`;
+    } else {
+      tableBody.innerHTML = '';
+      data.data.forEach((cat) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+        <td class="p-3 text-gray-700 whitespace-nowrap">${cat.id}</td>
+        <td class="p-3 text-gray-700 whitespace-nowrap">${cat.title}</td>
+        <td class="p-3 text-gray-700 whitespace-nowrap">
+          ${cat.status}
+        </td>
+        `;
+
+        tableBody.append(tr);
+      });
+    }
   });
 }
 updateTable();
@@ -98,6 +103,7 @@ function handleAddBtn() {
   const catStatusSelect = document.getElementById('cat-status');
   const errorMessage = document.getElementById('error-message');
   const successMessage = document.getElementById('success-message');
+  const catSubmitBtn = document.getElementById('cat-btn');
   const catForm = document.getElementById('cat-form');
 
   catForm.addEventListener('submit', (e) => handleAddSubmit(e));
@@ -117,7 +123,7 @@ function handleAddBtn() {
       return;
     }
 
-    AddCategory(catData, errorMessage, successMessage);
+    AddCategory(catData, errorMessage, successMessage, catSubmitBtn);
     catNameInput.value = '';
   }
 }
@@ -137,9 +143,12 @@ function handleUpdateBtn() {
               name="category"
               class="w-[60%] outline-none cursor-pointer border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
             >
-            ${allCategories.map((cat) => {
-              return `<option value="${cat.id}">${cat.title}</option>`;
-            })}
+            ${
+              allCategories.count !== 0 &&
+              allCategories.map((cat) => {
+                return `<option value="${cat.id}">${cat.title}</option>`;
+              })
+            }
             </select>
           </div>
           <div class="flex flex-col my-3">
@@ -171,6 +180,7 @@ function handleUpdateBtn() {
   const catNameSelect = document.getElementById('cat-select');
   const catStatusSelect = document.getElementById('cat-status');
   const successMessage = document.getElementById('success-message');
+  const catSubmitBtn = document.getElementById('cat-btn');
   const catForm = document.getElementById('cat-form');
 
   catForm.addEventListener('submit', (e) => handleUpdateSubmit(e));
@@ -182,7 +192,7 @@ function handleUpdateBtn() {
     const catStatus = catStatusSelect.value;
     const catData = { status: catStatus };
 
-    UpdateCategory(catData, catId, successMessage);
+    UpdateCategory(catData, catId, successMessage, catSubmitBtn);
   }
 }
 
@@ -195,8 +205,11 @@ function removeAllActive(target) {
 /**
  * Handle Add Form
  */
-async function AddCategory(data, errorMessageELe, successMessage) {
+async function AddCategory(data, errorMessageELe, successMessage, submitBtn) {
   try {
+    submitBtn.innerHTML = 'Submitting...';
+    submitBtn.disabled = true;
+
     const res = await fetch(`${URL}api/admin/add_category`, {
       method: 'POST',
       headers: {
@@ -205,7 +218,11 @@ async function AddCategory(data, errorMessageELe, successMessage) {
       body: JSON.stringify(data),
     });
 
+    submitBtn.innerHTML = 'Submit';
+    submitBtn.disabled = false;
+
     const resData = await res.json();
+
     if (resData.status !== 201) {
       errorMessageELe.textContent = resData.data['title'][0];
       setTimeout(() => {
@@ -226,8 +243,11 @@ async function AddCategory(data, errorMessageELe, successMessage) {
 /**
  * Handle Update Form
  */
-async function UpdateCategory(data, id, successMessage) {
+async function UpdateCategory(data, id, successMessage, submitBtn) {
   try {
+    submitBtn.innerHTML = 'Submitting...';
+    submitBtn.disabled = true;
+
     const res = await fetch(`${URL}api/admin/update_category/${id}`, {
       method: 'POST',
       headers: {
@@ -235,6 +255,9 @@ async function UpdateCategory(data, id, successMessage) {
       },
       body: JSON.stringify(data),
     });
+
+    submitBtn.innerHTML = 'Submit';
+    submitBtn.disabled = false;
 
     const resData = await res.json();
 
