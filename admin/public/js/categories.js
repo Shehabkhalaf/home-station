@@ -12,7 +12,7 @@ function updateTable() {
 
   getAllCategories().then((data) => {
     allCategories = data.data;
-    data.data.map((cat) => {
+    data.data.forEach((cat) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
       <td class="p-3 text-gray-700 whitespace-nowrap">${cat.id}</td>

@@ -6,7 +6,7 @@ function updateTable() {
   tableBody.innerHTML = '';
 
   getAllUSers().then((data) => {
-    data.data.users.map((user) => {
+    data.data.users.forEach((user) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
       <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${user.id}</td>
