@@ -22,10 +22,10 @@ class ContactUsController extends Controller
     public function replyMessage(Request $request)
     {
         $deleted = Message::destroy($request->id);
-        //if ($deleted) {
-        return $this->JsonResponse(200, 'Message deleted');
-        /*} else {
+        if ($deleted) {
+            return $this->JsonResponse(200, 'Message deleted');
+        } else {
             return $this->JsonResponse(50, 'Message not deleted');
-        }*/
+        }
     }
 }
