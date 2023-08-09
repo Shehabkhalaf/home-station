@@ -261,11 +261,11 @@ async function addProduct(product) {
     formData.append('category_id', product.category_id);
     formData.append('title', product.title);
     formData.append('description', product.description);
-    formData.append('color', product.color);
+    formData.append('color', JSON.stringify(product.color));
     formData.append('discount', product.discount);
     formData.append('stock', product.stock);
-    formData.append('size', product.size);
-    formData.append('price', product.price);
+    formData.append('size', JSON.stringify(product.size));
+    formData.append('price', JSON.stringify(product.price));
 
     product.image.forEach((image) => {
       formData.append('image', image);
