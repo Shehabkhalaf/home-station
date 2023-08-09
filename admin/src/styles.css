@@ -3,11 +3,33 @@
 @tailwind utilities;
 
 body {
-  font-family: "work sans", "sans-serif";
+  font-family: 'work sans', 'sans-serif';
 }
 
 #category-btns button.active {
-  background-color: #74B8B9;
+  background-color: #74b8b9;
   color: white;
 }
 
+.text-green-500 {
+  color: #22c55e;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
