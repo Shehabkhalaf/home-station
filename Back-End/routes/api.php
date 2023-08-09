@@ -32,7 +32,7 @@ Route::get('admin/dachboard', [AccessController::class, 'permitted'])->middlewar
 Route::prefix('admin')->group(function () {
     Route::controller(ContactUsController::class)->group(function () {
         Route::get('all_messages', 'allMessages');
-        Route::post('reply_message', 'replyMessage');
+        Route::delete('reply_message', 'replyMessage');
     });
     ##########/*Category Module*/##########
     ROute::controller(CategoryController::class)->group(function () {
