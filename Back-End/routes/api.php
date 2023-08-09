@@ -29,10 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 ########################/*Admin Module*/##########################
 Route::get('admin/dachboard', [AccessController::class, 'permitted'])->middleware('admin.access');
-Route::prefix('admin')->controller(ContactUsController::class)->group(function () {
-    Route::get('all_messages', 'allMessages');
-    Route::get('reply_message/{id}', 'replyMessage');
-    Route::get('all_users', [UserController::class, 'allUsers']);
+Route::prefix('admin')->group(function () {
+    Route::controller(ContactUsController::class)->group(function () {
+        Route::get('all_messages', 'allMessages');
+        Route::get('reply_message/{id}', 'replyMessage');
+    });
     ##########/*Category Module*/##########
     ROute::controller(CategoryController::class)->group(function () {
         Route::post('add_category', 'addCategory');
@@ -45,6 +46,7 @@ Route::prefix('admin')->controller(ContactUsController::class)->group(function (
         Route::get('all_products', 'getCategoriesWithProducts');
         Route::get('show_product/{id}', 'showProductWithCategory');
         Route::post('update_product', 'updateProduct');
+        Route::get('delete_product/{id}', 'deleteProduct');
     });
     #########/*Offers Module*/#########
     Route::controller(OfferController::class)->group(function () {
@@ -54,6 +56,7 @@ Route::prefix('admin')->controller(ContactUsController::class)->group(function (
         Route::get('delete_offer/{id}', 'deleteOffer');
         Route::get('show_offer/{id}', 'showOffer');
     });
+    Route::get('all_users', [UserController::class, 'allUsers']);
 });
 
 ########################/*User Module*/##########################
@@ -79,7 +82,7 @@ Route::prefix('user')->group(function () {
             Route::get('home', 'index');
             Route::get('products', 'allProducts');
             Route::post('update', 'updateData');
-            Route::post('Contact Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
+            Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
         });
         ###############Order Controller################
         Route::controller(OrderController::class)->group(function () {
