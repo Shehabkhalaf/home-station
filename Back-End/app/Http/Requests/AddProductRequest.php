@@ -35,7 +35,7 @@ class AddProductRequest extends FormRequest
             'category_id' => 'required',
             'title' => 'required|unique:products,title',
             'description' => 'required',
-            'image.*' => 'file|required|mimes:jpeg,png,jpg,gif|max:2048'
+            //'image.*' => 'file|required|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
     public function messages(): array
@@ -45,9 +45,9 @@ class AddProductRequest extends FormRequest
             'title.required' => 'The title field is required.',
             'description.required' => 'The description is required',
             'title.unique' => 'The title has already been taken.',
-            'image.required' => 'An image is required.',
+            /*'image.required' => 'An image is required.',
             'image.file' => 'The uploaded file must be an image.',
-            'image.max' => 'The uploaded image must not exceed :max kilobytes.'
+            'image.max' => 'The uploaded image must not exceed :max kilobytes.'*/
         ];
     }
 }
