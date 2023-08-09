@@ -8,6 +8,7 @@ use App\Http\Resources\ProductsResource;
 use App\Http\Resources\ShowProduct;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -21,34 +22,25 @@ class ProductController extends Controller
         $product->category_id = $addProductRequest->input('category_id');
         $product->title = $addProductRequest->input('title');
         $product->description = $addProductRequest->input('description');
-        $product->color = implode('|', $addProductRequest->input('color'));
+        $product->color = /*implode('|',*/ $addProductRequest->input('color')/*)*/;
         $product->discount = $addProductRequest->input('discount');
         $product->stock = $addProductRequest->input('stock');
-        $images = $addProductRequest->file('image');
-        $imagePaths = [];
-        foreach ($images as $image) {
-            $imageData = file_get_contents($image->getRealPath());
-            $base64Image = base64_encode($imageData);
-            $imagePaths[] = $base64Image;
-        }
-        $product->image = implode('|', $imagePaths);
-        /*$images = $addProductRequest->file('image');
-        $paths = [];
-        foreach ($images as $image) {
-            $path = $image->store('public/products');
-            $paths[] = $path;
-        }
-        $product->image = implode('|', $paths);*/
-        $size = implode('|', $addProductRequest->input('size'));
+        $size = /*implode('|',*/ $addProductRequest->input('size')/*)*/;
         $product->size = $size;
-        $price = implode('|', $addProductRequest->input('price'));
+        $price = /*implode('|',*/ $addProductRequest->input('price')/*)*/;
         $product->price = $price;
-        $stored = $product->save();
-        if ($stored) {
-            return $this->JsonResponse(201, 'Added success fully', $product);
-        } else {
-            return $this->JsonResponse(500, 'Error');
+        $product->save();
+        $id = $product->id;
+        $images = $addProductRequest->file('image'); // Assuming 'images' is the name of the array in your request
+        foreach ($images as $image) {
+            $binaryData = file_get_contents($image->getRealPath());
+            return $this->JsonResponse(200, '', $binaryData);
+            /*ProductImage::create([
+                'product_id' => $id,
+                'image' => $binaryData,
+            ]);*/
         }
+        return $this->JsonResponse(201, 'Added Successfully');
     }
     public function getCategoriesWithProducts()
     {
