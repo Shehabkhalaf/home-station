@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AccessController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\user\AuthController;
@@ -43,6 +44,13 @@ Route::prefix('admin')->controller(ContactUsController::class)->group(function (
         Route::get('all_products', 'getCategoriesWithProducts');
         Route::get('show_product/{id}', 'showProductWithCategory');
         Route::post('update_product', 'updateProduct');
+    });
+    #########/*Offers Module*/#########
+    Route::controller(OfferController::class)->group(function () {
+        Route::post('add_offer', 'addOffer');
+        Route::post('update_offer', 'updateOffer');
+        Route::get('all_offers', 'allOffers');
+        Route::post('delete_offer/{id}', 'deleteOffer');
     });
 });
 
