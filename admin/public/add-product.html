@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="https://res.cloudinary.com/dvagmtn4y/image/upload/v1679078730/home%20station/334207739_608659187398631_5067190693077913909_n_v94z5r.jpg"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <script
+      src="https://kit.fontawesome.com/49f02d4a75.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Main CSS file -->
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Dashboard | Home Staion</title>
+  </head>
+  <body class="md:flex">
+    <div
+      class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
+    >
+      <div class="md:mx-auto md:px-6">
+        <img
+          src="https://res.cloudinary.com/dvagmtn4y/image/upload/v1679078730/home%20station/334207739_608659187398631_5067190693077913909_n_v94z5r.jpg"
+          alt="logo"
+          class="md:w-[200px] w-[150px]"
+        />
+      </div>
+
+      <ul
+        class="flex flex-col gap-8 md:mt-10 md:relative md:bg-gr-1 md:top-auto md:left-auto md:w-auto md:py-0 absolute bg-white top-0 w-[250px] py-12 -left-[999px] duration-100"
+      >
+        <button
+          id="close-side"
+          class="block md:hidden absolute top-4 right-4 cursor-pointer text-lg"
+        >
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <li>
+          <a
+            href="./"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-user-group"></i>
+            <p class="capitalize">users</p>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./categories.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-store"></i>
+            <p class="capitalize">categories</p>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./products.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-bag-shopping"></i>
+            <p class="capitalize">products</p>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./orders.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-box"></i>
+            <p class="capitalize">orders</p>
+          </a>
+        </li>
+      </ul>
+
+      <button id="open" class="cursor-pointer block md:hidden text-xl">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="flex-1">
+      <header class="py-5 px-7">
+        <h1 class="font-bold text-3xl">Hello there, Admin</h1>
+        <p class="text-main text-[15px] mt-1">
+          Welcome back to your dashboard!
+        </p>
+      </header>
+
+      <div class="mx-auto w-[90%]">
+        <form id="cat-form" class="pb-10">
+          <div class="flex flex-col">
+            <label htmlFor="title" class="text-md mb-1">Product Name: </label>
+            <input
+              type="text"
+              placeholder="Add The Product Name"
+              id="title"
+              class="w-[90%] sm:w-[60%] outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+            />
+            <div
+              class="error-message text-red-500 text-sm mb-1"
+              id="error-message"
+            ></div>
+          </div>
+
+          <div class="flex flex-col my-2">
+            <label htmlFor="description" class="text-md mb-1"
+              >Product Description:
+            </label>
+            <textarea
+              type="text"
+              placeholder="Add The Product Description"
+              id="description"
+              class="w-[90%] sm:w-[60%] outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+            ></textarea>
+            <div
+              class="error-message text-red-500 text-sm mb-1"
+              id="error-message"
+            ></div>
+          </div>
+
+          <div class="flex flex-col my-2">
+            <label htmlFor="category" class="text-md mb-1"
+              >Select Product Category:
+            </label>
+
+            <select
+              id="category"
+              name="category"
+              class="w-[90%] sm:w-[60%] outline-none cursor-pointer border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+            >
+              <option value="1">Beds</option>
+              <option value="2">Pillows</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col my-2">
+            <label htmlFor="colors" class="text-md mb-1"
+              >Colors: You can add more than one color</label
+            >
+            <div
+              class="flex flex-col justify-between gap-3 sm:gap-0 sm:flex-row sm:justify-normal sm:space-x-2"
+            >
+              <input
+                type="text"
+                placeholder="Add a Color"
+                id="colors"
+                class="w-[90%] sm:w-auto outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+              />
+              <button
+                class="w-[90%] sm:w-auto py-1 px-2 bg-main text-white rounded-md hover:opacity-[80%]"
+                id="add-color-btn"
+              >
+                Add
+              </button>
+            </div>
+            <div
+              class="error-message text-red-500 text-sm mb-1"
+              id="colors-error-message"
+            ></div>
+            <ul id="colors-list" class="list-disc ml-6 mt-1"></ul>
+          </div>
+
+          <div class="flex flex-col my-2">
+            <label htmlFor="discount" class="text-md mb-1">Discount:</label>
+            <input
+              type="number"
+              min="0"
+              placeholder="Add Discount Percentage"
+              id="discount"
+              class="w-[90%] sm:w-[60%] outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+            />
+            <div
+              class="error-message text-red-500 text-sm mb-1"
+              id="discount-error-message"
+            ></div>
+          </div>
+
+          <div class="flex flex-col my-2">
+            <label htmlFor="stock" class="text-md mb-1">Stock:</label>
+            <input
+              type="number"
+              min="0"
+              placeholder="Add Stock Quantity"
+              id="stock"
+              class="w-[90%] sm:w-[60%] outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+            />
+            <div
+              class="error-message text-red-500 text-sm mb-1"
+              id="stock-error-message"
+            ></div>
+          </div>
+
+          <div class="flex flex-col my-2">
+            <label htmlFor="size-price" class="text-md mb-1"
+              >Size & Price: You can add more than one size & price</label
+            >
+            <div
+              class="flex flex-col justify-between gap-3 sm:gap-0 sm:flex-row sm:justify-normal sm:space-x-2"
+            >
+              <input
+                type="text"
+                placeholder="Size"
+                id="size"
+                class="outline-none w-[90%] sm:w-auto border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+              />
+              <input
+                type="number"
+                min="0"
+                placeholder="Price"
+                id="price"
+                class="outline-none w-[90%] sm:w-auto border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+              />
+              <button
+                class="w-[90%] sm:w-auto py-1 px-2 bg-main text-white rounded-md hover:opacity-[80%]"
+                id="add-size-price-btn"
+              >
+                Add
+              </button>
+            </div>
+            <div
+              class="error-message text-red-500 text-sm mb-1"
+              id="size-price-error-message"
+            ></div>
+            <ul id="size-price-list" class="list-disc ml-6 mt-1"></ul>
+          </div>
+
+          <div class="flex flex-col">
+            <label htmlFor="images" class="text-md mb-1"
+              >Images: You can add more than one image</label
+            >
+            <input
+              type="file"
+              id="images"
+              class="w-[90%] sm:w-[60%] cursor-pointer outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main"
+              multiple
+            />
+            <div
+              class="error-message text-red-500 text-sm mb-1"
+              id="images-error-message"
+            ></div>
+            <ul id="images-list" class="list-disc ml-6 mt-1"></ul>
+          </div>
+
+          <button
+            class="mt-1 py-2 px-4 hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white"
+            type="submit"
+            id="cat-btn"
+          >
+            Submit
+          </button>
+          <div
+            class="success-message text-green-500 text-sm mt-1"
+            id="success-message"
+          ></div>
+        </form>
+      </div>
+
+      <!-- <div class="mx-auto w-[90%] h-[380px] overflow-auto pb-10">
+        <table class="w-full">
+          <thead class="bg-main text-white border-b-2 border-gray-300">
+            <tr>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                id
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                Image
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                Product Name
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                Category
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                Price
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                Discount
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                Status
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                Size
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left">
+                Rating
+              </th>
+            </tr>
+          </thead>
+          <tbody id="product-body" class="divide-y divide-gray-200 relative">
+          </tbody>
+        </table>
+      </div> -->
+    </div>
+
+    <script src="./js/addProduct.js"></script>
+  </body>
+</html>

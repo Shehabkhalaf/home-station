@@ -28,6 +28,10 @@ body {
   margin-bottom: 0.75rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
