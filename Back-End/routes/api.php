@@ -51,7 +51,8 @@ Route::prefix('admin')->controller(ContactUsController::class)->group(function (
         Route::post('add_offer', 'addOffer');
         Route::post('update_offer', 'updateOffer');
         Route::get('all_offers', 'allOffers');
-        Route::post('delete_offer/{id}', 'deleteOffer');
+        Route::get('delete_offer/{id}', 'deleteOffer');
+        Route::get('show_offer/{id}', 'showOffer');
     });
 });
 
