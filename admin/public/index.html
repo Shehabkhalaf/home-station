@@ -85,6 +85,16 @@
             <p class="capitalize">orders</p>
           </a>
         </li>
+
+        <li>
+          <a
+            href="./messages.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-envelope"></i>
+            <p class="capitalize">Messages</p>
+          </a>
+        </li>
       </ul>
 
       <button id="open" class="cursor-pointer block md:hidden text-xl">
@@ -105,7 +115,7 @@
           <thead class="bg-main text-white border-b-2 border-gray-300">
             <tr>
               <th class="p-3 text-md font-semibold tracking-wide text-left">
-                No.
+                ID
               </th>
               <th
                 class="p-3 text-md font-semibold tracking-wide text-left w-[10%]"
@@ -129,7 +139,10 @@
               </th>
             </tr>
           </thead>
-          <tbody id="user-body" class="divide-y divide-gray-200 relative"></tbody>
+          <tbody
+            id="user-body"
+            class="divide-y divide-gray-200 relative"
+          ></tbody>
         </table>
       </div>
     </div>

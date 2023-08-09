@@ -85,6 +85,16 @@
             <p class="capitalize">orders</p>
           </a>
         </li>
+
+        <li>
+          <a
+            href="./messages.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-envelope"></i>
+            <p class="capitalize">Messages</p>
+          </a>
+        </li>
       </ul>
 
       <button id="open" class="cursor-pointer block md:hidden text-xl">
@@ -245,8 +255,9 @@
             <input
               type="file"
               id="images"
+              name="image"
               class="w-[90%] sm:w-[60%] cursor-pointer outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main"
-              multiple
+              accept="image/*"
             />
             <div
               class="error-message text-red-500 text-sm mb-1"

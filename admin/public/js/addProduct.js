@@ -37,6 +37,10 @@ function handleSubmit(e) {
   const stockInput = document.getElementById('stock');
   const stockError = document.getElementById('stock-error-message');
 
+  const priceError = document.getElementById('size-price-error-message');
+  const colorsError = document.getElementById('colors-error-message');
+  const imagesError = document.getElementById('images-error-message');
+
   const titleValue = titleInput.value.trim();
   const descriptionValue = descriptionInput.value.trim();
   const categoryValue = categoryInput.value;
@@ -78,20 +82,44 @@ function handleSubmit(e) {
     isValid = false;
   }
 
+  if (sizeArr.length === 0 || priceArr.length === 0) {
+    priceError.textContent = 'Both size and price are required.';
+    setTimeout(() => {
+      priceError.textContent = '';
+    }, 4000);
+    isValid = false;
+  }
+
+  if (colorsArr.length === 0) {
+    colorsError.textContent = 'Please add one or more colors.';
+    setTimeout(() => {
+      colorsError.textContent = '';
+    }, 4000);
+    isValid = false;
+  }
+
+  if (imagesArr.length === 0) {
+    imagesError.textContent = 'Please add one or more Image.';
+    setTimeout(() => {
+      imagesError.textContent = '';
+    }, 4000);
+    isValid = false;
+  }
+
   if (isValid) {
     const product = {
       category_id: categoryValue,
       title: titleValue,
       description: descriptionValue,
       color: colorsArr,
+      discount: discountValue,
+      stock: stockValue,
       image: imagesArr,
       size: sizeArr,
       price: priceArr,
-      discount: discountValue,
-      stock: stockValue,
     };
 
-    console.log(product);
+    console.log({ ...product });
 
     addProduct(product);
   }
@@ -140,7 +168,6 @@ function addImages() {
   const errorMessage = document.getElementById('images-error-message');
 
   const images = Array.from(imagesInput.files);
-  imagesArr.push(images[0]);
 
   images.forEach((image) => {
     if (
@@ -151,6 +178,8 @@ function addImages() {
       image.type === 'image/tiff' ||
       image.type === 'image/webp'
     ) {
+      imagesArr.push(image);
+
       const listItem = document.createElement('li');
       const deleteBtn = document.createElement('button');
       deleteBtn.id = 'delete-list';
@@ -225,17 +254,55 @@ function deleteListItem(target, targetArr, value) {
 }
 
 async function addProduct(product) {
+  console.log({ ...product });
   try {
+    const formData = new FormData();
+
+    formData.append('category_id', product.category_id);
+    formData.append('title', product.title);
+    formData.append('description', product.description);
+    formData.append('color', JSON.stringify(product.color));
+    formData.append('discount', product.discount);
+    formData.append('stock', product.stock);
+    formData.append('size', JSON.stringify(product.size));
+    formData.append('price', JSON.stringify(product.price));
+
+    product.image.forEach((image) => {
+      formData.append('image', image);
+    });
+
     const res = await fetch(`${URL}api/admin/add_product`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: JSON.stringify(product),
+      body: formData,
     });
 
     const data = await res.json();
     console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+/**
+ * Add CAtegory Select Valuse Dynamically
+ */
+const categorySelect = document.getElementById('category');
+let allCategories = [];
+getAllCategories().then((data) => {
+  data.data.forEach((cat) => {
+    allCategories.push(cat);
+  });
+
+  categorySelect.innerHTML = allCategories.map((cat) => {
+    return `<option value="${cat.id}">${cat.title}</option>`;
+  });
+});
+
+async function getAllCategories() {
+  try {
+    const res = await fetch(`${URL}api/admin/all_categories`);
+    const data = await res.json();
+    return data;
   } catch (err) {
     console.log(err);
   }
