@@ -34,7 +34,6 @@ class ProductsResource extends JsonResource
                     'discount' => $product->discount,
                     'stock' => $product->stock,
                     'images' => $imageUrls,
-                    'ratings' => $product->ratings,
                     'price' => explode('|', $product->price),
                     'size' => explode('|', $product->size),
                 ];
