@@ -19,9 +19,9 @@ class ContactUsController extends Controller
         ];
         return $this->JsonResponse(200, 'Messages are here', $data);
     }
-    public function replyMessage(Request $request)
+    public function replyMessage($id)
     {
-        $deleted = Message::destroy($request->id);
+        $deleted = Message::destroy($id);
         if ($deleted) {
             return $this->JsonResponse(200, 'Message deleted');
         } else {
