@@ -23,18 +23,54 @@ imagesInput.addEventListener('change', addImages);
 function handleSubmit(e) {
   e.preventDefault();
 
-  // Validation and submission logic here
-
-  // Example: Checking if the title is empty
   const titleInput = document.getElementById('title');
+  const titleError = document.getElementById('title-error-message');
+
+  const descriptionInput = document.getElementById('description');
+  const descriptionError = document.getElementById('description-error-message');
+
+  const categoryInput = document.getElementById('category');
+  const categoryError = document.getElementById('category-error-message');
+
+  const discountInput = document.getElementById('discount');
+  const discountError = document.getElementById('discount-error-message');
+
+  const stockInput = document.getElementById('stock');
+  const stockError = document.getElementById('stock-error-message');
+
   const titleValue = titleInput.value.trim();
+  const descriptionValue = descriptionInput.value.trim();
+  const categoryValue = categoryInput.value;
+  const discountValue = discountInput.value;
+  const stockValue = stockInput.value;
+
+  // Check for validation
+  let isValid = true;
+
   if (titleValue === '') {
-    showError(titleInput, 'Title is required.');
-  } else {
-    clearError(titleInput);
+    titleError.textContent = 'Title is required.';
+    setTimeout(() => {
+      titleError.textContent = '';
+    }, 4000);
+    isValid = false;
   }
 
-  // Add similar validation logic for other fields
+  if (isValid) {
+    const product = {
+      category_id: categoryValue,
+      title: titleValue,
+      description: descriptionValue,
+      colors: colorsArr,
+      images: imagesArr,
+      sizes: sizeArr,
+      prices: priceArr,
+      discount: discountValue,
+      stock: stockValue,
+    };
+
+    // Call a function to send the product data to the server
+    addProduct(product);
+  }
 }
 
 // Function to handle adding size & price
@@ -158,11 +194,10 @@ function deleteListItem(target, targetArr, value) {
     target.remove();
   }
 
-  let index = targetArr.indexof(value);
-  targetArr = targetArr.filter((ele) => ele != value);
-
-  // console.log(targetArr);
-  // console.log(colorsArr);
+  let index = targetArr.indexOf(value);
+  if (index !== -1) {
+    targetArr.splice(index, 1);
+  }
 }
 
 async function addProduct() {
