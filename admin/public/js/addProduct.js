@@ -9,8 +9,8 @@ const colorsInput = document.getElementById('add-color-btn');
 colorsInput.addEventListener('click', addColors);
 
 // Add event listener for form submission
-const catForm = document.getElementById('cat-form');
-catForm.addEventListener('submit', handleSubmit);
+const productForm = document.getElementById('product-form');
+productForm.addEventListener('submit', handleSubmit);
 
 // Add event listener for adding size & price
 const addSizePriceBtn = document.getElementById('add-size-price-btn');
@@ -30,7 +30,6 @@ function handleSubmit(e) {
   const descriptionError = document.getElementById('description-error-message');
 
   const categoryInput = document.getElementById('category');
-  const categoryError = document.getElementById('category-error-message');
 
   const discountInput = document.getElementById('discount');
   const discountError = document.getElementById('discount-error-message');
@@ -48,9 +47,33 @@ function handleSubmit(e) {
   let isValid = true;
 
   if (titleValue === '') {
-    titleError.textContent = 'Title is required.';
+    titleError.textContent = 'This field is required.';
     setTimeout(() => {
       titleError.textContent = '';
+    }, 4000);
+    isValid = false;
+  }
+
+  if (descriptionValue === '') {
+    descriptionError.textContent = 'This field is required.';
+    setTimeout(() => {
+      descriptionError.textContent = '';
+    }, 4000);
+    isValid = false;
+  }
+
+  if (discountValue === '') {
+    discountError.textContent = 'This field is required.';
+    setTimeout(() => {
+      discountError.textContent = '';
+    }, 4000);
+    isValid = false;
+  }
+
+  if (stockValue === '') {
+    stockError.textContent = 'This field is required.';
+    setTimeout(() => {
+      stockError.textContent = '';
     }, 4000);
     isValid = false;
   }
@@ -62,13 +85,14 @@ function handleSubmit(e) {
       description: descriptionValue,
       colors: colorsArr,
       images: imagesArr,
-      sizes: sizeArr,
-      prices: priceArr,
+      size: sizeArr,
+      price: priceArr,
       discount: discountValue,
       stock: stockValue,
     };
 
-    // Call a function to send the product data to the server
+    console.log(product);
+
     addProduct(product);
   }
 }
@@ -200,18 +224,14 @@ function deleteListItem(target, targetArr, value) {
   }
 }
 
-async function addProduct() {
+async function addProduct(product) {
   try {
     const res = await fetch(`${URL}api/admin/add_product`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify({
-        category_id: '1',
-        title: 'sheat pillow',
-        description: 'undefined',
-      }),
+      body: JSON.stringify(product),
     });
 
     const data = await res.json();
@@ -220,5 +240,3 @@ async function addProduct() {
     console.log(err);
   }
 }
-
-addProduct();

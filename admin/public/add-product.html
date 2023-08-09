@@ -101,7 +101,7 @@
       </header>
 
       <div class="mx-auto w-[90%]">
-        <form id="cat-form" class="pb-10">
+        <form id="product-form" class="pb-10">
           <div class="flex flex-col">
             <label htmlFor="title" class="text-md mb-1">Product Name: </label>
             <input
@@ -145,33 +145,6 @@
               <option value="1">Beds</option>
               <option value="2">Pillows</option>
             </select>
-          </div>
-
-          <div class="flex flex-col my-2">
-            <label htmlFor="colors" class="text-md mb-1"
-              >Colors: You can add more than one color</label
-            >
-            <div
-              class="flex flex-col justify-between gap-3 sm:gap-0 sm:flex-row sm:justify-normal sm:space-x-2"
-            >
-              <input
-                type="text"
-                placeholder="Add a Color"
-                id="colors"
-                class="w-[90%] sm:w-auto outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
-              />
-              <button
-                class="w-[90%] sm:w-auto py-1 px-2 bg-main text-white rounded-md hover:opacity-[80%]"
-                id="add-color-btn"
-              >
-                Add
-              </button>
-            </div>
-            <div
-              class="error-message text-red-500 text-sm mb-1"
-              id="colors-error-message"
-            ></div>
-            <ul id="colors-list" class="list-disc ml-6 mt-1"></ul>
           </div>
 
           <div class="flex flex-col my-2">
@@ -224,18 +197,45 @@
                 id="price"
                 class="outline-none w-[90%] sm:w-auto border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
               />
-              <button
-                class="w-[90%] sm:w-auto py-1 px-2 bg-main text-white rounded-md hover:opacity-[80%]"
+              <div
+                class="w-[90%] cursor-pointer sm:w-auto py-1 px-2 bg-main text-white rounded-md hover:opacity-[80%]"
                 id="add-size-price-btn"
               >
                 Add
-              </button>
+              </div>
             </div>
             <div
               class="error-message text-red-500 text-sm mb-1"
               id="size-price-error-message"
             ></div>
             <ul id="size-price-list" class="list-disc ml-6 mt-1"></ul>
+          </div>
+
+          <div class="flex flex-col my-2">
+            <label htmlFor="colors" class="text-md mb-1"
+              >Colors: You can add more than one color</label
+            >
+            <div
+              class="flex flex-col justify-between gap-3 sm:gap-0 sm:flex-row sm:justify-normal sm:space-x-2"
+            >
+              <input
+                type="text"
+                placeholder="Add a Color"
+                id="colors"
+                class="w-[90%] sm:w-auto outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+              />
+              <div
+                class="w-[90%] cursor-pointer sm:w-auto py-1 px-2 bg-main text-white rounded-md hover:opacity-[80%]"
+                id="add-color-btn"
+              >
+                Add
+              </div>
+            </div>
+            <div
+              class="error-message text-red-500 text-sm mb-1"
+              id="colors-error-message"
+            ></div>
+            <ul id="colors-list" class="list-disc ml-6 mt-1"></ul>
           </div>
 
           <div class="flex flex-col">
