@@ -8,9 +8,7 @@ use App\Http\Resources\ProductsResource;
 use App\Http\Resources\ShowProduct;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductDetail;
 use App\Traits\ApiResponse;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,7 +21,7 @@ class ProductController extends Controller
         $product->category_id = $addProductRequest->input('category_id');
         $product->title = $addProductRequest->input('title');
         $product->description = $addProductRequest->input('description');
-        $product->color = $addProductRequest->input('color');
+        $product->color = implode('|', $addProductRequest->input('color'));
         $product->discount = $addProductRequest->input('discount');
         $product->stock = $addProductRequest->input('stock');
         $images = $addProductRequest->file('image');

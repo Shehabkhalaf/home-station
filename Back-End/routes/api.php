@@ -3,9 +3,11 @@
 use App\Http\Controllers\Admin\AccessController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\user\AuthController;
+use App\Http\Controllers\User\OfferController as UserOfferController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\UserController as UserUserController;
 use Illuminate\Http\Request;
@@ -44,6 +46,14 @@ Route::prefix('admin')->controller(ContactUsController::class)->group(function (
         Route::get('show_product/{id}', 'showProductWithCategory');
         Route::post('update_product', 'updateProduct');
     });
+    #########/*Offers Module*/#########
+    Route::controller(OfferController::class)->group(function () {
+        Route::post('add_offer', 'addOffer');
+        Route::post('update_offer', 'updateOffer');
+        Route::get('all_offers', 'allOffers');
+        Route::get('delete_offer/{id}', 'deleteOffer');
+        Route::get('show_offer/{id}', 'showOffer');
+    });
 });
 
 ########################/*User Module*/##########################
@@ -64,14 +74,20 @@ Route::prefix('user')->group(function () {
         });*/
     });
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+        ###############User Controller#################
         Route::controller(UserUserController::class)->group(function () {
             Route::get('home', 'index');
             Route::get('products', 'allProducts');
             Route::post('update', 'updateData');
             Route::post('Contact Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
         });
+        ###############Order Controller################
         Route::controller(OrderController::class)->group(function () {
             Route::get('all_orders', 'allOrders');
+        });
+        ##############Offer Controller#################
+        Route::controller(UserOfferController::class)->group(function () {
+            Route::get('all_offers', 'allOffers');
         });
     });
 });

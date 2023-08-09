@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('discount');
             $table->string('started_at');
             $table->string('expired_at');
+            $table->timestamps();
         });
     }
 

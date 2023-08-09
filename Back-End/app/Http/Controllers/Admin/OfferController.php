@@ -33,12 +33,12 @@ class OfferController extends Controller
     public function allOffers()
     {
         $offers = Offer::all();
-        return $this->JsonResponse(201, 'Offer Updated', $offers);
+        return $this->JsonResponse(200, 'All offers are here', $offers);
     }
     public function showOffer($id)
     {
         $offer = Offer::find($id);
-        return $this->JsonResponse(201, 'Offer Updated', $offer);
+        return $this->JsonResponse(200, 'Your Offer is here', $offer);
     }
     public function deleteOffer($id)
     {

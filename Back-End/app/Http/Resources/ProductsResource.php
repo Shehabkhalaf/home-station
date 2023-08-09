@@ -30,11 +30,10 @@ class ProductsResource extends JsonResource
                     'product_id' => $product->id,
                     'product_name' => $product->title,
                     'description' => $product->description,
-                    'color' => $product->color,
+                    'color' => explode('|', $product->color),
                     'discount' => $product->discount,
                     'stock' => $product->stock,
                     'images' => $imageUrls,
-                    'ratings' => $product->ratings,
                     'price' => explode('|', $product->price),
                     'size' => explode('|', $product->size),
                 ];
