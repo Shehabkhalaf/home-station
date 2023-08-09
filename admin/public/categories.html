@@ -93,50 +93,51 @@
     </div>
 
     <div class="flex-1">
-      <header class="py-5 px-7">
+      <header class="pt-5 px-7 mb-10">
         <h1 class="font-bold text-3xl">Hello there, Admin</h1>
         <p class="text-main text-[15px] mt-1">
           Welcome back to your dashboard!
         </p>
       </header>
 
-      <!-- <table class="mt-10 mx-auto w-[90%]">
-        <thead class="bg-main text-white border-b-2 border-gray-300">
-          <tr>
-            <th class="p-3 text-md font-semibold tracking-wide text-left">
-              No.
-            </th>
-            <th class="p-3 text-md font-semibold tracking-wide text-left w-[10%]">
-              Name
-            </th>
-            <th class="p-3 text-md font-semibold tracking-wide text-left w-[25%]">
-              E-mail
-            </th>
-            <th class="p-3 text-md font-semibold tracking-wide text-left w-[15%]">
-              Phone
-            </th>
-            <th class="p-3 text-md font-semibold tracking-wide text-left w-[40%]">
-              Address
-            </th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200">
-          <tr>
-            <td class="p-3 text-gray-700 text-sm whitespace-nowrap">01</td>
-            <td class="p-3 text-gray-700 text-sm whitespace-nowrap">Ahmed Ramadan</td>
-            <td class="p-3 text-gray-700 text-sm">example1@example.com</td>
-            <td class="p-3 text-gray-700 text-sm whitespace-nowrap">95959595959</td>
-            <td class="p-3 text-gray-700 text-sm">Cairo, Egypt vdvdv</td>
-          </tr>
-          <tr class="bg-gray-50">
-            <td class="p-3 text-gray-700 text-sm whitespace-nowrap">02</td>
-            <td class="p-3 text-gray-700 text-sm whitespace-nowrap">Ahmed Ramadan</td>
-            <td class="p-3 text-gray-700 text-sm">example2@example.com</td>
-            <td class="p-3 text-gray-700 text-sm whitespace-nowrap">95959595959</td>
-            <td class="p-3 text-gray-700 text-sm whitespace-pre-wrap">Cairo, Egypt vdvdv fdgsdghhd ghghdghfcvbcvb xbfdfgfdg fgfdg dfgfgf bdfffngffd bfgdfsgfsdgsd</td>
-          </tr>
-        </tbody>
-      </table> -->
+      <div class="px-7 mb-20">
+        <div id="category-btns" class="flex gap-8">
+          <button
+            id="add-category"
+            class="cat__btn mb-3 text-xl font-semibold px-5 py-2 rounded-md hover:bg-main hover:text-white duration-100 active"
+          >
+            Add new category
+          </button>
+          <button
+            id="update-category"
+            class="cat__btn mb-3 text-xl font-semibold px-5 py-2 rounded-md hover:bg-main hover:text-white duration-100"
+          >
+            Update category status
+          </button>
+        </div>
+        <div id="form__container"></div>
+      </div>
+
+      <div class="mx-auto w-[90%] h-[380px] overflow-auto pb-10">
+        <table class="w-full">
+          <thead class="bg-main text-white border-b-2 border-gray-300">
+            <tr>
+              <th class="p-3 text-md font-semibold tracking-wide text-left w-[5%]">
+                ID
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left w-[30%]">
+                Category Name
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left w-[30%]">
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody id="cat-body" class="divide-y divide-gray-200"></tbody>
+        </table>
+      </div>
     </div>
+
+    <script src="./js/categories.js"></script>
   </body>
 </html>

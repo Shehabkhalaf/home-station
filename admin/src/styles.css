@@ -5,3 +5,9 @@
 body {
   font-family: "work sans", "sans-serif";
 }
+
+#category-btns button.active {
+  background-color: #74B8B9;
+  color: white;
+}
+
