@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\user\AuthController;
+use App\Http\Controllers\User\OfferController as UserOfferController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\UserController as UserUserController;
 use Illuminate\Http\Request;
@@ -72,14 +73,20 @@ Route::prefix('user')->group(function () {
         });*/
     });
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+        ###############User Controller#################
         Route::controller(UserUserController::class)->group(function () {
             Route::get('home', 'index');
             Route::get('products', 'allProducts');
             Route::post('update', 'updateData');
             Route::post('Contact Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
         });
+        ###############Order Controller################
         Route::controller(OrderController::class)->group(function () {
             Route::get('all_orders', 'allOrders');
+        });
+        ##############Offer Controller#################
+        Route::controller(UserOfferController::class)->group(function () {
+            Route::get('all_offers', 'allOffers');
         });
     });
 });
