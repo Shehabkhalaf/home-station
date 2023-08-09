@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('size')->nullable();
             $table->string('price');
-            $table->double('ratings')->nullable();
+
             $table->timestamps();
         });
     }
