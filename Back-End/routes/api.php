@@ -32,7 +32,7 @@ Route::get('admin/dachboard', [AccessController::class, 'permitted'])->middlewar
 Route::prefix('admin')->group(function () {
     Route::controller(ContactUsController::class)->group(function () {
         Route::get('all_messages', 'allMessages');
-        Route::get('reply_message/{id}', 'replyMessage');
+        Route::post('reply_message', 'replyMessage');
     });
     ##########/*Category Module*/##########
     ROute::controller(CategoryController::class)->group(function () {
@@ -46,7 +46,7 @@ Route::prefix('admin')->group(function () {
         Route::get('all_products', 'getCategoriesWithProducts');
         Route::get('show_product/{id}', 'showProductWithCategory');
         Route::post('update_product', 'updateProduct');
-        Route::get('delete_product/{id}', 'deleteProduct');
+        Route::post('delete_product', 'deleteProduct');
     });
     #########/*Offers Module*/#########
     Route::controller(OfferController::class)->group(function () {

@@ -24,13 +24,13 @@ class ProductController extends Controller
         $product->color = implode('|', $addProductRequest->input('color'));
         $product->discount = $addProductRequest->input('discount');
         $product->stock = $addProductRequest->input('stock');
-        $images = $addProductRequest->file('image');
+        /*$images = $addProductRequest->file('image');
         $paths = [];
         foreach ($images as $image) {
             $path = $image->store('public/products');
             $paths[] = $path;
         }
-        $product->image = implode('|', $paths);
+        $product->image = implode('|', $paths);*/
         $size = implode('|', $addProductRequest->input('size'));
         $product->size = $size;
         $price = implode('|', $addProductRequest->input('price'));
@@ -82,6 +82,15 @@ class ProductController extends Controller
             return $this->JsonResponse(201, 'Added success fully', $product);
         } else {
             return $this->JsonResponse(500, 'Error');
+        }
+    }
+    public function deleteProduct(Request $request)
+    {
+        $deleted = Product::destroy($request->id);
+        if ($deleted) {
+            return $this->JsonResponse(200, 'Deleted success fully');
+        } else {
+            return $this->JsonResponse(500, 'Something went wrong', $deleted);
         }
     }
 }
