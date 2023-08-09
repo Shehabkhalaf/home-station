@@ -42,6 +42,10 @@ body {
   padding-right: 1rem;
 }
 
+.left-0 {
+  left: 0;
+}
+
 .loader {
   width: 48px;
   height: 48px;

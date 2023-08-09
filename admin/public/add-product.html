@@ -27,6 +27,10 @@
   </head>
   <body class="md:flex">
     <div
+      id="overlay"
+      class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10 hidden"
+    ></div>
+    <div
       class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
     >
       <div class="md:mx-auto md:px-6">
@@ -38,7 +42,8 @@
       </div>
 
       <ul
-        class="flex flex-col gap-8 md:mt-10 md:relative md:bg-gr-1 md:top-auto md:left-auto md:w-auto md:py-0 absolute bg-white top-0 w-[250px] py-12 -left-[999px] duration-100"
+        id="nav-lists"
+        class="flex flex-col z-20 gap-8 md:mt-10 md:relative md:bg-gr-1 md:top-auto md:left-auto md:w-auto md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
       >
         <button
           id="close-side"
@@ -93,6 +98,16 @@
           >
             <i class="fa-solid fa-envelope"></i>
             <p class="capitalize">Messages</p>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./offers.html"
+            class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+          >
+            <i class="fa-solid fa-gift"></i>
+            <p class="capitalize">Offers</p>
           </a>
         </li>
       </ul>
@@ -320,5 +335,6 @@
     </div>
 
     <script src="./js/addProduct.js"></script>
+    <script src="./js/global.js"></script>
   </body>
 </html>
