@@ -70,28 +70,45 @@ class ProductController extends Controller
         $product = new ShowProduct($product);
         return $this->JsonResponse(200, 'The product is here', $product);
     }
-    public function updateProduct(Request $request)
+    public function updateProduct(Request $addProductRequest)
     {
-        $product = Product::find($request->input('id'));
-        $photos = explode('|', $product->image);
-        foreach ($photos as $photo) {
-            Storage::delete($photo);
-        }
-        $product->title = $request->input('title');
-        $product->description = $request->input('description');
-        $product->color = $request->input('color');
-        $product->discount = $request->input('discount');
-        $product->stock = $request->input('stock');
-        $images = $request->file('image');
-        $pathes = [];
+        $product = Product::find($addProductRequest->id);
+        $images = explode('|', $product->image);
         foreach ($images as $image) {
-            $path = $image->store('public/products/');
-            $pathes[] = $path;
+            Storage::delete($image);
         }
-        $product->image = implode('|', $pathes);
-        $size = implode('|', $request->input('size'));
+        $product->category_id = $addProductRequest->input('category_id');
+        $product->title = $addProductRequest->input('title');
+        $product->description = $addProductRequest->input('description');
+        $product->color = $addProductRequest->input('color');
+        $product->discount = $addProductRequest->input('discount');
+        $product->stock = $addProductRequest->input('stock');
+        $paths = [];
+        if ($addProductRequest->hasFile('image1')) {
+            $imageName = $addProductRequest->file('image');
+            $path = $addProductRequest->file('image1')->store('public/products');
+            $paths[] = $path;
+        }
+        if ($addProductRequest->hasFile('image2')) {
+            $path = $addProductRequest->file('image2')->store('public/products');
+            $paths[] = $path;
+        }
+        if ($addProductRequest->hasFile('image3')) {
+            $path = $addProductRequest->file('image3')->store('public/products');
+            $paths[] = $path;
+        }
+        if ($addProductRequest->hasFile('image4')) {
+            $path = $addProductRequest->file('image4')->store('public/products');
+            $paths[] = $path;
+        }
+        if ($addProductRequest->hasFile('image5')) {
+            $path = $addProductRequest->file('image5')->store('public/products');
+            $paths[] = $path;
+        }
+        $product->image = implode('|', $paths);
+        $size = $addProductRequest->input('size');
         $product->size = $size;
-        $price = implode('|', $request->input('price'));
+        $price =  $addProductRequest->input('price');
         $product->price = $price;
         $stored = $product->save();
         if ($stored) {

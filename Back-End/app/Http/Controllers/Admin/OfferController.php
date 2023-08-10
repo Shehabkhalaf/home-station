@@ -16,7 +16,7 @@ class OfferController extends Controller
         $offer = Offer::create($request->all());
         return $this->JsonResponse(201, 'Offer Created', $offer);
     }
-    public function updateOffer(AddOfferRequest $request)
+    public function updateOffer(Request $request)
     {
         $offer = Offer::find($request->input('id'));
         $offer->promocode = $request->input('promocode');
