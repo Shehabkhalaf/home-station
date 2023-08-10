@@ -26,23 +26,24 @@ class ProductController extends Controller
         $product->stock = $addProductRequest->input('stock');
         $paths = [];
         if ($addProductRequest->hasFile('image1')) {
-            $path = $addProductRequest->file('image1')->store('products', 'public');
+            $imageName = $addProductRequest->file('image');
+            $path = $addProductRequest->file('image1')->store('public/products');
             $paths[] = $path;
         }
         if ($addProductRequest->hasFile('image2')) {
-            $path = $addProductRequest->file('image2')->store('products', 'public');
+            $path = $addProductRequest->file('image2')->store('public/products');
             $paths[] = $path;
         }
         if ($addProductRequest->hasFile('image3')) {
-            $path = $addProductRequest->file('image3')->store('products', 'public');
+            $path = $addProductRequest->file('image3')->store('public/products');
             $paths[] = $path;
         }
         if ($addProductRequest->hasFile('image4')) {
-            $path = $addProductRequest->file('image4')->store('products', 'public');
+            $path = $addProductRequest->file('image4')->store('public/products');
             $paths[] = $path;
         }
         if ($addProductRequest->hasFile('image5')) {
-            $path = $addProductRequest->file('image5')->store('products', 'public');
+            $path = $addProductRequest->file('image5')->store('public/products');
             $paths[] = $path;
         }
         $product->image = implode('|', $paths);

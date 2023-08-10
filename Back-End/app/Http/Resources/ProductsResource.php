@@ -19,21 +19,21 @@ class ProductsResource extends JsonResource
     {
         return [
             'category_name' => $this->title,
-            'category_id' => $this->id,
             'status' => $this->status,
             'products' => $this->products->map(function ($product) {
-                $imagePaths = explode('|', $product->image);
+                $imagePaths = explode('|', $product->image); // Explode the concatenated string
                 $imageUrls = array_map(function ($imagePath) {
-                    return Storage::url($imagePath);
+                    return asset(Storage::url($imagePath));
                 }, $imagePaths);
                 return [
                     'product_id' => $product->id,
                     'product_name' => $product->title,
                     'description' => $product->description,
-                    'color' => explode('|', $product->color),
+                    'color' => $product->color,
                     'discount' => $product->discount,
                     'stock' => $product->stock,
-                    'images' => $imageUrls,
+                    'images' => $imageUrls, // Use the array of image URLs
+                    'ratings' => $product->ratings,
                     'price' => explode('|', $product->price),
                     'size' => explode('|', $product->size),
                 ];
