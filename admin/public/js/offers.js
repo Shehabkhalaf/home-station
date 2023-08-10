@@ -385,7 +385,7 @@ async function addOffer(data, errorMessageELe, successMessage, submitBtn) {
     const resData = await res.json();
 
     if (resData.status !== 201) {
-      errorMessageELe.textContent = resData.data['title'][0];
+      errorMessageELe.textContent = resData.data['promocode'][0];
       setTimeout(() => {
         errorMessageELe.textContent = '';
       }, 4000);
