@@ -22,25 +22,26 @@ class ProductController extends Controller
         $product->category_id = $addProductRequest->input('category_id');
         $product->title = $addProductRequest->input('title');
         $product->description = $addProductRequest->input('description');
-        $product->color = /*implode('|',*/ $addProductRequest->input('color')/*)*/;
+        $product->color = $addProductRequest->input('color');
         $product->discount = $addProductRequest->input('discount');
         $product->stock = $addProductRequest->input('stock');
-        $size = /*implode('|',*/ $addProductRequest->input('size')/*)*/;
-        $product->size = $size;
-        $price = /*implode('|',*/ $addProductRequest->input('price')/*)*/;
-        $product->price = $price;
-        $product->save();
-        $id = $product->id;
-        $images = $addProductRequest->file('image'); // Assuming 'images' is the name of the array in your request
+        $images = json_decode($addProductRequest->file('image'), true);
+        $paths = [];
         foreach ($images as $image) {
-            $binaryData = file_get_contents($image->getRealPath());
-            return $this->JsonResponse(200, '', $binaryData);
-            /*ProductImage::create([
-                'product_id' => $id,
-                'image' => $binaryData,
-            ]);*/
+            $path = $image->store('public/products');
+            $paths[] = $path;
         }
-        return $this->JsonResponse(201, 'Added Successfully');
+        $product->image = implode('|', $paths);
+        $size = $addProductRequest->input('size');
+        $product->size = $size;
+        $price =  $addProductRequest->input('price');
+        $product->price = $price;
+        $stored = $product->save();
+        if ($stored) {
+            return $this->JsonResponse(201, 'Added success fully', $product);
+        } else {
+            return $this->JsonResponse(500, 'Error');
+        }
     }
     public function getCategoriesWithProducts()
     {
