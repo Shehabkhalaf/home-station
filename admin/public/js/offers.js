@@ -42,16 +42,6 @@ function updateTable() {
 }
 updateTable();
 
-async function getAllOffers() {
-  try {
-    const res = await fetch(`${URL}api/admin/all_offers`);
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 /**
  * Handle offers Add - Update Btns
  */
@@ -218,27 +208,149 @@ function handleUpdateBtn() {
             }
             </select>
             </div>
-            <div id="edit-btn" class="cursor-pointer w-[10%] mt-1 py-2 px-4 hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white">Edit</div>
-          <div id="form-ele" class="mt-4"></div>
+            <div id="edit-btn" class="cursor-pointer w-[10%] mt-1 py-2 text-center hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white">Edit</div>
+          <div id="ele-container" class="mt-4"></div>
         </form>
   `;
   formContainer.innerHTML = formElements;
 
   const offerSelect = document.getElementById('offer-select');
   const editBtn = document.getElementById('edit-btn');
+  const eleContainer = document.getElementById('ele-container');
+
   editBtn.addEventListener('click', () =>
-    addUpdateFormElements(offerSelect.value)
+    addUpdateFormElements(offerSelect.value, eleContainer)
   );
 }
 
-function removeAllActive(target) {
-  target.forEach((button) => {
-    button.classList.remove('active');
-  });
-}
+function addUpdateFormElements(id, eleContainer) {
+  getSingleOffer(id).then(({ data }) => {
+    eleContainer.innerHTML = `  <div class="flex flex-col">
+    <label htmlFor="promocode" class="text-md mb-1"
+      >Promo Code:
+    </label>
+    <input
+      type="text"
+      placeholder="Add The Offer Promo Code"
+      id="promocode"
+      value="${data.promocode}"
+      class="w-[60%] outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+    />
+    <div
+      class="error-message text-red-500 text-sm mb-1"
+      id="promo-error-message"
+    ></div>
+  </div>
 
-function addUpdateFormElements(id) {
-  console.log(id);
+  <div class="flex flex-col my-2">
+    <label htmlFor="discount" class="text-md mb-1">Discount:</label>
+    <input
+      type="number"
+      value="${data.discount}"
+      min="0"
+      placeholder="Add Discount Percentage"
+      id="discount"
+      class="w-[90%] sm:w-[60%] outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+    />
+    <div
+      class="error-message text-red-500 text-sm mb-1"
+      id="discount-error-message"
+    ></div>
+  </div>
+
+  <div class="flex flex-col my-2">
+    <label htmlFor="start-date" class="text-md mb-1"
+      >Start Date:</label
+    >
+    <input
+      type="date"
+      value="${data.started_at}"
+      placeholder="dd/mm/yyyy"
+      id="start-date"
+      class="w-[60%] outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+    />
+  </div>
+
+  <div class="flex flex-col my-2">
+    <label htmlFor="expired-date" class="text-md mb-1"
+      >Expired Date:</label
+    >
+    <input
+      type="date"
+      value="${data.expired_at}"
+      placeholder="dd/mm/yyyy"
+      id="expired-date"
+      class="w-[60%] outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+    />
+    <div
+      class="error-message text-red-500 text-sm mb-1"
+      id="expired-date-error-message"
+    ></div>
+  </div>
+
+  <button
+    class="mt-1 py-2 px-4 hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white"
+    type="submit"
+    id="offer-submit"
+  >
+    Submit
+  </button>
+  <div
+    class="success-message text-green-500 text-sm mt-1"
+    id="success-message"
+  ></div>
+  <div
+    class="success-message text-red-500 text-sm mt-1"
+    id="error-message"
+  ></div>`;
+
+    const offerPromo = document.getElementById('promocode');
+    const promoError = document.getElementById('promo-error-message');
+
+    const offerDiscount = document.getElementById('discount');
+    const discountError = document.getElementById('discount-error-message');
+
+    const startDate = document.getElementById('start-date');
+    const expiredDate = document.getElementById('expired-date');
+    const expiredError = document.getElementById('expired-date-error-message');
+
+    const successMessage = document.getElementById('success-message');
+    const submitBtn = document.getElementById('offer-submit');
+    const offerForm = document.getElementById('offer-form');
+
+    offerForm.addEventListener('submit', (e) => handleAddSubmit(e));
+
+    function handleAddSubmit(e) {
+      e.preventDefault();
+
+      const promo = offerPromo.value;
+      const discount = offerDiscount.value;
+      const start = startDate.value;
+      const expired = expiredDate.value;
+
+      const offerData = {
+        id,
+        promocode: promo,
+        discount,
+        started_at: start,
+        expired_at: expired,
+      };
+
+      console.log(offerData);
+
+      if (
+        isValid(
+          { promo, promoError },
+          { discount, discountError },
+          { start },
+          { expired, expiredError }
+        )
+      ) {
+        UpdateOffer(offerData, successMessage, submitBtn);
+        eleContainer.innerHTML = '';
+      }
+    }
+  });
 }
 
 /**
@@ -283,12 +395,12 @@ async function addOffer(data, errorMessageELe, successMessage, submitBtn) {
 /**
  * Handle Update Form
  */
-async function UpdateOffer(data, id, successMessage, submitBtn) {
+async function UpdateOffer(data, successMessage, submitBtn) {
   try {
     submitBtn.innerHTML = 'Submitting...';
     submitBtn.disabled = true;
 
-    const res = await fetch(`${URL}api/admin/update_category/${id}`, {
+    const res = await fetch(`${URL}api/admin/update_offer}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -311,6 +423,32 @@ async function UpdateOffer(data, id, successMessage, submitBtn) {
   } catch (err) {
     console.log(err);
   }
+}
+
+async function getAllOffers() {
+  try {
+    const res = await fetch(`${URL}api/admin/all_offers`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function getSingleOffer(id) {
+  try {
+    const res = await fetch(`${URL}api/admin/show_offer/${id}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function removeAllActive(target) {
+  target.forEach((button) => {
+    button.classList.remove('active');
+  });
 }
 
 function isValid(promo, discount, start, expire) {
