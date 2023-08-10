@@ -8,7 +8,6 @@ use App\Http\Resources\ProductsResource;
 use App\Http\Resources\ShowProduct;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductImage;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -25,10 +24,25 @@ class ProductController extends Controller
         $product->color = $addProductRequest->input('color');
         $product->discount = $addProductRequest->input('discount');
         $product->stock = $addProductRequest->input('stock');
-        $images = $addProductRequest->file('image');
         $paths = [];
-        foreach ($images as $image) {
-            $path = $image->store('public/products');
+        if ($addProductRequest->hasFile('image1')) {
+            $path = $addProductRequest->file('image1')->store('products', 'public');
+            $paths[] = $path;
+        }
+        if ($addProductRequest->hasFile('image2')) {
+            $path = $addProductRequest->file('image2')->store('products', 'public');
+            $paths[] = $path;
+        }
+        if ($addProductRequest->hasFile('image3')) {
+            $path = $addProductRequest->file('image3')->store('products', 'public');
+            $paths[] = $path;
+        }
+        if ($addProductRequest->hasFile('image4')) {
+            $path = $addProductRequest->file('image4')->store('products', 'public');
+            $paths[] = $path;
+        }
+        if ($addProductRequest->hasFile('image5')) {
+            $path = $addProductRequest->file('image5')->store('products', 'public');
             $paths[] = $path;
         }
         $product->image = implode('|', $paths);
