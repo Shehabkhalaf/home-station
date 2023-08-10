@@ -116,14 +116,14 @@ class ProductController extends Controller
             return $this->JsonResponse(500, 'Error');
         }
     }
-    public function deleteProduct(Request $request)
+    public function deleteProduct($id)
     {
-        $product = Product::find($request->id);
+        $product = Product::find($id);
         $images = explode('|', $product->image);
         foreach ($images as $image) {
             Storage::delete($image);
         }
-        $deleted = Product::destroy($request->id);
+        $deleted = Product::destroy($id);
         if ($deleted) {
             return $this->JsonResponse(200, 'Deleted success fully');
         } else {
