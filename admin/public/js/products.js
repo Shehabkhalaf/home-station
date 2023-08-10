@@ -37,14 +37,12 @@ function updateTable(id) {
   tableBody.innerHTML = `<span class="loader"></span>`;
 
   getAllProducts().then((data) => {
-    console.log(data);
     tableBody.innerHTML = '';
     let allProducts = [];
 
     allProducts = data.data.filter(
       (product) => product.category_id === parseInt(id)
     );
-    console.log(allProducts);
     const catName = allProducts[0].category_name;
 
     if (allProducts[0].products.length > 0) {

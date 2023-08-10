@@ -366,7 +366,6 @@ function addUpdateFormElements(id, eleContainer) {
  * Handle Add Form
  */
 async function addOffer(data, errorMessageELe, successMessage, submitBtn) {
-  console.log(data);
   try {
     submitBtn.innerHTML = 'Submitting...';
     submitBtn.disabled = true;
