@@ -31,7 +31,7 @@
       class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10 hidden"
     ></div>
     <div
-      class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
+      class="w-full min-w-[200px] max-w-full md:max-w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
     >
       <div class="md:mx-auto md:px-6">
         <img
@@ -117,7 +117,7 @@
       </button>
     </div>
 
-    <div class="flex-1">
+    <div class="flex-1 section">
       <header class="py-5 px-7">
         <h1 class="font-bold text-3xl">Hello there, Admin</h1>
         <p class="text-main text-[15px] mt-1">
@@ -143,10 +143,11 @@
           name="select"
           class="w-[60%] outline-none cursor-pointer border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
         ></select>
-        <div id="filter-btn" class="cursor-pointer w-[10%] mt-2 py-2 text-center hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white">Apply</div>
+        <div id="filter-btn" class="cursor-pointer w-[30%] md:w-[20%] mt-2 py-2 text-center hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white">Apply</div>
       </div>
 
-      <div class="mx-auto w-auto max-w-[95%] max-h-[500px] h-auto overflow-auto pb-10">
+      <div id="delete" class="px-11 text-green-500 mb-2"></div>
+      <div class="mx-auto w-[90%] max-h-[500px] h-auto overflow-auto">
         <table class="w-full">
           <thead class="bg-main text-white border-b-2 border-gray-300">
             <tr>
@@ -168,17 +169,20 @@
               <th class="p-3 text-md font-semibold tracking-wide text-left w-[20%]">
                 Size
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left">
+              <th class="p-3 text-md font-semibold tracking-wide text-left w-[10%]">
                 Price
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left">
+              <th class="p-3 text-md font-semibold tracking-wide text-left w-[10%]">
                 Discount
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left">
+              <th class="p-3 text-md font-semibold tracking-wide text-left w-[10%]">
                 Stock
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left">
+              <th class="p-3 text-md font-semibold tracking-wide text-left w-[15%]">
                 Color
+              </th>
+              <th class="p-3 text-md font-semibold tracking-wide text-left w-[15%]">
+                Delete
               </th>
             </tr>
           </thead>

@@ -1,6 +1,5 @@
-const URL = 'http://127.0.0.1:8000/';
+const URL = 'http://127.0.0.1:8000';
 let allCategories = [];
-let allProducts = [];
 
 const catSelect = document.getElementById('cat-select');
 const filterBtn = document.getElementById('filter-btn');
@@ -26,7 +25,7 @@ getAllCategories().then((data) => {
 
 async function getAllCategories() {
   try {
-    const res = await fetch(`${URL}api/admin/all_categories`);
+    const res = await fetch(`${URL}/api/admin/all_categories`);
     const data = await res.json();
     return data;
   } catch (err) {
@@ -40,6 +39,7 @@ function updateTable(id) {
   getAllProducts().then((data) => {
     console.log(data);
     tableBody.innerHTML = '';
+    let allProducts = [];
 
     allProducts = data.data.filter(
       (product) => product.category_id === parseInt(id)
@@ -53,27 +53,40 @@ function updateTable(id) {
         tr.innerHTML = `
         <td class="p-3 text-gray-700 text-sm">${product.product_id}</td>
         <td class="p-3 text-gray-700 text-sm flex flex-wrap">${product.images.map(
-          (src) => `<img src="${src}" alt="${product.product_name}"/>`
+          (src) => `<img src="${URL}${src}" alt="${product.product_name}"/>`
         )}</td>
         <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${
           product.product_name
         }</td>
         <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${catName}</td>
         <td class="p-3 text-gray-700 text-sm">${product.description}</td>
-        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.size).map((size) =>
-          `<p>${size}</p>`
+        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.size).map(
+          (size) => `<p>${size}</p>`
         )}</td>
-        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.price).map((price) =>
-          `<p>${price}</p>`
+        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.price).map(
+          (price) => `<p>${price}</p>`
         )}</td>
         <td class="p-3 text-gray-700 text-sm">${product.discount}</td>
         <td class="p-3 text-gray-700 text-sm">${product.stock}</td>
-        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.color).map((color) =>
-          `<p>${color}</p>`
+        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.color).map(
+          (color) => `<p>${color}</p>`
         )}</td>
+          <td class="p-3 text-gray-700 text-sm"><button id="delete-product" data-id="${
+            product.product_id
+          }" class="cursor-pointer"><i class="fa-solid fa-trash-can text-red-500"></i></button></td>
         `;
 
         tableBody.append(tr);
+      });
+
+      const deleteBtns = document.querySelectorAll('#delete-product');
+      const deleteSuccessEle = document.getElementById('delete');
+      deleteBtns.forEach((btn) => {
+        const productId = btn.dataset.id;
+        btn.addEventListener('click', () => {
+          deleteProduct(productId, deleteSuccessEle);
+          updateTable();
+        });
       });
     } else {
       tableBody.innerHTML = `<tr><td class="p-3 text-gray-700 text-lg whitespace-nowrap">Not Found!</td></tr>`;
@@ -84,9 +97,26 @@ updateTable(1);
 
 async function getAllProducts() {
   try {
-    const res = await fetch(`${URL}api/admin/all_products`);
+    const res = await fetch(`${URL}/api/admin/all_products`);
     const data = await res.json();
     return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function deleteProduct(id, deleteMsgEle) {
+  try {
+    const res = await fetch(`${URL}/api/admin/delete_product/${id}`);
+
+    const resData = await res.json();
+
+    if (resData.status === 200) {
+      deleteMsgEle.innerHTML = 'Message has been deleted successfully!';
+      setTimeout(() => {
+        deleteMsgEle.innerHTML = '';
+      }, 4000);
+    }
   } catch (err) {
     console.log(err);
   }

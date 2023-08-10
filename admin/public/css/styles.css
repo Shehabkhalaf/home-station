@@ -712,16 +712,16 @@ video {
   width: 90%;
 }
 
-.w-auto {
-  width: auto;
-}
-
 .w-full {
   width: 100%;
 }
 
-.max-w-\[95\%\] {
-  max-width: 95%;
+.min-w-\[200px\] {
+  min-width: 200px;
+}
+
+.max-w-full {
+  max-width: 100%;
 }
 
 .flex-1 {
@@ -1102,6 +1102,12 @@ button.active {
   }
 }
 
+@media (min-width: 768px) {
+  .section {
+    width: calc(100% - 250px);
+  }
+}
+
 .hover\:border-main:hover {
   --tw-border-opacity: 1;
   border-color: rgb(116 184 185 / var(--tw-border-opacity));
@@ -1242,6 +1248,14 @@ button.active {
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-\[20\%\] {
+    width: 20%;
+  }
+
+  .md\:max-w-\[250px\] {
+    max-width: 250px;
   }
 
   .md\:bg-gr-1 {

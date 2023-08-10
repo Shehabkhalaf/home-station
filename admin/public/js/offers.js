@@ -218,7 +218,7 @@ function handleUpdateBtn() {
               })
             }
             </select>
-            <div id="edit-btn" class="cursor-pointer w-[10%] mt-2 py-2 text-center hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white">Edit</div>
+           <div id="filter-btn" class="cursor-pointer w-[30%] md:w-[20%] mt-2 py-2 text-center hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white">Edit</div>
             </div>
           <div id="ele-container" class="mt-4"></div>
         </form>
@@ -466,7 +466,6 @@ async function deleteOffer(id, deleteMsg) {
         deleteMsg.innerHTML = '';
       }, 4000);
     }
-
   } catch (err) {
     console.log(err);
   }

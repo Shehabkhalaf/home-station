@@ -85,3 +85,9 @@ button.active {
     transform: rotate(360deg);
   }
 }
+
+@media (min-width: 768px) {
+  .section {
+    width: calc(100% - 250px);
+  }
+}
