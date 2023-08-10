@@ -288,7 +288,7 @@ async function addProduct(product, formSuccessMsg, formErrorMsg) {
     formData.append('price', JSON.stringify(product.price));
 
     product.image.forEach((image, i) => {
-      formData.append(`image${i}`, image);
+      formData.append(`image${i + 1}`, image);
     });
 
     const res = await fetch(`${URL}api/admin/add_product`, {
