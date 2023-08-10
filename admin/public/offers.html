@@ -26,7 +26,10 @@
     <title>Dashboard | Home Staion</title>
   </head>
   <body class="md:flex">
-    <div id="overlay" class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10 hidden"></div>
+    <div
+      id="overlay"
+      class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10 hidden"
+    ></div>
     <div
       class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
     >
@@ -40,7 +43,7 @@
 
       <ul
         id="nav-lists"
-        class="flex flex-col z-20 gap-8 md:mt-10 md:relative md:bg-gr-1 md:top-auto md:left-auto md:w-auto md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
+        class="flex flex-col z-20 md:fixed md:top-32 md:w-[200px] lg:w-[250px] gap-8 md:bg-gr-1 md:left-0 md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
       >
         <button
           id="close-side"
@@ -97,7 +100,7 @@
             <p class="capitalize">Messages</p>
           </a>
         </li>
-        
+
         <li>
           <a
             href="./offers.html"
@@ -114,7 +117,72 @@
       </button>
     </div>
 
-    <!-- <script src="./js/orders.js"></script> -->
+    <div class="flex-1">
+      <header class="pt-5 px-7 mb-10">
+        <h1 class="font-bold text-3xl">Hello there, Admin</h1>
+        <p class="text-main text-[15px] mt-1">
+          Welcome back to your dashboard!
+        </p>
+      </header>
+
+      <div class="px-7 mb-20">
+        <div id="offer-btns" class="flex gap-5">
+          <button
+            id="add-offer"
+            class="offer__btn mb-3 text-lg font-semibold px-3 py-2 rounded-md hover:bg-main hover:text-white duration-100 active"
+          >
+            Add offer
+          </button>
+          <button
+            id="update-offer"
+            class="offer__btn mb-3 text-lg font-semibold px-3 py-2 rounded-md hover:bg-main hover:text-white duration-100"
+          >
+            Update offer
+          </button>
+        </div>
+        <div id="form__container" class="pl-2"></div>
+      </div>
+
+      <div class="mx-auto w-[90%] h-[380px] overflow-auto pb-10">
+        <table class="w-full">
+          <thead class="bg-main text-white border-b-2 border-gray-300">
+            <tr>
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[5%]"
+              >
+                ID
+              </th>
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[10%]"
+              >
+                Promocode
+              </th>
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[20%]"
+              >
+                Discount
+              </th>
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[30%]"
+              >
+                Started At
+              </th>
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[30%]"
+              >
+                Expired At
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            id="offer-body"
+            class="divide-y divide-gray-200 relative"
+          ></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="./js/offers.js"></script>
     <script src="./js/global.js"></script>
   </body>
 </html>

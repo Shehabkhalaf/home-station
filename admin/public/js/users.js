@@ -10,8 +10,13 @@ function updateTable() {
       tableBody.innerHTML = `<tr><td class="text-lg whitespace-nowrap">Not Found!</td></tr>`;
     } else {
       tableBody.innerHTML = '';
-      data.data.users.forEach((user) => {
+      data.data.users.forEach((user, i) => {
         const tr = document.createElement('tr');
+
+        if (++i % 2 === 0) {
+          tr.classList.add('bg-gray-50');
+        }
+
         tr.innerHTML = `
         <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${user.id}</td>
         <td class="p-3 text-gray-700 text-sm whitespace-nowrap">
