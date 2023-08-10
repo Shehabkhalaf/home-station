@@ -136,14 +136,21 @@
       </div>
 
       <div class="flex flex-col px-12 mt-10 mb-5">
-        <label htmlFor="cat-select" class="text-md mb-1">Filter With Category: </label>
+        <label htmlFor="cat-select" class="text-md mb-1"
+          >Filter With Category:
+        </label>
 
         <select
           id="cat-select"
           name="select"
           class="w-[60%] outline-none cursor-pointer border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
         ></select>
-        <div id="filter-btn" class="cursor-pointer w-[30%] md:w-[20%] mt-2 py-2 text-center hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white">Apply</div>
+        <div
+          id="filter-btn"
+          class="cursor-pointer w-[30%] md:w-[20%] mt-2 py-2 text-center hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white"
+        >
+          Apply
+        </div>
       </div>
 
       <div id="delete" class="px-11 text-green-500 mb-2"></div>
@@ -151,54 +158,65 @@
         <table class="w-full">
           <thead class="bg-main text-white border-b-2 border-gray-300">
             <tr>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[5%]">
-                id
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[5%]"
+              >
+                ID
               </th>
               <th class="p-3 text-md font-semibold tracking-wide text-left">
-                Image
+                Images
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left whitespace-nowrap w-[15%]">
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left whitespace-nowrap w-[15%]"
+              >
                 Product Name
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[15%]">
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[15%]"
+              >
                 Category
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[30%]">
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[30%]"
+              >
                 Description
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[20%]">
-                Size
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[20%]"
+              >
+                Sizes
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[10%]">
-                Price
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[10%]"
+              >
+                Prices
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[10%]">
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[10%]"
+              >
                 Discount
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[10%]">
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[10%]"
+              >
                 Stock
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[15%]">
-                Color
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[15%]"
+              >
+                Colors
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[15%]">
+              <th
+                class="p-3 text-md font-semibold tracking-wide text-left w-[15%]"
+              >
                 Delete
               </th>
             </tr>
           </thead>
-          <tbody id="product-body" class="divide-y divide-gray-200 relative">
-            <!-- <tr>
-              <td class="p-3 text-gray-700 text-sm whitespace-nowrap">01</td>
-              <td class="p-3 text-gray-700 text-sm whitespace-nowrap">img</td>
-              <td class="p-3 text-gray-700 text-sm whitespace-nowrap">bed</td>
-              <td class="p-3 text-gray-700 text-sm whitespace-nowrap">Bed</td>
-              <td class="p-3 text-gray-700 text-sm">$100</td>
-              <td class="p-3 text-gray-700 text-sm">20%</td>
-              <td class="p-3 text-gray-700 text-sm">Active</td>
-              <td class="p-3 text-gray-700 text-sm">30*20</td>
-              <td class="p-3 text-gray-700 text-sm">80%</td>
-            </tr> -->
-          </tbody>
+          <tbody
+            id="product-body"
+            class="divide-y divide-gray-200 relative"
+          ></tbody>
         </table>
       </div>
     </div>
