@@ -20,6 +20,7 @@ class ProductsResource extends JsonResource
         return [
             'category_name' => $this->title,
             'status' => $this->status,
+            'category_id'=>$this->id,
             'products' => $this->products->map(function ($product) {
                 $imagePaths = explode('|', $product->image); // Explode the concatenated string
                 $imageUrls = array_map(function ($imagePath) {
