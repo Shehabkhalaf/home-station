@@ -153,7 +153,10 @@ function addSizeAndPrice() {
 
   sizeArr.push(sizeValue);
   priceArr.push(priceValue);
-  deleteBtn.addEventListener('click', () => deleteListItem(listItem));
+  deleteBtn.addEventListener('click', () => {
+    deleteListItem(listItem, sizeArr, sizeValue);
+    deleteListItem(null, priceArr, priceValue);
+  });
 
   sizeInput.value = '';
   priceInput.value = '';
@@ -188,7 +191,7 @@ function addImages() {
       listItem.appendChild(deleteBtn);
       imagesList.appendChild(listItem);
 
-      deleteBtn.addEventListener('click', () => deleteListItem(listItem));
+      deleteBtn.addEventListener('click', () => deleteListItem(listItem, imagesArr, image));
     } else {
       errorMessage.textContent = 'Please Enter Valid Image Type.';
       setTimeout(() => {
@@ -249,6 +252,8 @@ function deleteListItem(target, targetArr, value) {
   if (index !== -1) {
     targetArr.splice(index, 1);
   }
+
+  console.log(targetArr)
 }
 
 async function addProduct(product) {
