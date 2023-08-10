@@ -26,7 +26,10 @@
     <title>Dashboard | Home Staion</title>
   </head>
   <body class="md:flex">
-    <div id="overlay" class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10 hidden"></div>
+    <div
+      id="overlay"
+      class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10 hidden"
+    ></div>
     <div
       class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
     >
@@ -40,7 +43,7 @@
 
       <ul
         id="nav-lists"
-        class="flex flex-col z-20 gap-8 md:mt-10 md:relative md:bg-gr-1 md:top-auto md:left-auto md:w-auto md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
+        class="flex flex-col z-20 md:fixed md:top-32 md:w-[200px] lg:w-[250px] gap-8 md:bg-gr-1 md:left-0 md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
       >
         <button
           id="close-side"
@@ -97,7 +100,7 @@
             <p class="capitalize">Messages</p>
           </a>
         </li>
-        
+
         <li>
           <a
             href="./offers.html"

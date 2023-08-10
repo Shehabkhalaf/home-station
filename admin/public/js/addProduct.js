@@ -37,6 +37,8 @@ colorsInput.addEventListener('click', addColors);
 const productForm = document.getElementById('product-form');
 productForm.addEventListener('submit', handleSubmit);
 
+console.log(productForm)
+
 // Add event listener for adding size & price
 const addSizePriceBtn = document.getElementById('add-size-price-btn');
 addSizePriceBtn.addEventListener('click', addSizeAndPrice);
