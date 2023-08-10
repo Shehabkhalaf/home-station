@@ -3,6 +3,7 @@ let allCategories = [];
 let allProducts = [];
 
 const catSelect = document.getElementById('cat-select');
+const filterBtn = document.getElementById('filter-btn');
 const tableBody = document.getElementById('product-body');
 
 /**
@@ -17,6 +18,10 @@ getAllCategories().then((data) => {
   catSelect.innerHTML = allCategories.map((cat) => {
     return `<option value="${cat.id}">${cat.title}</option>`;
   });
+
+  filterBtn.addEventListener('click', () => {
+    updateTable(catSelect.value);
+  });
 });
 
 async function getAllCategories() {
@@ -29,14 +34,16 @@ async function getAllCategories() {
   }
 }
 
-function updateTable() {
+function updateTable(id) {
   tableBody.innerHTML = `<span class="loader"></span>`;
 
   getAllProducts().then((data) => {
     console.log(data);
     tableBody.innerHTML = '';
 
-    allProducts = data.data.filter((product) => product.category_id === 1);
+    allProducts = data.data.filter(
+      (product) => product.category_id === parseInt(id)
+    );
     console.log(allProducts);
     const catName = allProducts[0].category_name;
 
@@ -45,24 +52,24 @@ function updateTable() {
         const tr = document.createElement('tr');
         tr.innerHTML = `
         <td class="p-3 text-gray-700 text-sm">${product.product_id}</td>
-        <td class="p-3 text-gray-700 text-sm">${product.images.map(
-          (img) => img
+        <td class="p-3 text-gray-700 text-sm flex flex-wrap">${product.images.map(
+          (src) => `<img src="${src}" alt="${product.product_name}"/>`
         )}</td>
         <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${
           product.product_name
         }</td>
         <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${catName}</td>
         <td class="p-3 text-gray-700 text-sm">${product.description}</td>
-        <td class="p-3 text-gray-700 text-sm">${product.size.map((size) =>
-          JSON.parse(size)
+        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.size).map((size) =>
+          `<p>${size}</p>`
         )}</td>
-        <td class="p-3 text-gray-700 text-sm">${product.price.map((size) =>
-          JSON.parse(size)
+        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.price).map((price) =>
+          `<p>${price}</p>`
         )}</td>
         <td class="p-3 text-gray-700 text-sm">${product.discount}</td>
-        <td class="p-3 text-gray-700 text-sm">${product.status}</td>
-        <td class="p-3 text-gray-700 text-sm">${product.color.map((colors) =>
-          JSON.parse(colors)
+        <td class="p-3 text-gray-700 text-sm">${product.stock}</td>
+        <td class="p-3 text-gray-700 text-sm">${JSON.parse(product.color).map((color) =>
+          `<p>${color}</p>`
         )}</td>
         `;
 
@@ -73,7 +80,7 @@ function updateTable() {
     }
   });
 }
-updateTable();
+updateTable(1);
 
 async function getAllProducts() {
   try {

@@ -4,6 +4,31 @@ let imagesArr = [];
 let sizeArr = [];
 let priceArr = [];
 
+const imagesList = document.getElementById('images-list');
+const sizePriceList = document.getElementById('size-price-list');
+const colorsList = document.getElementById('colors-list');
+
+const titleInput = document.getElementById('title');
+const titleError = document.getElementById('title-error-message');
+
+const descriptionInput = document.getElementById('description');
+const descriptionError = document.getElementById('description-error-message');
+
+const categoryInput = document.getElementById('category');
+
+const discountInput = document.getElementById('discount');
+const discountError = document.getElementById('discount-error-message');
+
+const stockInput = document.getElementById('stock');
+const stockError = document.getElementById('stock-error-message');
+
+const priceError = document.getElementById('size-price-error-message');
+const colorsError = document.getElementById('colors-error-message');
+const imagesError = document.getElementById('images-error-message');
+
+const formSuccessMsg = document.getElementById('success-message');
+const formErrorMsg = document.getElementById('form-error-message');
+
 // Add event listener for adding colors
 const colorsInput = document.getElementById('add-color-btn');
 colorsInput.addEventListener('click', addColors);
@@ -22,27 +47,6 @@ imagesInput.addEventListener('change', addImages);
 
 function handleSubmit(e) {
   e.preventDefault();
-
-  const titleInput = document.getElementById('title');
-  const titleError = document.getElementById('title-error-message');
-
-  const descriptionInput = document.getElementById('description');
-  const descriptionError = document.getElementById('description-error-message');
-
-  const categoryInput = document.getElementById('category');
-
-  const discountInput = document.getElementById('discount');
-  const discountError = document.getElementById('discount-error-message');
-
-  const stockInput = document.getElementById('stock');
-  const stockError = document.getElementById('stock-error-message');
-
-  const priceError = document.getElementById('size-price-error-message');
-  const colorsError = document.getElementById('colors-error-message');
-  const imagesError = document.getElementById('images-error-message');
-
-  const formSuccessMsg = document.getElementById('success-message');
-  const formErrorMsg = document.getElementById('form-error-message');
 
   const titleValue = titleInput.value.trim();
   const descriptionValue = descriptionInput.value.trim();
@@ -123,11 +127,6 @@ function handleSubmit(e) {
     };
 
     addProduct(product, formSuccessMsg, formErrorMsg);
-    titleInput.value = '';
-    discountInput.value = '';
-    descriptionInput.value = '';
-    categoryInput.value = '';
-    stockInput.value = '';
   }
 }
 
@@ -135,7 +134,6 @@ function handleSubmit(e) {
 function addSizeAndPrice() {
   const sizeInput = document.getElementById('size');
   const priceInput = document.getElementById('price');
-  const sizePriceList = document.getElementById('size-price-list');
   const errorMessage = document.getElementById('size-price-error-message');
 
   const sizeValue = sizeInput.value.trim();
@@ -173,7 +171,6 @@ function addSizeAndPrice() {
 // Function to handle adding images
 function addImages() {
   const imagesInput = document.getElementById('images');
-  const imagesList = document.getElementById('images-list');
   const errorMessage = document.getElementById('images-error-message');
 
   const images = Array.from(imagesInput.files);
@@ -226,7 +223,6 @@ function addImages() {
 // Function to handle adding colors
 function addColors() {
   const colorsInput = document.getElementById('colors');
-  const colorsList = document.getElementById('colors-list');
   const errorMessage = document.getElementById('colors-error-message');
 
   const colorValue = colorsInput.value.trim();
@@ -274,6 +270,21 @@ function deleteListItem(target, targetArr, value) {
   }
 }
 
+function resetForm() {
+  titleInput.value = '';
+  discountInput.value = '';
+  descriptionInput.value = '';
+  categoryInput.value = '';
+  stockInput.value = '';
+  colorsArr = [];
+  imagesArr = [];
+  sizeArr = [];
+  priceArr = [];
+  colorsList.innerHTML = '';
+  sizePriceList.innerHTML = '';
+  imagesList.innerHTML = '';
+}
+
 async function addProduct(product, formSuccessMsg, formErrorMsg) {
   try {
     const formData = new FormData();
@@ -303,7 +314,8 @@ async function addProduct(product, formSuccessMsg, formErrorMsg) {
       setTimeout(() => {
         formSuccessMsg.innerHTML = '';
       }, 4000);
-      // window.location.href = './products.html';
+
+      resetForm();
     } else {
       formErrorMsg.innerHTML = 'Sorry, Error Happened!';
       setTimeout(() => {
