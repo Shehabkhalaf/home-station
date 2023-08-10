@@ -77,7 +77,6 @@ class ProductController extends Controller
         foreach ($images as $image) {
             Storage::delete($image);
         }
-        $product->category_id = $addProductRequest->input('category_id');
         $product->title = $addProductRequest->input('title');
         $product->description = $addProductRequest->input('description');
         $product->color = $addProductRequest->input('color');
