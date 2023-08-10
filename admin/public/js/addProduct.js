@@ -119,8 +119,6 @@ function handleSubmit(e) {
       price: priceArr,
     };
 
-    console.log({ ...product });
-
     addProduct(product);
   }
 }
@@ -254,7 +252,6 @@ function deleteListItem(target, targetArr, value) {
 }
 
 async function addProduct(product) {
-  console.log({ ...product });
   try {
     const formData = new FormData();
 
@@ -268,7 +265,7 @@ async function addProduct(product) {
     formData.append('price', JSON.stringify(product.price));
 
     product.image.forEach((image) => {
-      formData.append('image', image);
+      formData.append('image', JSON.stringify(image));
     });
 
     const res = await fetch(`${URL}api/admin/add_product`, {

@@ -16,8 +16,13 @@ function updateTable() {
       tableBody.innerHTML = `<tr><td class="text-lg whitespace-nowrap">Not Found!</td></tr>`;
     } else {
       tableBody.innerHTML = '';
-      data.data.forEach((cat) => {
+      data.data.forEach((cat, i) => {
         const tr = document.createElement('tr');
+
+        if (++i % 2 === 0) {
+          tr.classList.add('bg-gray-50');
+        }
+
         tr.innerHTML = `
         <td class="p-3 text-gray-700 whitespace-nowrap">${cat.id}</td>
         <td class="p-3 text-gray-700 whitespace-nowrap">${cat.title}</td>
