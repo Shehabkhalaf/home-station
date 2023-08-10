@@ -303,7 +303,7 @@ async function addProduct(product, formSuccessMsg, formErrorMsg) {
       setTimeout(() => {
         formSuccessMsg.innerHTML = '';
       }, 4000);
-      window.location.href = './products.html';
+      // window.location.href = './products.html';
     } else {
       formErrorMsg.innerHTML = 'Sorry, Error Happened!';
       setTimeout(() => {
