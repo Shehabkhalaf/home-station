@@ -336,8 +336,6 @@ function addUpdateFormElements(id, eleContainer) {
         expired_at: expired,
       };
 
-      console.log(offerData);
-
       if (
         isValid(
           { promo, promoError },
