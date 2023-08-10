@@ -136,13 +136,14 @@
       </div>
 
       <div class="flex flex-col px-12 mt-10 mb-5">
-        <label htmlFor="cat-select" class="text-md mb-1">Category: </label>
+        <label htmlFor="cat-select" class="text-md mb-1">Filter With Category: </label>
 
         <select
           id="cat-select"
           name="select"
           class="w-[60%] outline-none cursor-pointer border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
         ></select>
+        <div id="filter-btn" class="cursor-pointer w-[10%] mt-2 py-2 text-center hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white">Apply</div>
       </div>
 
       <div class="mx-auto w-auto max-w-[95%] max-h-[500px] h-auto overflow-auto pb-10">
@@ -155,7 +156,7 @@
               <th class="p-3 text-md font-semibold tracking-wide text-left">
                 Image
               </th>
-              <th class="p-3 text-md font-semibold tracking-wide text-left w-[15%]">
+              <th class="p-3 text-md font-semibold tracking-wide text-left whitespace-nowrap w-[15%]">
                 Product Name
               </th>
               <th class="p-3 text-md font-semibold tracking-wide text-left w-[15%]">
@@ -174,7 +175,7 @@
                 Discount
               </th>
               <th class="p-3 text-md font-semibold tracking-wide text-left">
-                Status
+                Stock
               </th>
               <th class="p-3 text-md font-semibold tracking-wide text-left">
                 Color
