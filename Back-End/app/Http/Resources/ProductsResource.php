@@ -23,7 +23,7 @@ class ProductsResource extends JsonResource
             'products' => $this->products->map(function ($product) {
                 $imagePaths = explode('|', $product->image); // Explode the concatenated string
                 $imageUrls = array_map(function ($imagePath) {
-                    return asset(Storage::url($imagePath));
+                    return Storage::url($imagePath);
                 }, $imagePaths);
                 return [
                     'product_id' => $product->id,
