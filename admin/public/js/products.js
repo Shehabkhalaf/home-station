@@ -33,24 +33,37 @@ function updateTable() {
   tableBody.innerHTML = `<span class="loader"></span>`;
 
   getAllProducts().then((data) => {
+    console.log(data);
     tableBody.innerHTML = '';
 
-    allProducts = data.data.filter((cat) => cat.category_id == catSelect.value);
+    allProducts = data.data.filter((product) => product.category_id === 1);
+    console.log(allProducts);
     const catName = allProducts[0].category_name;
 
     if (allProducts[0].products.length > 0) {
       allProducts[0].products.forEach((product) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-        <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${product.id}</td>
-        <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${product.img}</td>
-        <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${product.name}</td>
+        <td class="p-3 text-gray-700 text-sm">${product.product_id}</td>
+        <td class="p-3 text-gray-700 text-sm">${product.images.map(
+          (img) => img
+        )}</td>
+        <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${
+          product.product_name
+        }</td>
         <td class="p-3 text-gray-700 text-sm whitespace-nowrap">${catName}</td>
-        <td class="p-3 text-gray-700 text-sm">$100</td>
-        <td class="p-3 text-gray-700 text-sm">20%</td>
-        <td class="p-3 text-gray-700 text-sm">Active</td>
-        <td class="p-3 text-gray-700 text-sm">30*20</td>
-        <td class="p-3 text-gray-700 text-sm">80%</td>
+        <td class="p-3 text-gray-700 text-sm">${product.description}</td>
+        <td class="p-3 text-gray-700 text-sm">${product.size.map((size) =>
+          JSON.parse(size)
+        )}</td>
+        <td class="p-3 text-gray-700 text-sm">${product.price.map((size) =>
+          JSON.parse(size)
+        )}</td>
+        <td class="p-3 text-gray-700 text-sm">${product.discount}</td>
+        <td class="p-3 text-gray-700 text-sm">${product.status}</td>
+        <td class="p-3 text-gray-700 text-sm">${product.color.map((colors) =>
+          JSON.parse(colors)
+        )}</td>
         `;
 
         tableBody.append(tr);

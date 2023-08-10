@@ -41,6 +41,9 @@ function handleSubmit(e) {
   const colorsError = document.getElementById('colors-error-message');
   const imagesError = document.getElementById('images-error-message');
 
+  const formSuccessMsg = document.getElementById('success-message');
+  const formErrorMsg = document.getElementById('form-error-message');
+
   const titleValue = titleInput.value.trim();
   const descriptionValue = descriptionInput.value.trim();
   const categoryValue = categoryInput.value;
@@ -119,7 +122,12 @@ function handleSubmit(e) {
       price: priceArr,
     };
 
-    addProduct(product);
+    addProduct(product, formSuccessMsg, formErrorMsg);
+    titleInput.value = '';
+    discountInput.value = '';
+    descriptionInput.value = '';
+    categoryInput.value = '';
+    stockInput.value = '';
   }
 }
 
@@ -170,6 +178,16 @@ function addImages() {
 
   const images = Array.from(imagesInput.files);
 
+  if (imagesArr.length === 5) {
+    errorMessage.textContent = 'You can only add 5 images.';
+    setTimeout(() => {
+      errorMessage.textContent = '';
+    }, 4000);
+
+    imagesInput.value = null;
+    return;
+  }
+
   images.forEach((image) => {
     if (
       image.type === 'image/png' ||
@@ -191,7 +209,9 @@ function addImages() {
       listItem.appendChild(deleteBtn);
       imagesList.appendChild(listItem);
 
-      deleteBtn.addEventListener('click', () => deleteListItem(listItem, imagesArr, image));
+      deleteBtn.addEventListener('click', () =>
+        deleteListItem(listItem, imagesArr, image)
+      );
     } else {
       errorMessage.textContent = 'Please Enter Valid Image Type.';
       setTimeout(() => {
@@ -252,11 +272,9 @@ function deleteListItem(target, targetArr, value) {
   if (index !== -1) {
     targetArr.splice(index, 1);
   }
-
-  console.log(targetArr)
 }
 
-async function addProduct(product) {
+async function addProduct(product, formSuccessMsg, formErrorMsg) {
   try {
     const formData = new FormData();
 
@@ -269,9 +287,9 @@ async function addProduct(product) {
     formData.append('size', JSON.stringify(product.size));
     formData.append('price', JSON.stringify(product.price));
 
-    
-      formData.append('image', [...product.image]);
-  
+    product.image.forEach((image, i) => {
+      formData.append(`image${i}`, image);
+    });
 
     const res = await fetch(`${URL}api/admin/add_product`, {
       method: 'POST',
@@ -279,7 +297,19 @@ async function addProduct(product) {
     });
 
     const data = await res.json();
-    console.log(data);
+
+    if (data.status === 201) {
+      formSuccessMsg.innerHTML = 'Product has been Added successfully!';
+      setTimeout(() => {
+        formSuccessMsg.innerHTML = '';
+      }, 4000);
+      window.location.href = './products.html';
+    } else {
+      formErrorMsg.innerHTML = 'Sorry, Error Happened!';
+      setTimeout(() => {
+        formErrorMsg.innerHTML = '';
+      }, 4000);
+    }
   } catch (err) {
     console.log(err);
   }
