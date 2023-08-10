@@ -25,7 +25,7 @@ class ProductController extends Controller
         $product->color = $addProductRequest->input('color');
         $product->discount = $addProductRequest->input('discount');
         $product->stock = $addProductRequest->input('stock');
-        $images = json_decode($addProductRequest->file('image'), true);
+        $images = $addProductRequest->file('image');
         $paths = [];
         foreach ($images as $image) {
             $path = $image->store('public/products');
