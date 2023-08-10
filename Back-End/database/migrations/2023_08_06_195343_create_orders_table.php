@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('order_details');
             $table->string('total_price');
-            $table->enum('status', ['shipped', 'delivered', 'in consider'])->default('in consider');
+            $table->string('status')->default('no');
             $table->enum('paid', ['cash', 'paid'])->default('cash');
             $table->text('payment_details')->nullable();
             $table->timestamp('ordered_date')->nullable();
