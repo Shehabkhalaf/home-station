@@ -33,9 +33,20 @@ function updateTable() {
         ${offer.started_at}
         </td>
         <td class="p-3 text-gray-700 text-sm">${offer.expired_at}</td>
+        <td class="text-red-500 text-center"><button id="delete-offer" data-id="${offer.id}" class="cursor-pointer"><i class="fa-solid fa-trash-can"></i></button></td>
         `;
 
         tableBody.append(tr);
+      });
+
+      const deleteBtns = document.querySelectorAll('#delete-offer');
+      const deleteMsg = document.getElementById('delete-msg');
+      deleteBtns.forEach((btn) => {
+        const offerId = btn.dataset.id;
+        btn.addEventListener('click', () => {
+          deleteOffer(offerId, deleteMsg);
+          updateTable();
+        });
       });
     }
   });
@@ -438,6 +449,24 @@ async function getSingleOffer(id) {
     const res = await fetch(`${URL}api/admin/show_offer/${id}`);
     const data = await res.json();
     return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function deleteOffer(id, deleteMsg) {
+  try {
+    const res = await fetch(`${URL}api/admin/delete_offer/${id}`);
+
+    const resData = await res.json();
+
+    if (resData.status === 200) {
+      deleteMsg.innerHTML = 'Offer has been deleted successfully!';
+      setTimeout(() => {
+        deleteMsg.innerHTML = '';
+      }, 4000);
+    }
+
   } catch (err) {
     console.log(err);
   }

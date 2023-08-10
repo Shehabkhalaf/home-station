@@ -35,10 +35,11 @@ function updateTable() {
         tableBody.append(tr);
       });
       const deleteBtns = document.querySelectorAll('#delete-msg');
+      const deleteMsgEle = document.getElementById('delete');
       deleteBtns.forEach((btn) => {
         const messageId = btn.dataset.id;
         btn.addEventListener('click', () => {
-          deleteMsg(messageId);
+          deleteMsg(messageId, deleteMsgEle);
           updateTable();
         });
       });
@@ -57,13 +58,18 @@ async function getAllMessages() {
   }
 }
 
-async function deleteMsg(id) {
+async function deleteMsg(id, deleteMsgEle) {
   try {
     const res = await fetch(`${URL}api/admin/reply_message/${id}`);
 
     const resData = await res.json();
 
-    console.log(resData);
+    if (resData.status === 200) {
+      deleteMsgEle.innerHTML = 'Message has been deleted successfully!';
+      setTimeout(() => {
+        deleteMsgEle.innerHTML = '';
+      }, 4000);
+    }
   } catch (err) {
     console.log(err);
   }
