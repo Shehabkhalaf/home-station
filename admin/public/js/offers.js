@@ -400,7 +400,7 @@ async function UpdateOffer(data, successMessage, submitBtn) {
     submitBtn.innerHTML = 'Submitting...';
     submitBtn.disabled = true;
 
-    const res = await fetch(`${URL}api/admin/update_offer}`, {
+    const res = await fetch(`${URL}api/admin/update_offer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
