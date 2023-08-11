@@ -30,54 +30,54 @@ let dataReview = [
         "date": "Feb 12,2023",
         "desc": "beautiful"
     },
-    {
-        "icon": `<i class="fa-solid fa-s"></i>`,
-        "name": "Sayed Abdelrahman",
-        "date": "Feb 1,2023",
-        "desc": "High quality products"
-    },
-    {
-        "icon": `<i class="fa-solid fa-a"></i>`,
-        "name": "ALi Ahmed",
-        "date": "Jun 29,2023",
-        "desc": "Best Pillows"
-    },
-    {
-        "icon": `<i class="fa-solid fa-r"></i>`,
-        "name": "Rokia Amr",
-        "date": "Jun 23,2023",
-        "desc": "Best Pillows"
-    },
-    {
-        "icon": `<i class="fa-solid fa-f"></i>`,
-        "name": "Fares Ahmed",
-        "date": "Jun 22,2023",
-        "desc": "amazing"
-    },
-    {
-        "icon": `<i class="fa-solid fa-y"></i>`,
-        "name": "Yosef Sayed",
-        "date": "Jun 21,2023",
-        "desc": "High quality products"
-    },
-    {
-        "icon": `<i class="fa-solid fa-a"></i>`,
-        "name": "Abdelrahman khaled",
-        "date": "Jun 12,2023",
-        "desc": "Very comfy"
-    },
-    {
-        "icon": `<i class="fa-solid fa-a"></i>`,
-        "name": "ALi Ahmed",
-        "date": "Jun 1,2023",
-        "desc": "Durable"
-    },
-    {
-        "icon": `<i class="fa-solid fa-m"></i>`,
-        "name": "Mohmahmed",
-        "date": "Dec 10,2022",
-        "desc": "Best"
-    }
+    // {
+    //     "icon": `<i class="fa-solid fa-s"></i>`,
+    //     "name": "Sayed Abdelrahman",
+    //     "date": "Feb 1,2023",
+    //     "desc": "High quality products"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-a"></i>`,
+    //     "name": "ALi Ahmed",
+    //     "date": "Jun 29,2023",
+    //     "desc": "Best Pillows"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-r"></i>`,
+    //     "name": "Rokia Amr",
+    //     "date": "Jun 23,2023",
+    //     "desc": "Best Pillows"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-f"></i>`,
+    //     "name": "Fares Ahmed",
+    //     "date": "Jun 22,2023",
+    //     "desc": "amazing"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-y"></i>`,
+    //     "name": "Yosef Sayed",
+    //     "date": "Jun 21,2023",
+    //     "desc": "High quality products"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-a"></i>`,
+    //     "name": "Abdelrahman khaled",
+    //     "date": "Jun 12,2023",
+    //     "desc": "Very comfy"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-a"></i>`,
+    //     "name": "ALi Ahmed",
+    //     "date": "Jun 1,2023",
+    //     "desc": "Durable"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-m"></i>`,
+    //     "name": "Mohmahmed",
+    //     "date": "Dec 10,2022",
+    //     "desc": "Best"
+    // }
 ]
 
 // Add Reviews
@@ -87,14 +87,14 @@ function reviewLoop() {
 
 // Add Review In Dom
 function reviews(review) {
-    let reviews = document.getElementById("reviews");
+    const reviews = document.getElementById("reviews");
 
     let div = document.createElement("div");
 
     div.setAttribute("class", "box-review p-4");
 
     div.innerHTML = `
-    <div class="title mb-3 d-flex justify-content-between align-items-center">
+    <div class="reviews-title mb-3 d-flex justify-content-between align-items-center">
         <div class="name d-flex">
         ${review.icon}
             <p>${review.name}</p>
