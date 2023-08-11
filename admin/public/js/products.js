@@ -311,7 +311,7 @@ function editProduct(productId) {
       <ul id="images-list" class="list-disc ml-6 mt-1">
       ${imagesArr
         .map((img, i) => {
-          return `<li><span>${img.name}</span><i data-index="${i}" data-type="img" id="delete-list" class="fa-solid fa-trash-can text-red-500 ml-4 cursor-pointer"></i></li>`;
+          return `<li><img src="${URL}${data.image[i]}" alt="product"/><span>${img.name}</span><i data-index="${i}" data-type="img" id="delete-list" class="fa-solid fa-trash-can text-red-500 ml-4 cursor-pointer"></i></li>`;
         })
         .join('')}
       </ul>
