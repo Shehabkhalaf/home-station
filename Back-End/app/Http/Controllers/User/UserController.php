@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ShowProduct;
 use App\Models\Message;
+use App\Models\Product;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -19,8 +21,8 @@ class UserController extends Controller
     }
     public function allProducts()
     {
-        $product = new ProductController;
-        return $product->getCategoriesWithProducts();
+        $products = Product::all();
+        return $this->JsonResponse(200,'Here are all products',ShowProduct::collection($products));
     }
     public function updateData(Request $request)
     {
