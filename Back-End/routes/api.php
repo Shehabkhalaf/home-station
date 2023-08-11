@@ -76,7 +76,7 @@ Route::prefix('user')->group(function () {
             Route::get('all_orders', 'allOrders');
         });*/
     });
-    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    //Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ###############User Controller#################
         Route::controller(UserUserController::class)->group(function () {
             Route::get('home', 'index');
@@ -92,5 +92,5 @@ Route::prefix('user')->group(function () {
         Route::controller(UserOfferController::class)->group(function () {
             Route::get('all_offers', 'allOffers');
         });
-    });
+    //});
 });
