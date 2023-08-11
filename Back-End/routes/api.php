@@ -77,20 +77,21 @@ Route::prefix('user')->group(function () {
         });*/
     });
     //Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-        ###############User Controller#################
-        Route::controller(UserUserController::class)->group(function () {
-            Route::get('home', 'index');
-            Route::get('products', 'allProducts');
-            Route::post('update', 'updateData');
-            Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
-        });
-        ###############Order Controller################
-        Route::controller(OrderController::class)->group(function () {
-            Route::get('all_orders', 'allOrders');
-        });
-        ##############Offer Controller#################
-        Route::controller(UserOfferController::class)->group(function () {
-            Route::get('all_offers', 'allOffers');
-        });
+    ###############User Controller#################
+    Route::controller(UserUserController::class)->group(function () {
+        Route::get('home', 'index');
+        Route::get('products', 'allProducts');
+        Route::post('update', 'updateData');
+        Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
+        Route::get('show_product/{id}', 'showProduct');
+    });
+    ###############Order Controller################
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('all_orders', 'allOrders');
+    });
+    ##############Offer Controller#################
+    Route::controller(UserOfferController::class)->group(function () {
+        Route::get('all_offers', 'allOffers');
+    });
     //});
 });
