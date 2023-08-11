@@ -37,6 +37,7 @@ class ProductsResource extends JsonResource
                     'images' => $imageUrls,
                     'price' => $product->price,
                     'size' => $product->size,
+                    'created_at'=>$product->created_at->toDateString()
                 ];
             }),
         ];
