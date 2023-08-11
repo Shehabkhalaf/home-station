@@ -31,13 +31,13 @@ class ProductsResource extends JsonResource
                     'category_id' => $this->id,
                     'product_name' => $product->title,
                     'description' => $product->description,
-                    'color' => $product->color,
+                    'color' => json_decode($product->color),
                     'discount' => $product->discount,
                     'stock' => $product->stock,
                     'images' => $imageUrls,
-                    'price' => $product->price,
-                    'size' => $product->size,
-                    'created_at'=>$product->created_at->toDateString()
+                    'price' => json_decode($product->price),
+                    'size' => json_decode($product->size),
+                    'created_at' => $product->created_at->toDateString()
                 ];
             }),
         ];
