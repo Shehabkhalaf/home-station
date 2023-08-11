@@ -708,6 +708,10 @@ video {
   width: 5%;
 }
 
+.w-\[50px\] {
+  width: 50px;
+}
+
 .w-\[60\%\] {
   width: 60%;
 }
@@ -1076,6 +1080,10 @@ button.active {
   flex-wrap: wrap;
 }
 
+.w-\[50px\] {
+  width: 50px;
+}
+
 .loader {
   width: 48px;
   height: 48px;
@@ -1194,14 +1202,6 @@ button.active {
 
   .md\:left-0 {
     left: 0px;
-  }
-
-  .md\:top-32 {
-    top: 8rem;
-  }
-
-  .md\:top-0 {
-    top: 0px;
   }
 
   .md\:mx-auto {
