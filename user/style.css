@@ -1,10 +1,13 @@
-
+body {
+  font-family: 'work sans', 'sans-serif' !important;
+}
 
 /* PRODUCTS */
 .comments {
   position: relative;
   overflow: hidden;
-  padding: 20px;
+  padding: 20px 50px;
+  font-size: 80%;
 }
 
 .commm {
@@ -12,14 +15,13 @@
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 40px;
-  font-family: 'Cairo', sans-serif;
-    font-family: 'Cairo', sans-serif;
 }
 
 .product-container {
   padding: 0 10vw;
   height: auto;
   display: flex;
+  align-items: center;
   scroll-behavior: smooth;
 }
 
@@ -31,21 +33,17 @@
   overflow: hidden;
   
 }
+
 .product-card {
   flex: 0 0 auto;
-  width: 350px;
+  width: 400px;
   height: auto;
   margin-right: 40px;
 }
 
-
-
-
-
-
-
-
-
+.product-brand {
+  font-size: 15px;
+}
 
 .product-brand img{
   width: 5em;

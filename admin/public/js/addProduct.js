@@ -155,7 +155,7 @@ function addSizeAndPrice() {
   deleteBtn.classList.add('ml-4');
   deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can text-red-500"></i>`;
 
-  listItem.textContent = `${sizeValue}: $${priceValue}`;
+  listItem.textContent = `${sizeValue}: ${priceValue}EGP`;
   listItem.appendChild(deleteBtn);
   sizePriceList.appendChild(listItem);
 

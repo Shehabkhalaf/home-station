@@ -3,7 +3,7 @@
 
 /* Constants */
 :root {
-    --primary-color: #28b8c0;
+    --primary-color: #74b8b9;
     --section-color: #eff7fa;
     --brown-color: #797979;
     --white: #fff;
@@ -225,90 +225,7 @@ body {
 }
 
 /* Button Scroll */
-/* start header */
-nav {
-    top: 0;
-    z-index: 105000;
-    background-color: #fff;
-    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
-}
 
-nav ul .nav-item .nav-link.active {
-    color: var(--primary-color);
-}
-
-nav ul .nav-item .nav-link {
-    font-size: 17px;
-    transition: 0.5s;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-nav ul .nav-item .nav-link:hover {
-    color: var(--primary-color);
-}
-
-nav ul li {
-    margin: 5px 10px;
-}
-
-nav .navbar-toggler:focus {
-    box-shadow: none;
-}
-
-nav .navbar-toggler.active {
-    color: #ffc107;
-}
-
-
-nav .dropdown-menu li {
-    cursor: pointer;
-    transition: 0.5s;
-    padding: 5px;
-}
-
-nav .dropdown-menu li.arabic {
-    border-bottom: 1px solid rgba(119, 119, 119, 0.335);
-}
-
-
-nav .dropdown-menu li:hover {
-    letter-spacing: 1.4px;
-}
-
-
-nav .icon {
-    position: relative;
-    margin: 15px;
-    cursor: pointer;
-}
-
-nav .icon i {
-    font-size: 30px;
-    color: var(--primary-color);
-}
-
-nav .icon .count {
-    position: absolute;
-    top: -15px;
-    left: 35px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30%;
-    color: white;
-    background-color:#12a390;
-}
-
-nav .language {
-    border: none;
-    background-color: transparent;
-
-}
-
-/* end header */
 /* start landing */
 .landing {
     position: relative;
@@ -717,27 +634,8 @@ footer .row {
 /* start Reviews */
 
 .review {
-    position: fixed;
-    text-transform: uppercase;
-    text-align: center;
-    background-color: var(--primary-color);
-    box-shadow: rgba(17, 34, 51, .16) 0 3px 14px;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 0 26px;
-    height: 40px;
-    line-height: 40px;
-    border: 0;
-    border-radius: 0 0 22px 22px;
-    min-width: 134px;
-    white-space: nowrap;
-    top: 25%;
-    left: -60px;
-    transform: rotate(270deg);
-    z-index: 1500;
+display: flex;
+align-items: center;
 }
 
 .review i {
@@ -753,28 +651,23 @@ footer .row {
     color: var(--primary-color);
 }
 
-
-.offcanvas-start-2 {
-    z-index: 1500000;
-}
-
-.offcanvas-start-2 .box-review {
+.box-review {
     border-bottom: 1px solid rgba(119, 119, 119, 0.333);
 }
 
-.offcanvas-start-2 .box-review .title p {
+.box-review .reviews-title p {
     color: var(--primary-color);
     margin: 10px 10px 0;
     font-size: 17px;
     color: var(--brown-color);
 }
 
-.offcanvas-start-2 .box-review .title span {
+.box-review .reviews-title span {
     color: var(--brown-color);
     font-size: 13px;
 }
 
-.offcanvas-start-2 .box-review .title i {
+.box-review .reviews-title i {
     color: var(--primary-color);
     width: 50px;
     height: 50px;
@@ -785,24 +678,24 @@ footer .row {
     align-items: center;
 }
 
-.offcanvas-start-2 .box-review ul {
+.box-review ul {
     display: flex;
     padding: 0;
     margin: 8PX 0;
 }
 
-.offcanvas-start-2 .box-review ul li {
+.box-review ul li {
     list-style: none;
     margin: 0 2px;
     color: #f7b604;
 }
 
-.offcanvas-start-2 .box-review .body p {
+.box-review .body p {
     color: var(--brown-color);
     font-size: 18px;
 }
 
-.offcanvas-start-2 h5 {
+.box-review h5 {
     font-size: 25px;
     color: var(--primary-color);
     font-weight: 800;
@@ -845,7 +738,6 @@ footer .row {
     padding: 4px;
     font-size: 16px !important;
 } */
-
 
 .offcanvas-start-1 .totalprice {
     color: var(--primary-color);
@@ -925,7 +817,7 @@ footer .row {
     color: var(--primary-color);
 }
 
-.offcanvas-start-1 .title {
+.offcanvas-start-1 .reviews-title {
     color: var(--brown-color);
     font-size: 24px;
 }
@@ -1031,6 +923,10 @@ footer .row {
 
 /* end landing product */
 /* start prodeucts */
+.products {
+font-size: 70%;
+}
+
 .products ul {
     padding: 0;
 }
