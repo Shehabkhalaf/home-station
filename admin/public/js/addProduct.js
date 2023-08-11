@@ -37,7 +37,7 @@ colorsInput.addEventListener('click', addColors);
 const productForm = document.getElementById('product-form');
 productForm.addEventListener('submit', handleSubmit);
 
-console.log(productForm)
+console.log(productForm);
 
 // Add event listener for adding size & price
 const addSizePriceBtn = document.getElementById('add-size-price-btn');
@@ -197,14 +197,27 @@ function addImages() {
       image.type === 'image/webp'
     ) {
       imagesArr.push(image);
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
 
       const listItem = document.createElement('li');
+      const imageTag = document.createElement('img');
+      imageTag.classList = 'w-[50px]';
+      reader.onload = (e) => {
+        imageTag.src = e.target.result;
+      };
+      imageTag.alt = 'product';
+
+      const span = document.createElement('span');
+      span.textContent = image.name;
+
       const deleteBtn = document.createElement('button');
       deleteBtn.id = 'delete-list';
       deleteBtn.classList.add('ml-4');
       deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can text-red-500"></i>`;
 
-      listItem.textContent = image.name;
+      listItem.appendChild(imageTag);
+      listItem.appendChild(span);
       listItem.appendChild(deleteBtn);
       imagesList.appendChild(listItem);
 
