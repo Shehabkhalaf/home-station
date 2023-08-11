@@ -1188,6 +1188,10 @@ button.active {
     position: fixed;
   }
 
+  .md\:relative {
+    position: relative;
+  }
+
   .md\:left-0 {
     left: 0px;
   }
@@ -1196,9 +1200,17 @@ button.active {
     top: 8rem;
   }
 
+  .md\:top-0 {
+    top: 0px;
+  }
+
   .md\:mx-auto {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .md\:mb-10 {
+    margin-bottom: 2.5rem;
   }
 
   .md\:block {

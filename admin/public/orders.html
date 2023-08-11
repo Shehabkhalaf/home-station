@@ -33,7 +33,8 @@
     <div
       class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
     >
-      <div class="md:mx-auto md:px-6">
+    <div class="md:fixed">
+      <div class="md:mx-auto md:px-6 md:mb-10">
         <img
           src="https://res.cloudinary.com/dvagmtn4y/image/upload/v1679078730/home%20station/334207739_608659187398631_5067190693077913909_n_v94z5r.jpg"
           alt="logo"
@@ -43,7 +44,7 @@
 
       <ul
         id="nav-lists"
-        class="flex flex-col z-20 md:fixed md:top-32 md:w-[200px] lg:w-[250px] gap-8 md:bg-gr-1 md:left-0 md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
+        class="flex flex-col z-20 md:relative md:w-[200px] lg:w-[250px] gap-8 md:bg-gr-1 md:left-0 md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
       >
         <button
           id="close-side"
@@ -111,6 +112,7 @@
           </a>
         </li>
       </ul>
+    </div>
 
       <button id="open" class="cursor-pointer block md:hidden text-xl">
         <i class="fa-solid fa-bars"></i>
