@@ -171,19 +171,30 @@
             tutorial, you can send me message from here. It's my pleasure to
             help you.
           </p>
-          <form action="#">
+          <form id="contact-form">
             <div class="input-box">
-              <input type="text" placeholder="Enter your name" />
+              <input type="text" placeholder="Enter your name" id="name" />
+              <div id="name-error-message" class="error"></div>
             </div>
             <div class="input-box">
-              <input type="text" placeholder="Enter your email" />
+              <input type="text" placeholder="Enter your email" id="mail" />
+              <div id="mail-error-message" class="error"></div>
+            </div>
+            <div class="input-box">
+              <input
+                type="text"
+                placeholder="Enter your phone number"
+                id="phone"
+              />
+              <div id="phone-error-message" class="error"></div>
             </div>
             <div class="input-box message-box">
-              <textarea placeholder="Enter your message"></textarea>
+              <textarea placeholder="Enter your message" id="msg"></textarea>
+              <div id="msg-error-message" class="error"></div>
             </div>
-            <div class="button">
-              <input type="button" value="Send Now" />
-            </div>
+            <button type="submit" id="contact-btn">Send Now</button>
+            <div id="success"></div>
+            <div id="error" class="error"></div>
           </form>
         </div>
       </div>
@@ -429,5 +440,6 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/paymobApi.js" type="module"></script>
+    <script src="./js/contact.js"></script>
   </body>
 </html>
