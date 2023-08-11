@@ -31,12 +31,12 @@ class ProductsResource extends JsonResource
                     'category_id' => $this->id,
                     'product_name' => $product->title,
                     'description' => $product->description,
-                    'color' => json_decode($product->color),
+                    'color' => $product->color,
                     'discount' => $product->discount,
                     'stock' => $product->stock,
                     'images' => $imageUrls,
-                    'price' => json_decode($product->price),
-                    'size' => json_decode($product->size),
+                    'price' => $product->price,
+                    'size' => $product->size,
                     'created_at' => $product->created_at->toDateString()
                 ];
             }),
