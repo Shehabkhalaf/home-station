@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ShowProduct;
@@ -22,7 +23,7 @@ class UserController extends Controller
     public function allProducts()
     {
         $products = Product::all();
-        return $this->JsonResponse(200,'Here are all products',ShowProduct::collection($products));
+        return $this->JsonResponse(200, 'Here are all products', ShowProduct::collection($products));
     }
     public function updateData(Request $request)
     {
@@ -49,5 +50,11 @@ class UserController extends Controller
     {
         $message = Message::create($request->all());
         return $this->JsonResponse(201, 'Message Sent', $message);
+    }
+    public function allCategories()
+    {
+        $category = new CategoryController;
+        $categories = $category->allCategories();
+        return $categories;
     }
 }

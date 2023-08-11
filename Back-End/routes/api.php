@@ -82,6 +82,7 @@ Route::prefix('user')->group(function () {
         Route::post('update', 'updateData');
         Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
         Route::get('show_product/{id}', 'showProduct');
+        Route::get('all_categories','allCategories');
     });
     ###############Order Controller################
     Route::controller(OrderController::class)->group(function () {
