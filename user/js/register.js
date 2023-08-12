@@ -1,5 +1,11 @@
 const URL = 'http://127.0.0.1:8000';
 
+// Cheack if user is already logged in
+const user = localStorage.getItem('user');
+if (user) {
+  window.location = 'profile.html';
+}
+
 const registerFrom = document.getElementById('register-form');
 const registerBtn = document.getElementById('register-btn');
 const successMsg = document.getElementById('success');
@@ -162,7 +168,8 @@ async function registerUser(userData) {
       localStorage.setItem('user', JSON.stringify(data.data));
       setTimeout(() => {
         successMsg.innerHTML = '';
-      }, 5000);
+        window.location = 'profile.html';
+      }, 3000);
     } else {
       if (data.data['email']) {
         errorMsg.innerHTML = data.data['email'][0];

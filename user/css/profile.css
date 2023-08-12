@@ -1,0 +1,32 @@
+.profile {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  min-height: 300px;
+}
+
+.profile .profile-title {
+  color: var(--green);
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 2rem;
+}
+
+#profile-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 20px 0 60px;
+}
+
+#profile-form button {
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 30px;
+  border-radius: 4px;
+  background: #238975de;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
