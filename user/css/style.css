@@ -873,7 +873,7 @@ align-items: center;
     font-size: 20px;
 }
 
-.offcanvas-start-1 .required {
+.required {
     color: red;
     font-size: 20px;
     margin: 0 5px;
