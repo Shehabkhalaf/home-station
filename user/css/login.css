@@ -8,6 +8,7 @@
   color: var(--green);
   font-weight: bold;
   margin-top: 10px;
+  margin-left: 2rem;
 }
 
 #login-form, #register-form {

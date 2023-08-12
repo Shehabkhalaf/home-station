@@ -583,7 +583,7 @@ form input:not(input[type="submit"]):focus,
 /* end contact */
 /* start footer */
 .footer {
-    padding: 7rem 1rem;
+    padding: 2rem 1rem;
     background-color: var(--green);
     margin: 0;
     width: 100%;

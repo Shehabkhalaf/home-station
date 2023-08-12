@@ -104,9 +104,19 @@ body {
 }
 
 .top-nav a {
-  transition: 0.2s;
+  transition: 0.3s !important;
 }
 
 .top-nav a:hover {
-  text-decoration: underline;
+  text-decoration: underline !important;
+}
+
+section {
+  padding-bottom: 5rem;
+}
+
+#copy-right {
+  color: white;
+  text-align: center;
+  font-size: 15px;
 }

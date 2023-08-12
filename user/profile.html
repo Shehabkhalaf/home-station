@@ -47,8 +47,8 @@
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/login.css" />
-    <title>Login | Home Station</title>
+    <link rel="stylesheet" href="./css/profile.css" />
+    <title>Profile | Home Station</title>
     <link
       rel="shortcut icon"
       type="image/jpg"
@@ -69,7 +69,7 @@
           <ul class="d-flex" style="gap: 5px">
             <li><a href="abouten.html">about</a></li>
             <li><a href="products.html">shop</a></li>
-            <li><a href="contact.html">Contact US</a></li>
+            <li><a href="contact.html">contact us</a></li>
           </ul>
         </div>
       </div>
@@ -91,7 +91,7 @@
             <a href="products.html" class="nav-link">Products</a>
           </li>
           <li class="nav-item">
-            <a href="contact.html" class="nav-link">Contact US</a>
+            <a href="contact.html" class="nav-link">Contact US </a>
           </li>
           <li>
             <div class="icons d-flex">
@@ -99,7 +99,7 @@
                 <i class="bx bx-user"></i>
               </a>
               <div class="icon">
-                <a href="loginar.html"
+                <a href="profilear.html"
                   ><img
                     src="https://res.cloudinary.com/dvagmtn4y/image/upload/v1677156923/Flag_of_Egypt_ofgix1.png"
                     alt=""
@@ -138,56 +138,78 @@
     </header>
 
     <!-- content -->
-    <section class="login">
-      <h2 class="login-title">Login Page</h2>
-      <form id="login-form">
+    <section class="profile">
+      <h2 class="profile-title">
+        Welcome, <span id="head-user-name">Ahmed</span>
+      </h2>
+      <form id="profile-form">
         <div class="row mt-2 justify-content-center">
           <div class="col-lg-8">
             <div class="d-flex align-items-center justify-content-center mt-2">
               <input
+                readonly
+                type="text"
+                id="name"
+                class="data-in form-control"
+                placeholder="Your Name"
+              />
+            </div>
+            <div id="name-error-message" class="error"></div>
+          </div>
+        </div>
+        <div class="row mt-2 justify-content-center">
+          <div class="col-lg-8">
+            <div class="d-flex align-items-center justify-content-center mt-2">
+              <input
+                readonly
                 type="text"
                 id="mail"
                 class="data-in form-control"
                 placeholder="Your Email"
-                aria-describedby="passwordHelpInline"
-                required
               />
-              <div class="required">*</div>
             </div>
             <div id="mail-error-message" class="error"></div>
           </div>
         </div>
         <div class="row mt-2 justify-content-center">
           <div class="col-lg-8">
-            <div
-              class="d-flex align-items-center justify-content-center mt-2 position-relative"
-            >
+            <div class="d-flex align-items-center justify-content-center mt-2">
               <input
-                type="password"
-                id="password"
+                readonly
+                type="text"
+                id="phone"
                 class="data-in form-control"
-                placeholder="Your Password"
-                aria-describedby="passwordHelpInline"
-                required
+                placeholder="Your Phone"
               />
-              <div id="togglePassword" class="position-absolute">
-                <i class="bx bx-hide"></i>
-              </div>
-              <div class="required">*</div>
             </div>
-            <div id="password-error-message" class="error"></div>
+            <div id="phone-error-message" class="error"></div>
           </div>
         </div>
         <div class="row mt-2 justify-content-center">
           <div class="col-lg-8">
+            <div class="d-flex align-items-center justify-content-center mt-2">
+              <input
+                readonly
+                type="text"
+                id="address"
+                class="data-in form-control"
+                placeholder="Your Address"
+              />
+            </div>
+            <div id="address-error-message" class="error"></div>
+          </div>
+        </div>
+        <!-- <div class="row mt-2 justify-content-center">
+          <div class="col-lg-8">
             <div class="log-register">
-              <button type="submit" id="login-btn" class="mt-2">Login</button>
-              <a href="register.html">or, create new acount</a>
+              <button type="submit" id="register-btn" class="mt-2">
+                Update Information
+              </button>
             </div>
             <div id="success"></div>
             <div id="error" class="error"></div>
           </div>
-        </div>
+        </div> -->
       </form>
     </section>
 
@@ -431,7 +453,7 @@
     <script src="./js/localStorage.js" type="module"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./js/profile.js"></script>
     <script src="./js/paymobApi.js" type="module"></script>
   </body>
 </html>
