@@ -102,3 +102,11 @@ body {
 .direction {
   direction: rtl;
 }
+
+.top-nav a {
+  transition: 0.2s;
+}
+
+.top-nav a:hover {
+  text-decoration: underline;
+}

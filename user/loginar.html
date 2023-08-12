@@ -63,7 +63,7 @@
       <div class="top-nav">
         <div class="container d-flex">
           <a href="https://wa.me/message/Q7PEQCB4LAOCM1">
-            ordar Now on:+201098336319</a
+            Ordar Now on: +201098336319</a
           >
 
           <ul class="d-flex" style="gap: 5px">
@@ -95,7 +95,7 @@
           </li>
           <li>
             <div class="icons d-flex">
-              <a href="loginen.html" class="icon">
+              <a href="profile.html" class="icon">
                 <i class="bx bx-user"></i>
               </a>
               <div class="icon">
@@ -159,7 +159,9 @@
         </div>
         <div class="row mt-2 justify-content-center">
           <div class="col-lg-8">
-            <div class="d-flex align-items-center justify-content-center mt-2">
+            <div
+              class="d-flex align-items-center justify-content-center mt-2 position-relative"
+            >
               <input
                 type="password"
                 id="password"
@@ -168,6 +170,13 @@
                 aria-describedby="passwordHelpInline"
                 required
               />
+              <div
+                id="togglePassword"
+                data-id="confirm"
+                class="position-absolute"
+              >
+                <i class="bx bx-hide"></i>
+              </div>
               <div class="required">*</div>
             </div>
             <div id="password-error-message" class="error"></div>
@@ -177,7 +186,7 @@
           <div class="col-lg-8">
             <div class="log-register">
               <button type="submit" id="login-btn" class="mt-2">Login</button>
-              <a href="register.html">او، إنشاء حساب جديد</a>
+              <a href="registerar.html">او، إنشاء حساب جديد</a>
             </div>
             <div id="success"></div>
             <div id="error" class="error"></div>
@@ -424,7 +433,7 @@
     <script src="./js/localStorage.js" type="module"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
+    <script src="./js/login.js"></script>
     <script src="./js/paymobApi.js" type="module"></script>
   </body>
 </html>

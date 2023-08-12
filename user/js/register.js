@@ -162,7 +162,8 @@ async function registerUser(userData) {
       localStorage.setItem('user', JSON.stringify(data.data));
       setTimeout(() => {
         successMsg.innerHTML = '';
-      }, 5000);
+        window.location = 'profile.html';
+      }, 3000);
     } else {
       if (data.data['email']) {
         errorMsg.innerHTML = data.data['email'][0];
