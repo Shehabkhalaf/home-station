@@ -9,8 +9,12 @@ use Illuminate\Http\Request;
 class AccessController extends Controller
 {
     use ApiResponse;
-    public function permitted()
+    public function login(Request $request)
     {
-        return $this->JsonResponse(200, 'Access accepted');
+        if ($request->username == 'admin@homestation.com' && $request->password == 'i4GFC5XATWIdVaMayk9UFy6WXg2j9k') {
+            return $this->JsonResponse(201, 'Logged in');
+        } else {
+            return $this->JsonResponse(401, 'Logging denied');
+        }
     }
 }

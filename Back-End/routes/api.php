@@ -24,11 +24,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 ########################/*Admin Module*/##########################
-Route::get('admin/dachboard', [AccessController::class, 'permitted'])->middleware('admin.access');
+Route::post('admin/login', [AccessController::class, 'login']);
 Route::prefix('admin')->group(function () {
     Route::controller(ContactUsController::class)->group(function () {
         Route::get('all_messages', 'allMessages');
@@ -82,7 +82,7 @@ Route::prefix('user')->group(function () {
         Route::post('update', 'updateData');
         Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
         Route::get('show_product/{id}', 'showProduct');
-        Route::get('all_categories','allCategories');
+        Route::get('all_categories', 'allCategories');
     });
     ###############Order Controller################
     Route::controller(OrderController::class)->group(function () {
