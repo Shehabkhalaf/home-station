@@ -205,7 +205,7 @@ Navigation
     color: var(--green);
   }
 
-.navigation .hamburger {
+  .navigation .hamburger {
     display: block !important;
     color: var(--black) !important;
     font-size: 3rem !important;
@@ -382,7 +382,7 @@ Hero Media Query
   }
 
   .center .right img {
-  width: 300px !important;
+    width: 300px !important;
   }
   .hero,
   .hero .glide__slides {
@@ -390,7 +390,7 @@ Hero Media Query
     padding: 0 3rem;
   }
 
-  .hero .left h1{
+  .hero .left h1 {
     font-size: 1rem;
   }
 
@@ -398,7 +398,6 @@ Hero Media Query
     font-size: 1rem !important;
     padding: 1rem !important;
   }
-
 }
 
 /* Category Section */
@@ -635,15 +634,18 @@ Hero Media Query
   transform: scale(1.1);
 }
 
-.product-item .discount {
+.card .discount {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 1.5rem;
+  left: 0;
   background-color: var(--green);
   padding: 0.5rem 1rem;
   color: var(--white);
-  border-radius: 2rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  width: 80px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  text-align: center;
 }
 
 @media only screen and (max-width: 567px) {
@@ -924,9 +926,9 @@ footer .row {
 }
 
 .actual-price {
-  margin-left: 20px;
-  opacity: 0.5;
-  color: #28b8c0;
+  margin-bottom: 0;
+  opacity: 0.7;
+  color: var(--green);
   text-decoration: line-through;
 }
 
@@ -1156,7 +1158,7 @@ form span {
 }
 
 .wrapper .menu-btn i.special {
-font-style: normal;
+  font-style: normal;
 }
 
 .wrapper .menu-btn i.fa-times {

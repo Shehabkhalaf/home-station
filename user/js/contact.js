@@ -93,7 +93,7 @@ async function sendMsg(data, errorMessageELe, successMessage, submitBtn) {
       body: JSON.stringify(data),
     });
 
-    submitBtn.innerHTML = 'Submit';
+    submitBtn.innerHTML = 'Send Now';
     submitBtn.disabled = false;
 
     const resData = await res.json();

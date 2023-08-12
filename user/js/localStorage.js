@@ -13,6 +13,7 @@ function getDataLocal() {
 // Set Data In local Storage
 function setDataLocal(products) {
     localStorage.setItem("products", JSON.stringify(products));
+    count.innerHTML = listItems.length;
 }
 
 // Create All Products
