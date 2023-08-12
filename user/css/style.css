@@ -44,7 +44,7 @@ body {
 }
 
 .buttonStyle {
-    padding: 10px 25px !important;
+    padding: 10px 20px !important;
     border-radius: 20px;
     background-color: var(--primary-color);
     border: 1px solid var(--primary-color);
@@ -1274,4 +1274,8 @@ font-size: 70%;
 /* end medthod check out */
 .swal2-container {
     z-index: 150000000 !important;
+}
+
+.width {
+    width: 50px;
 }

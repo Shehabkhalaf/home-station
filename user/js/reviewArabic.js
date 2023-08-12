@@ -30,54 +30,54 @@ let dataReview = [
         "date": "فبراير 12,2023",
         "desc": "beautiful"
     },
-    {
-        "icon": `<i class="fa-solid fa-s"></i>`,
-        "name": "سيد عبد الرحمن",
-        "date": "فبراير 1,2023",
-        "desc": "منتجات ذات جودة عالية"
-    },
-    {
-        "icon": `<i class="fa-solid fa-a"></i>`,
-        "name": "علي احمد",
-        "date": "يناير 29,2023",
-        "desc": "Best Pillows"
-    },
-    {
-        "icon": `<i class="fa-solid fa-r"></i>`,
-        "name": "رقيه عمرو",
-        "date": "يناير 23,2023",
-        "desc": "أفضل الوسائد"
-    },
-    {
-        "icon": `<i class="fa-solid fa-f"></i>`,
-        "name": "فارس احمد",
-        "date": "يناير 22,2023",
-        "desc": "amazing"
-    },
-    {
-        "icon": `<i class="fa-solid fa-y"></i>`,
-        "name": "يوسف سيد",
-        "date": "يناير 21,2023",
-        "desc": "مريح جدا"
-    },
-    {
-        "icon": `<i class="fa-solid fa-a"></i>`,
-        "name": "عبد الرحمن خالد",
-        "date": "يناير 12,2023",
-        "desc": "Very comfy"
-    },
-    {
-        "icon": `<i class="fa-solid fa-a"></i>`,
-        "name": "علي احمد",
-        "date": "يناير 1,2023",
-        "desc": "Durable"
-    },
-    {
-        "icon": `<i class="fa-solid fa-m"></i>`,
-        "name": "محمد",
-        "date": "ديسمبر  10,2022",
-        "desc": "Best"
-    }
+    // {
+    //     "icon": `<i class="fa-solid fa-s"></i>`,
+    //     "name": "سيد عبد الرحمن",
+    //     "date": "فبراير 1,2023",
+    //     "desc": "منتجات ذات جودة عالية"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-a"></i>`,
+    //     "name": "علي احمد",
+    //     "date": "يناير 29,2023",
+    //     "desc": "Best Pillows"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-r"></i>`,
+    //     "name": "رقيه عمرو",
+    //     "date": "يناير 23,2023",
+    //     "desc": "أفضل الوسائد"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-f"></i>`,
+    //     "name": "فارس احمد",
+    //     "date": "يناير 22,2023",
+    //     "desc": "amazing"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-y"></i>`,
+    //     "name": "يوسف سيد",
+    //     "date": "يناير 21,2023",
+    //     "desc": "مريح جدا"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-a"></i>`,
+    //     "name": "عبد الرحمن خالد",
+    //     "date": "يناير 12,2023",
+    //     "desc": "Very comfy"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-a"></i>`,
+    //     "name": "علي احمد",
+    //     "date": "يناير 1,2023",
+    //     "desc": "Durable"
+    // },
+    // {
+    //     "icon": `<i class="fa-solid fa-m"></i>`,
+    //     "name": "محمد",
+    //     "date": "ديسمبر  10,2022",
+    //     "desc": "Best"
+    // }
 ]
 
 // Add Reviews
@@ -87,14 +87,14 @@ function reviewLoop() {
 
 // Add Review In Dom
 function reviews(review) {
-    let reviews = document.getElementById("reviews");
+    const reviews = document.getElementById("reviews");
 
     let div = document.createElement("div");
 
     div.setAttribute("class", "box-review p-4");
 
     div.innerHTML = `
-    <div class="title mb-3 d-flex justify-content-between align-items-center">
+    <div class="reviews-title mb-3 d-flex justify-content-between align-items-center">
         <div class="name d-flex">
         ${review.icon}
             <p>${review.name}</p>
@@ -114,6 +114,5 @@ function reviews(review) {
 `
     reviews.appendChild(div)
 }
-
 // Call Function Review Loop for Add Reviews in Dom 
 reviewLoop();

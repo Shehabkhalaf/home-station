@@ -40,7 +40,6 @@ count.innerHTML = counter;
 
 fetchAllProducts().then((data) => {
   dataProducts = data.data;
-  console.log(dataProducts);
 
   // Add all Products
   function addProductsAll() {
@@ -61,42 +60,46 @@ fetchAllProducts().then((data) => {
       });
 
       // Filter Products
-      let typeProducts = document.querySelectorAll('.typesProduct');
-      typeProducts.forEach((element) => {
-        element.addEventListener('click', (item) => {
-          if (!element.classList.contains('active')) {
-            [...products.children].forEach((e) => e.remove());
-            let id = element.getAttribute('id');
-            if (id === 'all') {
-              addProductsAll();
-            } else if (id === 'Bean-Bags' || id === 'Mattresses') {
-              let img = document.createElement('img');
-              img.src = 'images/coming-soon.jpg';
-              img.setAttribute('class', 'img-size img-fluid sooon');
-              products.appendChild(img);
-            } else {
-              dataProducts.forEach((product) => {
-                if (product.category === id) {
-                  addProduct(product);
-                  let btnDetails = document.querySelectorAll('#btn-details');
-                  btnDetails.forEach((button) => {
-                    button.addEventListener('click', showDetails);
-                  });
-                  let cards = document.querySelectorAll('#card');
-                  cards.forEach((card) => {
-                    card.addEventListener('click', clickCard);
-                  });
-                  // Add To Card
-                  let addCard = document.querySelectorAll('#addCard');
-                  addCard.forEach((element) => {
-                    element.addEventListener('click', addCartOut);
-                  });
-                }
-              });
+      const filtersContainer = document.getElementById('filter-container');
+      getAllCategories().then((data) => {
+        filtersContainer.innerHTML = `<li class="active typesProduct" id="all">All</li>
+        ${data.data
+          .map((cat) => {
+            return `<li class="typesProduct" id="${cat.id}">${cat.title}</li>`;
+          })
+          .join('')}`;
+        const typeProducts = document.querySelectorAll('.typesProduct');
+        typeProducts.forEach((element) => {
+          element.addEventListener('click', (item) => {
+            if (!element.classList.contains('active')) {
+              [...products.children].forEach((e) => e.remove());
+              let id = element.getAttribute('id');
+              if (id === 'all') {
+                addProductsAll();
+              } else {
+                dataProducts.forEach((product) => {
+                  if (product.category_id === +id) {
+                    addProduct(product);
+                    let btnDetails = document.querySelectorAll('#btn-details');
+                    btnDetails.forEach((button) => {
+                      button.addEventListener('click', showDetails);
+                    });
+                    let cards = document.querySelectorAll('#card');
+                    cards.forEach((card) => {
+                      card.addEventListener('click', clickCard);
+                    });
+                    // Add To Card
+                    let addCard = document.querySelectorAll('#addCard');
+                    addCard.forEach((element) => {
+                      element.addEventListener('click', addCartOut);
+                    });
+                  }
+                });
+              }
+              typeProducts.forEach((e) => e.classList.remove('active'));
+              element.classList.add('active');
             }
-            typeProducts.forEach((e) => e.classList.remove('active'));
-            element.classList.add('active');
-          }
+          });
         });
       });
     });
@@ -104,7 +107,8 @@ fetchAllProducts().then((data) => {
 
   // Add Product
   function addProduct(product) {
-    let priceAfterDiscount = product.price[0] - (product.price[0] * (product.discount / 100));
+    let priceAfterDiscount =
+      product.price[0] - product.price[0] * (product.discount / 100);
     // create div
     let div = document.createElement('div');
     // Add class
@@ -115,14 +119,24 @@ fetchAllProducts().then((data) => {
     div.innerHTML = `
                       <div class="box">
                           <div class="card overflow-hidden">
-                              <div class="image overflow-hidden" id="card" data-id="${product.product_id}">
-                                  <img src="${URL}${product.image[0]}" class="card-img-top">
-                                  ${product.discount !== 0 ? `<span class="discount">${product.discount}%</span>` : ''}
+                              <div class="image overflow-hidden" id="card" data-id="${
+                                product.product_id
+                              }">
+                                  <img src="${URL}${
+      product.image[0]
+    }" class="card-img-top">
+                                  ${
+                                    product.discount !== 0
+                                      ? `<span class="discount">${product.discount}%</span>`
+                                      : ''
+                                  }
                               </div>
                               <div class="card-body">
                                   <div class="title mb-4 d-flex justify-content-between align-items-center">
                                       <h5>${product.product_name}</h5>
-                                     <p class="actual-price">${product.price[0]}EGP</p>
+                                     <p class="actual-price">${
+                                       product.price[0]
+                                     }EGP</p>
                                   </div>
                                   <div class="buttons d-flex justify-content-start align-items-center">
                                       <button 
@@ -135,9 +149,12 @@ fetchAllProducts().then((data) => {
                                       aria-controls="offcanvasBottom">
                                         <span class="me-1">EGP</span>${priceAfterDiscount}
                                       </button>
-                                      <button type="button" id="addCard" data-id="${product.product_id}" class="btn  btn-primary buttonStyle"><i class="fa-solid fa-cart-plus me-2"></i>Add to Card 
+                                      <button type="button" id="addCard" data-id="${
+                                        product.product_id
+                                      }" class="btn  btn-primary buttonStyle"><i class="fa-solid fa-cart-plus me-2"></i>Add to Card 
                                       </button>
-                                  </div>
+                                      </div>
+                                      <div id="success" class="text-center"></div>
                               </div>
                           </div>
                       </div>
@@ -149,6 +166,8 @@ fetchAllProducts().then((data) => {
   function showDetails() {
     let buttonId = +this.getAttribute('data-id');
     dataProducts.forEach((product) => {
+      let priceAfterDiscount =
+        product.price[0] - product.price[0] * (product.discount / 100);
       if (+product.product_id === buttonId) {
         sliderContainerParent.innerHTML += `
                       <div class="slider-container" id="slider-container">
@@ -165,9 +184,9 @@ fetchAllProducts().then((data) => {
                       <button class="buttonStyleBack" id="back-btnn"><i class="fa-solid fa-arrow-left"></i> Back To All
                           Products</button>
                       <h2 class="mt-5">${product.product_name}</h2>
-                      <p class="price" id="discountP">EGP ${
-                        product.discount
-                      } <del id="priceDel">EGP ${product.price[0]}</del></p>
+                      <p class="price" id="discountP">EGP ${priceAfterDiscount} <del id="priceDel">EGP ${
+          product.price[0]
+        }</del></p>
                       <div class="description">${product.description}</div>
                       <div class="form">
                           <div class="row">
@@ -196,9 +215,7 @@ fetchAllProducts().then((data) => {
                           </div>
                           <div class="color mt-2 d-flex">
                           <span>color:</span>
-                          <span id="chooseColor">${
-                            product.color[0]
-                          }</span>
+                          <span id="chooseColor">${product.color[0]}</span>
                           </div>
                            <ul class="mt-2 colors d-flex align-items-center">
                           ${product.color
@@ -212,7 +229,8 @@ fetchAllProducts().then((data) => {
                           </ul>
                       </div>
                       <button class="buttonStyle add-card mt-5" id="addCardd">Add To Cart <i class="fa-solid fa-cart-shopping"></i></button>
-                      <div class="icon">
+                      <div id="success" class="text-center"></div>
+                      <div>
                       <img src="images/icon.avif" class="img-size img-fluid">
                       </div>
                       `;
@@ -234,9 +252,11 @@ fetchAllProducts().then((data) => {
         let quantity = document.getElementById('quantity');
         quantity.addEventListener('change', (number) => {
           if (number.target.value > 0) {
+            priceAfterDiscount =
+              product.price[0] - product.price[0] * (product.discount / 100);
             document.getElementById('discountP').innerHTML =
               'EGP ' +
-              +number.target.value * product.discount +
+              +number.target.value * priceAfterDiscount +
               `<del id="priceDel">EGP ${
                 +number.target.value * product.price[0]
               }</del>`;
@@ -245,9 +265,12 @@ fetchAllProducts().then((data) => {
 
         let selected = document.getElementById('selected');
         selected.addEventListener('change', (select) => {
+          priceAfterDiscount =
+            product.price[+selected.value] -
+            product.price[+selected.value] * (product.discount / 100);
           document.getElementById('discountP').innerHTML =
             'EGP ' +
-            +quantity.value * product.discount +
+            +quantity.value * priceAfterDiscount +
             `<del id="priceDel">EGP ${
               +quantity.value * product.price[+selected.value]
             }</del>`;
@@ -269,23 +292,28 @@ fetchAllProducts().then((data) => {
         let addCardd = document.getElementById('addCardd');
         addCardd.addEventListener('click', () => {
           addToCard(
-            product.productTitle,
+            URL + product.image[0],
+            product.product_name,
             product.size[+selected.value],
-            product.discount,
+            priceAfterDiscount,
             +quantity.value,
             colorChoose
           );
+          document.getElementById('success').innerHTML = 'Product Added';
+          setTimeout(() => {
+            document.getElementById('success').innerHTML = '';
+          }, 5000);
         });
       }
     });
   }
 
   // ADD To Cart
-  function addToCard(title, size, discount, quantity, color = 'white') {
+  function addToCard(img, title, size, price, quantity, color = 'white') {
     let id =
       listItems.length === 0 ? 0 : listItems[listItems.length - 1].id + 1;
     // Create Object Task Store Text and Place
-    const newPrduct = { title, size, discount, quantity, id, color };
+    const newPrduct = { img, title, size, price, quantity, id, color };
     // Call Function Create Task
     createProduct(newPrduct);
     // Add Object In Array CardsData
@@ -309,15 +337,24 @@ fetchAllProducts().then((data) => {
   // Add ELement Out Without Open Datelis
   function addCartOut() {
     let item = dataProducts.filter(
-      (e) => +e.id === +this.getAttribute('data-id')
+      (e) => +e.product_id === +this.getAttribute('data-id')
     );
+    let priceAfterDiscount =
+      item[0].price[0] - item[0].price[0] * (item[0].discount / 100);
+
     addToCard(
+      URL + item[0].image[0],
       item[0].product_name,
       item[0].size[0],
-      item[0].discount,
+      priceAfterDiscount,
       1,
       'white'
     );
+
+    document.getElementById('success').innerHTML = 'Product Added';
+    setTimeout(() => {
+      document.getElementById('success').innerHTML = '';
+    }, 5000);
   }
 
   addProductsAll();
@@ -410,7 +447,16 @@ async function fetchAllProducts() {
   try {
     const res = await fetch(`${URL}/api/user/products`);
     const data = await res.json();
-    console.log(data);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function getAllCategories() {
+  try {
+    const res = await fetch(`${URL}/api/user/all_categories`);
+    const data = await res.json();
     return data;
   } catch (err) {
     console.log(err);
