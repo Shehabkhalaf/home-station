@@ -1229,6 +1229,10 @@ button.active {
     min-height: 100vh;
   }
 
+  .md\:w-\[150px\] {
+    width: 150px;
+  }
+
   .md\:w-\[20\%\] {
     width: 20%;
   }
@@ -1239,6 +1243,14 @@ button.active {
 
   .md\:w-\[80\%\] {
     width: 80%;
+  }
+
+  .md\:w-\[250px\] {
+    width: 250px;
+  }
+
+  .md\:w-full {
+    width: 100%;
   }
 
   .md\:max-w-\[250px\] {
