@@ -130,13 +130,20 @@ fetchAllProducts().then((data) => {
                                       ? `<span class="discount">${product.discount}%</span>`
                                       : ''
                                   }
+                                  ${
+                                    product.stock === 0
+                                      ? `<span class="stock">Out Of stock</span>`
+                                      : ''
+                                  }
                               </div>
                               <div class="card-body">
                                   <div class="title mb-4 d-flex justify-content-between align-items-center">
                                       <h5>${product.product_name}</h5>
-                                     <p class="actual-price">${
-                                       product.price[0]
-                                     }EGP</p>
+                                      ${
+                                        product.discount > 0
+                                          ? `<p class="actual-price">${product.price[0]}EGP</p>`
+                                          : ''
+                                      }
                                   </div>
                                   <div class="buttons d-flex justify-content-start align-items-center">
                                       <button 
@@ -183,10 +190,18 @@ fetchAllProducts().then((data) => {
         detailsContainer.innerHTML += `
                       <button class="buttonStyleBack" id="back-btnn"><i class="fa-solid fa-arrow-left"></i> Back To All
                           Products</button>
-                      <h2 class="mt-5">${product.product_name}</h2>
-                      <p class="price" id="discountP">EGP ${priceAfterDiscount} <del id="priceDel">EGP ${
-          product.price[0]
-        }</del></p>
+                          <h2 class="mt-5">${product.product_name}</h2>
+                          ${
+                            product.stock === 0
+                              ? `<span class="stock">Out Of stock</span>`
+                              : ''
+                          }
+                      <p class="price" id="discountP">${priceAfterDiscount}EGP                                 
+                      ${
+                        product.discount > 0
+                          ? `<del id="priceDel">${product.price[0]}EGP</del>`
+                          : ''
+                      }</p>
                       <div class="description">${product.description}</div>
                       <div class="form">
                           <div class="row">
@@ -291,6 +306,14 @@ fetchAllProducts().then((data) => {
         // Add To Card
         let addCardd = document.getElementById('addCardd');
         addCardd.addEventListener('click', () => {
+          if (product.stock === 0) {
+            swal(
+              'This Product Is Out Of Stock',
+              'It will be back soon.',
+              'error'
+            );
+            return;
+          }
           addToCard(
             URL + product.image[0],
             product.product_name,
@@ -348,6 +371,15 @@ fetchAllProducts().then((data) => {
     let priceAfterDiscount =
       item[0].price[0] - item[0].price[0] * (item[0].discount / 100);
 
+      if (item[0].stock === 0) {
+        swal(
+          'This Product Is Out Of Stock',
+          'It will be back soon.',
+          'error'
+        );
+        return;
+      }
+
     addToCard(
       URL + item[0].image[0],
       item[0].product_name,
@@ -361,6 +393,12 @@ fetchAllProducts().then((data) => {
     setTimeout(() => {
       document.getElementById('success').innerHTML = '';
     }, 5000);
+    
+    swal({
+      title: 'successfully added',
+      icon: 'success',
+      button: 'Ok',
+    });
   }
 
   addProductsAll();

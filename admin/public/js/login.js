@@ -1,9 +1,9 @@
 const URL = 'http://127.0.0.1:8000';
 
-// Cheack if user is already logged in
-const user = localStorage.getItem('user');
-if (user) {
-  window.location = 'profile.html';
+// Check if admin already loggedin
+const admin = localStorage.getItem("admin");
+if (admin) {
+  window.location = "./";
 }
 
 const loginFrom = document.getElementById('login-form');
@@ -35,12 +35,12 @@ function handleSubmit(e) {
     return;
   }
 
-  const userData = {
-    email: mail,
+  const adminData = {
+    username: mail,
     password,
   };
 
-  loginUser(userData);
+  loginUser(adminData);
 }
 
 function showError(element, message) {
@@ -55,32 +55,32 @@ togglePasswordButton.addEventListener('click', () => {
   const type = passwordField.getAttribute('type');
   if (type === 'password') {
     passwordField.setAttribute('type', 'text');
-    togglePasswordButton.innerHTML = '<i class="bx bx-show"></i>';
+    togglePasswordButton.innerHTML = '<i class="fa-solid fa-eye"></i>';
   } else {
     passwordField.setAttribute('type', 'password');
-    togglePasswordButton.innerHTML = '<i class="bx bx-hide"></i>';
+    togglePasswordButton.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
   }
 });
 
-async function loginUser(userData) {
+async function loginUser(adminData) {
   errorMsg.innerHTML = '';
   try {
-    const response = await fetch(`${URL}/api/user/login`, {
+    const response = await fetch(`${URL}/api/admin/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify(adminData),
     });
 
     const data = await response.json();
 
-    if (data.status === 200) {
+    if (data.status === 201) {
       successMsg.innerHTML = 'Login successful!';
-      localStorage.setItem('user', JSON.stringify(data.data));
+      localStorage.setItem('admin', JSON.stringify(data.data));
       setTimeout(() => {
         successMsg.innerHTML = '';
-        window.location = 'profile.html';
+        window.location = './';
       }, 3000);
     } else {
       errorMsg.innerHTML = 'Email or password is not correct!';

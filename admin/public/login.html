@@ -55,7 +55,7 @@
           <li>
             <a
               href="./"
-              class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
+              class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white bg-main text-white"
             >
               <i class="fa-solid fa-user-group"></i>
               <p class="capitalize">users</p>
@@ -65,7 +65,7 @@
           <li>
             <a
               href="./categories.html"
-              class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white bg-main text-white"
+              class="flex items-center gap-4 px-6 py-[8px] cursor-pointer text-[18px] duration-100 hover:bg-main hover:text-white"
             >
               <i class="fa-solid fa-store"></i>
               <p class="capitalize">categories</p>
@@ -119,62 +119,73 @@
       </button>
     </div>
 
-    <div class="flex-1 section">
-      <header class="pt-5 px-7 mb-10">
+    <div class="flex-1 md:w-[80%]">
+      <header class="py-5 px-7">
         <h1 class="font-bold text-3xl">Hello there, Admin</h1>
         <p class="text-main text-[15px] mt-1">
           Welcome back to your dashboard!
         </p>
       </header>
-
-      <div class="px-7 mb-20">
-        <div id="category-btns" class="flex gap-8">
-          <button
-            id="add-category"
-            class="cat__btn mb-3 text-lg font-semibold px-5 py-2 rounded-md hover:bg-main hover:text-white duration-100 active"
-          >
-            Add new category
-          </button>
-          <button
-            id="update-category"
-            class="cat__btn mb-3 text-lg font-semibold px-5 py-2 rounded-md hover:bg-main hover:text-white duration-100"
-          >
-            Update category status
-          </button>
-        </div>
-        <div id="form__container" class="pl-2"></div>
-      </div>
-
-      <div class="mx-auto w-[90%] h-[380px] overflow-auto mb-5 pb-10">
-        <table class="w-full">
-          <thead class="bg-main text-white border-b-2 border-gray-300">
-            <tr>
-              <th
-                class="p-3 text-md font-semibold tracking-wide text-left w-[5%]"
-              >
-                ID
-              </th>
-              <th
-                class="p-3 text-md font-semibold tracking-wide text-left w-[30%]"
-              >
-                Category Name
-              </th>
-              <th
-                class="p-3 text-md font-semibold tracking-wide text-left w-[30%]"
-              >
-                Status
-              </th>
-            </tr>
-          </thead>
-          <tbody
-            id="cat-body"
-            class="divide-y divide-gray-200 relative"
-          ></tbody>
-        </table>
-      </div>
     </div>
 
-    <script src="./js/categories.js"></script>
-    <script src="./js/global.js"></script>
+    <div
+    class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10"
+  ></div>
+  <div class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20 bg-white rounded-sm py-[2rem] w-[60%]">
+    <p class="mb-3 ml-[2rem] text-main text-xl">You should login first</p>
+    <form id="login-form" class="mx-auto w-[80%]">
+      <div class="flex flex-col">
+        <label htmlFor="mail" class="text-md mb-1"
+          >User Name:
+        </label>
+        <input
+          type="text"
+          placeholder="User Name"
+          id="mail"
+          class=" outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+        />
+        <div
+          class="error-message text-red-500 text-sm mb-1"
+          id="mail-error-message"
+        ></div>
+      </div>
+    
+      <div class="flex flex-col my-2 relative">
+        <label htmlFor="password" class="text-md mb-1">Password:</label>
+        <input
+          type="password"
+          min="0"
+          placeholder="Add Your Password"
+          id="password"
+          class="outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+        />
+        <div id="togglePassword" class="absolute bottom-2.5 right-2 cursor-pointer opacity-70">
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+        <div
+          class="error-message text-red-500 text-sm mb-1"
+          id="password-error-message"
+        ></div>
+      </div>
+    
+      <button
+        class="mt-1 py-2 px-4 hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white"
+        type="submit"
+        id="offer-submit"
+      >
+        Login
+      </button>
+      <div
+        class="success-message text-green-500 text-sm mt-1"
+        id="success"
+      ></div>
+      <div
+        class="success-message text-red-500 text-sm mt-1"
+        id="error"
+      ></div>
+    </form>
+  </div>
+
+    <script src="./js/login.js"></script>
   </body>
 </html>
