@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admin_orders', function (Blueprint $table) {
-            $table->bigInteger('id')->primary();
-            $table->string('user_data');
-            $table->string('order_details');
-            $table->enum('status', ['shipped', 'delivered', 'in consider'])->default('in consider');
+            $table->id();
+            $table->text('user_data');
+            $table->text('order_details');
+            $table->string('total_price');
+            $table->string('status')->default('no');
             $table->enum('paid', ['cash', 'paid'])->default('cash');
             $table->text('payment_details')->nullable();
-            $table->timestamp('ordered_date');
-            $table->timestamp('shipped_date')->nullable();
-            $table->timestamp('delivered_date')->nullable();
+            $table->string('promocode')->nullable();
             $table->timestamps();
         });
     }

@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('order_details');
+            $table->text('order_details');
             $table->string('total_price');
             $table->string('status')->default('no');
             $table->enum('paid', ['cash', 'paid'])->default('cash');
+            $table->string('promocode')->nullable();
             $table->text('payment_details')->nullable();
-            $table->timestamp('ordered_date')->nullable();
-            $table->timestamp('shipped_date')->nullable();
-            $table->timestamp('delivered_date')->nullable();
             $table->timestamps();
         });
     }

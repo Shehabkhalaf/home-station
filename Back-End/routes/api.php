@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AccessController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\user\AuthController;
@@ -57,6 +58,12 @@ Route::prefix('admin')->group(function () {
         Route::get('show_offer/{id}', 'showOffer');
     });
     Route::get('all_users', [UserController::class, 'allUsers']);
+    #########/*Orders Module*/#########
+    Route::controller(AdminOrderController::class)->group(function () {
+        Route::get('undelivered_orders', 'undeliveredOrders');
+        Route::get('deliver_order/{id}', 'deliverOrder');
+        Route::get('delivered_orders', 'deliveredOrders');
+    });
 });
 
 ########################/*User Module*/##########################
@@ -64,33 +71,25 @@ Route::prefix('user')->group(function () {
     Route::controller(AuthController::class)->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login');
-        /*Route::middleware('auth:sanctum', 'verified')->controller(UserUserController::class)->group(function () {
+    });
+    Route::middleware(['auth:sanctum'])->group(function () {
+        ###############User Controller#################
+        Route::controller(UserUserController::class)->group(function () {
             Route::get('home', 'index');
             Route::get('products', 'allProducts');
             Route::post('update', 'updateData');
-            Route::post('Contact Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
+            Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
+            Route::get('show_product/{id}', 'showProduct');
+            Route::get('all_categories', 'allCategories');
         });
-        Route::middleware('auth:sanctum')->controller(OrderController::class)->group(function () {
+        ###############Order Controller################
+        Route::controller(OrderController::class)->group(function () {
             Route::get('all_orders', 'allOrders');
-        });*/
+            Route::post('make_order', 'makeOrder');
+        });
+        ##############Offer Controller#################
+        Route::controller(UserOfferController::class)->group(function () {
+            Route::get('all_offers', 'allOffers');
+        });
     });
-    //Route::middleware(['auth:sanctum'])->group(function () {
-    ###############User Controller#################
-    Route::controller(UserUserController::class)->group(function () {
-        Route::get('home', 'index');
-        Route::get('products', 'allProducts');
-        Route::post('update', 'updateData');
-        Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
-        Route::get('show_product/{id}', 'showProduct');
-        Route::get('all_categories', 'allCategories');
-    });
-    ###############Order Controller################
-    Route::controller(OrderController::class)->group(function () {
-        Route::get('all_orders', 'allOrders');
-    });
-    ##############Offer Controller#################
-    Route::controller(UserOfferController::class)->group(function () {
-        Route::get('all_offers', 'allOffers');
-    });
-    //});
 });
