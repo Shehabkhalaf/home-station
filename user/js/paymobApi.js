@@ -6,12 +6,12 @@ import {
 let listItems = getDataLocal();
 
 // Get Elements
-let nameI = document.getElementById('nameInput');
-let phone = document.getElementById('phoneInput');
-let card = document.getElementById('cardInput');
-let email = document.getElementById('emailInput');
-let address = document.getElementById('addressInput');
-let governorates = document.getElementById('selectedGon');
+const nameI = document.getElementById('nameInput');
+const phone = document.getElementById('phoneInput');
+const card = document.getElementById('cardInput');
+const email = document.getElementById('emailInput');
+const address = document.getElementById('addressInput');
+const governorates = document.getElementById('selectedGon');
 
 // Storage Values
 let nameValue;
@@ -161,7 +161,6 @@ async function firstStep() {
   });
 
   let response = await request.json();
-  console.log(response)
 
   let token = response.token;
 
@@ -195,7 +194,6 @@ async function secondStep(token) {
   });
 
   let response = await request.json();
-  console.log(response)
 
   let id = response.id;
 
@@ -248,7 +246,6 @@ async function thirdStep(token, id) {
   );
 
   let response = await request.json();
-  console.log(response)
 
   let TheToken = response.token;
 
@@ -257,7 +254,7 @@ async function thirdStep(token, id) {
 
 async function cardPayment(token) {
   let iframURL = `https://accept.paymob.com/api/acceptance/iframes/${frameId}?payment_token=${token}`;
-  window.location = iframURL;
+  window.open(iframURL, '_blank');
 }
 
 function sendEmail() {
@@ -292,8 +289,6 @@ function sendEmail() {
   emailjs
     .send(emailService, templateId, emailContent, userId)
     .then((response) => {
-        console.log(response);
-
       swal({
         title: 'successfully registered',
         text: 'Well, you will be contacted within 48 hours. If there is no response, please contact us 0109-833-6319 ',
