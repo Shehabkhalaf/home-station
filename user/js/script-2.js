@@ -320,7 +320,8 @@ fetchAllProducts().then((data) => {
             product.size[+selected.value],
             priceAfterDiscount,
             +quantity.value,
-            colorChoose
+            colorChoose,
+            product.product_id
           );
           document.getElementById('success').innerHTML = 'Product Added';
           setTimeout(() => {
@@ -332,11 +333,11 @@ fetchAllProducts().then((data) => {
   }
 
   // ADD To Cart
-  function addToCard(img, title, size, price, quantity, color = 'white') {
+  function addToCard(img, title, size, price, quantity, color = 'white', product_id) {
     let id =
       listItems.length === 0 ? 0 : listItems[listItems.length - 1].id + 1;
     // Create Object Task Store Text and Place
-    const newPrduct = { img, title, size, price, quantity, id, color };
+    const newPrduct = { img, title, size, price, quantity, id, color, product_id };
     // Call Function Create Task
     createProduct(newPrduct);
     // Add Object In Array CardsData
@@ -386,7 +387,8 @@ fetchAllProducts().then((data) => {
       item[0].size[0],
       priceAfterDiscount,
       1,
-      'white'
+      'white',
+      item[0].product_id
     );
 
     document.getElementById('success').innerHTML = 'Product Added';

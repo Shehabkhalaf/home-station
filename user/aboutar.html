@@ -362,7 +362,7 @@
       <div class="offcanvas-body">
         <div class="container">
           <h1>عربتك</h1>
-          <table id="table-table">
+          <table>
             <thead>
               <tr>
                 <td>منتج</td>
@@ -399,9 +399,8 @@
                     type="text"
                     id="nameInput"
                     class="data-in form-control"
-                    placeholder="Your Name"
+                    placeholder="الاسم"
                     aria-describedby="passwordHelpInline"
-                    required
                   />
                   <div class="required">*</div>
                 </div>
@@ -417,9 +416,8 @@
                     type="text"
                     id="emailInput"
                     class="data-in form-control"
-                    placeholder="Your Email"
+                    placeholder="الايميل"
                     aria-describedby="passwordHelpInline"
-                    required
                   />
                   <div class="required">*</div>
                 </div>
@@ -435,9 +433,8 @@
                     type="text"
                     id="phoneInput"
                     class="data-in form-control"
-                    placeholder="Your Phone"
+                    placeholder="رقم تليفون"
                     aria-describedby="passwordHelpInline"
-                    required
                   />
                   <div class="required">*</div>
                 </div>
@@ -453,26 +450,10 @@
                     type="text"
                     id="addressInput"
                     class="data-in form-control"
-                    placeholder="your address "
+                    placeholder="العنوان "
                     aria-describedby="passwordHelpInline"
                   />
                   <div class="required">*</div>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-2 justify-content-center">
-              <div class="col-lg-5">
-                <div
-                  class="d-flex align-items-center justify-content-center mt-2"
-                >
-                  <i class="fa-regular fa-credit-card iconsInput"></i>
-                  <input
-                    type="text"
-                    id="cardInput"
-                    class="data-in form-control"
-                    placeholder="Your Cart"
-                    aria-describedby="passwordHelpInline"
-                  />
                 </div>
               </div>
             </div>
@@ -530,15 +511,19 @@
               />
             </div>
             <div class="col-lg-2">
-              <button type="submit" class="btn btn-primary">Apply</button>
+              <div class="btn btn-primary" id="apply-promo">Apply</div>
             </div>
           </form>
+          <div class="promo">
+            <!-- <p>You have used <span>ahmed</span> promocode with discount:</p>
+            <span>50%</span> -->
+          </div>
           <div class="button mt-4">
             <button class="buttonStyle check checkNone" id="checkOut">
-              Check Out <i class="fa-solid fa-right-long"></i>
+              <i class="fa-solid fa-right-long"></i> الدفع
             </button>
             <button class="buttonStyleBack check" id="back-btn">
-              <i class="fa-solid fa-arrow-left"></i> Back To All Products
+              <i class="fa-solid fa-arrow-left"></i> العودة الي الرئيسية
             </button>
           </div>
         </div>
@@ -552,7 +537,7 @@
     <script src="./js/cart.js" type="module"></script>
     <script src="./js/localStorage.js" type="module"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./js/paymobApi.js" type="module"></script>
   </body>

@@ -3,33 +3,87 @@ import {
   setDataLocal as setDataLocal,
 } from './localStorage.js';
 
+const URL = 'http://127.0.0.1:8000';
+
 let listItems = getDataLocal();
+const userToken = JSON.parse(localStorage.getItem('user')).token;
 
 // Get Elements
 const nameI = document.getElementById('nameInput');
 const phone = document.getElementById('phoneInput');
-const card = document.getElementById('cardInput');
 const email = document.getElementById('emailInput');
 const address = document.getElementById('addressInput');
 const governorates = document.getElementById('selectedGon');
 
+const promocode = document.getElementById('inputPassword2');
+const applyPromocode = document.getElementById('apply-promo');
+const promoMsg = document.querySelector('.promo');
+
 // Storage Values
 let nameValue;
 let phoneValue;
-let cardValue;
 let emailValue;
 let addressVAlue;
 let governoratesValue;
+let promoValue;
+
+let sentPromoValue;
 
 governorates.addEventListener('change', (e) => {
   governoratesValue = e.target.value;
 });
 
+applyPromocode.addEventListener('click', (e) => handlePromo(e));
+
+function handlePromo(e) {
+  e.preventDefault();
+
+  promoValue = promocode.value;
+  applyPromocode.disabled = false;
+
+  if (promoValue === '') {
+    return;
+  } else {
+    getAllOffers().then((data) => {
+      let totalPrice =
+        listItems
+          .map((e) => +e.quantity * +e.price)
+          .reduce((acc, ele) => acc + ele) + 60;
+
+      promoMsg.innerHTML = '';
+      for (const offer of data.data) {
+        if (promoValue.trim().toLowerCase() === offer.promocode) {
+          totalPrice =
+            totalPrice * (1 - (+offer.discount ? +offer.discount : 0 / 100));
+          sentPromoValue = +offer.discount;
+          promoMsg.innerHTML = `
+            <p>You have used <span>${offer.promocode}</span> promocode with discount:</p>
+            <span>${offer.discount}%</span>
+            <p>Total price will be: <span>${totalPrice}</span></p>
+          `;
+          applyPromocode.disabled = true;
+          break;
+        } else {
+          sentPromoValue = 0;
+        }
+      }
+
+      console.log(sentPromoValue);
+      if (!promoMsg.innerHTML) {
+        promoMsg.innerHTML = `
+          There is no promocode: ${promoValue}
+        `;
+      }
+
+      promocode.value = '';
+    });
+  }
+}
+
 // Click Button Check Out
 document.getElementById('checkOut').addEventListener('click', () => {
   nameValue = nameI.value;
   phoneValue = phone.value;
-  cardValue = card.value;
   emailValue = email.value;
   addressVAlue = address.value;
 
@@ -124,7 +178,7 @@ document.querySelectorAll('#checkoutFinal').forEach((item) => {
       frameId = '779852';
       firstStep();
     } else {
-      sendEmail();
+      SendProduct(listItems, userToken);
     }
     listItems = [];
     setDataLocal(listItems);
@@ -172,19 +226,21 @@ async function secondStep(token) {
     auth_token: token,
     delivery_needed: 'false',
     amount_cents:
-      getDataLocal()
+      (getDataLocal()
         .map((e) => +e.quantity * +e.price)
         .reduce((acc, ele) => acc + ele) +
-        60 ===
+        60) *
+        (1 - (sentPromoValue ? sentPromoValue : 0 / 100)) ===
       60
         ? '0'
         : (getDataLocal()
             .map((e) => +e.quantity * +e.price)
             .reduce((acc, ele) => acc + ele) +
             60) *
+          (1 - (sentPromoValue ? sentPromoValue : 0 / 100)) *
           100,
     currency: 'EGP',
-    items: dataApi(),
+    items: [...dataApi(), promoValue],
   };
 
   let request = await fetch('https://accept.paymob.com/api/ecommerce/orders', {
@@ -204,16 +260,18 @@ async function thirdStep(token, id) {
   let data = {
     auth_token: token,
     amount_cents:
-      getDataLocal()
+      (getDataLocal()
         .map((e) => +e.quantity * +e.price)
         .reduce((acc, ele) => acc + ele) +
-        60 ===
+        60) *
+        (1 - (sentPromoValue ? sentPromoValue : 0 / 100)) ===
       60
         ? '0'
         : (getDataLocal()
             .map((e) => +e.quantity * +e.price)
             .reduce((acc, ele) => acc + ele) +
             60) *
+          (1 - (sentPromoValue ? sentPromoValue : 0 / 100)) *
           100,
     expiration: 3600,
     order_id: id,
@@ -257,49 +315,33 @@ async function cardPayment(token) {
   window.open(iframURL, '_blank');
 }
 
-function sendEmail() {
-  const emailService = 'service_rsz3w73';
-  const templateId = 'template_p1e1wnf';
-  const userId = 'a6WnoANAOoKUXUnyE';
+function SendProduct(listItems, userToken) {
+  const ordersDetails = [];
+  const products = [];
 
-  const emailContent = {
-    subject: `New Order`,
-    message: `
-        Email : ${emailValue},
-        phone : ${phoneValue},
-        address : ${addressVAlue},
-        governorates : ${governoratesValue},
-        ---------------------------------------------------
-        details Order:
-        ---------------------------------
-        ${listItems
-          .map(
-            (item, index) =>
-              `
-        order ${index + 1} : ${item.title} ,size : ${item.size},price :${
-                item.price
-              } ,color :${item.color} ,quantity : ${item.quantity} 
-        --------------------------------------------------------------------------------------------------------------------
-        `
-          )
-          .join(' ')}
-    `,
+  listItems.forEach((item, i) => {
+    ordersDetails.push({
+      [i]: `${item.title}, ${item.size}, ${item.color}, ${item.price}`,
+    });
+    products.push({
+      product_id: item.product_id,
+      amount: item.quantity,
+    });
+  });
+
+  let totalPrice =
+    listItems
+      .map((e) => +e.quantity * +e.price)
+      .reduce((acc, ele) => acc + ele) + 60;
+
+  const orderData = {
+    order_details: ordersDetails,
+    total_price: totalPrice * (1 - (sentPromoValue ? sentPromoValue : 0 / 100)),
+    paid_method: 'cash',
+    products,
   };
 
-  emailjs
-    .send(emailService, templateId, emailContent, userId)
-    .then((response) => {
-      swal({
-        title: 'successfully registered',
-        text: 'Well, you will be contacted within 48 hours. If there is no response, please contact us 0109-833-6319 ',
-        icon: 'success',
-        button: 'Ok',
-      });
-    });
-  const myTimeout = setTimeout(reloadWindow, 7000);
-  function reloadWindow() {
-    window.location.reload();
-  }
+  sendOrder(orderData, userToken);
 }
 
 function validateEmail(email) {
@@ -311,4 +353,41 @@ function validateEmail(email) {
 function validatePhone(phone) {
   const phoneRegex = /^(\+?\d{12}|\d{11})$/;
   return phoneRegex.test(phone);
+}
+
+async function getAllOffers() {
+  try {
+    const res = await fetch(`${URL}/api/user/all_offers`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function sendOrder(orderData, UserToken) {
+  try {
+    const response = await fetch(`${URL}/api/user/make_order`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${UserToken}`,
+      },
+      body: JSON.stringify(orderData),
+    });
+
+    const data = await response.json();
+
+    if (data.status === 201) {
+      swal(
+        'successfully registered',
+        'Well, you will be contacted within 48 hours. If there is no response, please contact us 0109-833-6319',
+        'success'
+      );
+    } else {
+      swal('Error', 'An error occurred. Please try again later.', 'error');
+    }
+  } catch (error) {
+    swal('Error', 'An error occurred. Please try again later.', 'error');
+  }
 }

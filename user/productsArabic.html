@@ -301,22 +301,6 @@
             </div>
             <div class="row mt-2 justify-content-center">
               <div class="col-lg-5">
-                <div
-                  class="d-flex align-items-center justify-content-center mt-2"
-                >
-                  <i class="fa-regular fa-credit-card iconsInput"></i>
-                  <input
-                    type="text"
-                    id="cardInput"
-                    class="data-in form-control"
-                    placeholder="كريدت كارت"
-                    aria-describedby="passwordHelpInline"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="row mt-2 justify-content-center">
-              <div class="col-lg-5">
                 <select
                   class="form-select"
                   id="selectedGon"
@@ -369,9 +353,13 @@
               />
             </div>
             <div class="col-lg-2">
-              <button type="submit" class="btn btn-primary">Apply</button>
+              <div class="btn btn-primary" id="apply-promo">Apply</div>
             </div>
           </form>
+          <div class="promo">
+            <!-- <p>You have used <span>ahmed</span> promocode with discount:</p>
+            <span>50%</span> -->
+          </div>
           <div class="button mt-4">
             <button class="buttonStyle check checkNone" id="checkOut">
               <i class="fa-solid fa-right-long"></i> الدفع
@@ -505,8 +493,6 @@
       </div>
     </div>
     <!-- end payment method  -->
-
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
