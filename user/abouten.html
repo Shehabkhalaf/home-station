@@ -562,7 +562,127 @@
         </div>
       </div>
     </div>
-    <!-- end card -->
+    <!-- start Details -->
+    <div
+      class="offcanvas offcanvas-bottom overflow-hidden"
+      tabindex="-1"
+      id="offcanvasBottom"
+      aria-labelledby="offcanvasBottomLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel"></h5>
+        <button
+          type="button"
+          id="btn-close"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body small">
+        <div class="row">
+          <div
+            class="col-lg-6 col-md-12 position-relative image"
+            id="slider-container-parent"
+          ></div>
+          <div class="col-lg-6 col-md-12 p-5" id="details-container"></div>
+        </div>
+      </div>
+    </div>
+    <!-- end Details -->
+    <!-- start payment method  -->
+    <button
+      class="btn btn-primary offcanvasTopButton"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasTop"
+      aria-controls="offcanvasTop"
+    ></button>
+    <div
+      class="offcanvas offcanvas-top checkout-methods"
+      tabindex="-1"
+      id="offcanvasTop"
+      aria-labelledby="offcanvasTopLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasTopLabel"></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body d-flex justify-content-start">
+        <div class="container">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-lg-6 col-md-10 col-sm-12">
+              <h2 class="text-center m-5">Select the payment method</h2>
+              <h3>Choose the payment method</h3>
+              <div class="form">
+                <div class="form-check">
+                  <input
+                    class="form-check-input radio"
+                    type="radio"
+                    name="exampleRadios"
+                    id="exampleRadios1"
+                    value="option1"
+                    checked
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between align-items-center"
+                    for="exampleRadios1"
+                  >
+                    <span>Card Payment</span>
+                    <img src="./images/cashless-payment.png" alt="" />
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input radio"
+                    type="radio"
+                    name="exampleRadios"
+                    id="exampleRadios2"
+                    value="option2"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between align-items-center"
+                    for="exampleRadios2"
+                  >
+                    <span>Cash</span>
+                    <img src="./images/cash-on-delivery (1).png" alt="" />
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input radio"
+                    type="radio"
+                    name="exampleRadios"
+                    id="exampleRadios3"
+                    value="option3"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between align-items-center"
+                    for="exampleRadios3"
+                  >
+                    <span>Valu</span>
+                    <img
+                      src="./images/valu-seeklogo.com-1.png"
+                      width="40px"
+                      alt=""
+                    />
+                  </label>
+                </div>
+              </div>
+              <button class="buttonStyle check" id="checkoutFinal">
+                Check Out <i class="fa-solid fa-right-long"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end payment method  -->
 
     <script src="./js/slider.js"></script>
     <script src="./js/index.js"></script>
