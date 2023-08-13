@@ -16,3 +16,9 @@ closeSidebar.addEventListener('click', () => {
   overlay.classList.remove('block');
   overlay.classList.add('hidden');
 });
+
+// Check if admin logged in
+const admin = localStorage.getItem("admin");
+if (!admin) {
+  window.location = 'login.html';
+}
