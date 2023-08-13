@@ -32,7 +32,8 @@ class OrderController extends Controller
         $order->paid = $request->paid_method;
         $order->promocode = $request->has('promocode') ? $request->promocode : 'nothing';
         $UserOrdered = $order->save();
-        foreach ($request->products as $product) {
+        $products = json_decode($request->products, true);
+        foreach ($products as $product) {
             $product_id = $product['product_id'];
             $product_data = Product::find($product_id);
             $product_data->stock = ($product_data->stock) - ($product['amount']);
