@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserOrders;
 use App\Models\AdminOrder;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -31,6 +32,12 @@ class OrderController extends Controller
         $order->paid = $request->paid_method;
         $order->promocode = $request->has('promocode') ? $request->promocode : 'nothing';
         $UserOrdered = $order->save();
+        foreach ($request->products as $product) {
+            $product_id = $product['product_id'];
+            $product_data = Product::find($product_id);
+            $product_data->stock = ($product_data->stock) - ($product['amount']);
+            $product_data->save();
+        }
         $adminOrder = new AdminOrder;
         $adminOrder->user_data = $user_data;
         $adminOrder->order_details = $request->order_details;
