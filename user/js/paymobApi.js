@@ -28,6 +28,7 @@ let governoratesValue;
 let promoValue;
 
 let sentPromoValue;
+let promoName = '';
 
 governorates.addEventListener('change', (e) => {
   governoratesValue = e.target.value;
@@ -53,9 +54,9 @@ function handlePromo(e) {
       promoMsg.innerHTML = '';
       for (const offer of data.data) {
         if (promoValue.trim().toLowerCase() === offer.promocode) {
-          totalPrice =
-            totalPrice * (1 - (+offer.discount ? +offer.discount : 0 / 100));
+          totalPrice = totalPrice * (1 - +offer.discount / 100);
           sentPromoValue = +offer.discount;
+          promoName = promoValue.trim().toLowerCase();
           promoMsg.innerHTML = `
             <p>You have used <span>${offer.promocode}</span> promocode with discount:</p>
             <span>${offer.discount}%</span>
@@ -68,7 +69,6 @@ function handlePromo(e) {
         }
       }
 
-      console.log(sentPromoValue);
       if (!promoMsg.innerHTML) {
         promoMsg.innerHTML = `
           There is no promocode: ${promoValue}
@@ -230,14 +230,14 @@ async function secondStep(token) {
         .map((e) => +e.quantity * +e.price)
         .reduce((acc, ele) => acc + ele) +
         60) *
-        (1 - (sentPromoValue ? sentPromoValue : 0 / 100)) ===
+        (1 - (sentPromoValue ? sentPromoValue : 0) / 100) ===
       60
         ? '0'
         : (getDataLocal()
             .map((e) => +e.quantity * +e.price)
             .reduce((acc, ele) => acc + ele) +
             60) *
-          (1 - (sentPromoValue ? sentPromoValue : 0 / 100)) *
+          (1 - (sentPromoValue ? sentPromoValue : 0) / 100) *
           100,
     currency: 'EGP',
     items: [...dataApi(), promoValue],
@@ -264,14 +264,14 @@ async function thirdStep(token, id) {
         .map((e) => +e.quantity * +e.price)
         .reduce((acc, ele) => acc + ele) +
         60) *
-        (1 - (sentPromoValue ? sentPromoValue : 0 / 100)) ===
+        (1 - (sentPromoValue ? sentPromoValue : 0) / 100) ===
       60
         ? '0'
         : (getDataLocal()
             .map((e) => +e.quantity * +e.price)
             .reduce((acc, ele) => acc + ele) +
             60) *
-          (1 - (sentPromoValue ? sentPromoValue : 0 / 100)) *
+          (1 - (sentPromoValue ? sentPromoValue : 0) / 100) *
           100,
     expiration: 3600,
     order_id: id,
@@ -319,14 +319,11 @@ function SendProduct(listItems, userToken) {
   const ordersDetails = [];
   const products = [];
 
-  listItems.forEach((item, i) => {
-    ordersDetails.push({
-      [i]: `${item.title}, ${item.size}, ${item.color}, ${item.price}`,
-    });
-    products.push({
-      product_id: item.product_id,
-      amount: item.quantity,
-    });
+  listItems.forEach((item) => {
+    ordersDetails.push(
+      `${item.title}, ${item.size}, ${item.color}, ${item.price}`
+    );
+    products.push({ product_id: item.product_id, amount: item.quantity });
   });
 
   let totalPrice =
@@ -334,12 +331,17 @@ function SendProduct(listItems, userToken) {
       .map((e) => +e.quantity * +e.price)
       .reduce((acc, ele) => acc + ele) + 60;
 
+  totalPrice =
+    totalPrice - totalPrice * ((sentPromoValue ? sentPromoValue : 0) / 100);
+
   const orderData = {
-    order_details: ordersDetails,
-    total_price: totalPrice * (1 - (sentPromoValue ? sentPromoValue : 0 / 100)),
+    order_details: JSON.stringify(ordersDetails),
+    total_price: totalPrice,
     paid_method: 'cash',
-    products,
+    products: products,
   };
+
+  promoName && (orderData.promocode = promoName);
 
   sendOrder(orderData, userToken);
 }
@@ -378,12 +380,16 @@ async function sendOrder(orderData, UserToken) {
 
     const data = await response.json();
 
-    if (data.status === 201) {
+    if (data.status === 200) {
       swal(
         'successfully registered',
         'Well, you will be contacted within 48 hours. If there is no response, please contact us 0109-833-6319',
         'success'
       );
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 7000);
     } else {
       swal('Error', 'An error occurred. Please try again later.', 'error');
     }
