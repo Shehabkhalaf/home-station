@@ -1,14 +1,17 @@
-import { getData as getDataLocal , setDataLocal as setDataLocal } from "./localStorage.js";
+import {
+  getData as getDataLocal,
+  setDataLocal as setDataLocal,
+} from './localStorage.js';
 
 let listItems = getDataLocal();
 
 // Get Elements
-let nameI = document.getElementById("nameInput");
-let phone = document.getElementById("phoneInput");
-let card = document.getElementById("cardInput");
-let email = document.getElementById("emailInput");
-let address = document.getElementById("addressInput");
-let governorates = document.getElementById("selectedGon");
+let nameI = document.getElementById('nameInput');
+let phone = document.getElementById('phoneInput');
+let card = document.getElementById('cardInput');
+let email = document.getElementById('emailInput');
+let address = document.getElementById('addressInput');
+let governorates = document.getElementById('selectedGon');
 
 // Storage Values
 let nameValue;
@@ -18,211 +21,253 @@ let emailValue;
 let addressVAlue;
 let governoratesValue;
 
-governorates.addEventListener("change", (e) => {
-    governoratesValue = e.target.value;
+governorates.addEventListener('change', (e) => {
+  governoratesValue = e.target.value;
 });
 
 // Click Button Check Out
-document.getElementById("checkOut").addEventListener("click", () => {
-    nameValue = nameI.value;
-    phoneValue = phone.value;
-    cardValue = card.value;
-    emailValue = email.value;
-    addressVAlue = address.value;
+document.getElementById('checkOut').addEventListener('click', () => {
+  nameValue = nameI.value;
+  phoneValue = phone.value;
+  cardValue = card.value;
+  emailValue = email.value;
+  addressVAlue = address.value;
 
-    if (nameValue.trim()) {
-        nameI.classList.add("right")
-        nameI.classList.remove("wrong")
-    } else {
-        nameI.classList.add("wrong")
-        nameI.classList.remove("right")
-    }
+  if (nameValue.trim()) {
+    nameI.classList.add('right');
+    nameI.classList.remove('wrong');
+  } else {
+    nameI.classList.add('wrong');
+    nameI.classList.remove('right');
+  }
 
-    if (phoneValue.trim()) {
-        phone.classList.remove("wrong")
-        phone.classList.add("right")
-    } else {
-        phone.classList.add("wrong")
-        phone.classList.remove("right")
-    }
+  if (phoneValue.trim()) {
+    phone.classList.remove('wrong');
+    phone.classList.add('right');
+  } else {
+    phone.classList.add('wrong');
+    phone.classList.remove('right');
+  }
 
-    if (emailValue.trim()) {
-        email.classList.remove("wrong")
-        email.classList.add("right");
-    } else {
-        email.classList.add("wrong")
-        email.classList.remove("right")
-    }
+  if (emailValue.trim()) {
+    email.classList.remove('wrong');
+    email.classList.add('right');
+  } else {
+    email.classList.add('wrong');
+    email.classList.remove('right');
+  }
 
-    if (addressVAlue.trim()) {
-        address.classList.remove("wrong")
-        address.classList.add("right");
-    } else {
-        address.classList.add("wrong")
-        address.classList.remove("right")
-    }
+  if (addressVAlue.trim()) {
+    address.classList.remove('wrong');
+    address.classList.add('right');
+  } else {
+    address.classList.add('wrong');
+    address.classList.remove('right');
+  }
 
-    if (governoratesValue) {
-        governorates.classList.remove("wrong")
-        governorates.classList.add("right");
-    } else {
-        governorates.classList.add("wrong")
-        governorates.classList.remove("right")
-    }
+  if (governoratesValue) {
+    governorates.classList.remove('wrong');
+    governorates.classList.add('right');
+  } else {
+    governorates.classList.add('wrong');
+    governorates.classList.remove('right');
+  }
 
-    if (nameValue.trim() && emailValue.trim() && phoneValue.trim() && addressVAlue.trim() && governoratesValue) {
-        document.querySelector(".offcanvasTopButton").click();
-    }
-})
+  if (!validateEmail(emailValue)) {
+    email.classList.add('wrong');
+    email.classList.remove('right');
+  } else {
+    email.classList.remove('wrong');
+    email.classList.add('right');
+  }
 
+  if (!validatePhone(phoneValue)) {
+    phone.classList.add('wrong');
+    phone.classList.remove('right');
+  } else {
+    phone.classList.remove('wrong');
+    phone.classList.add('right');
+  }
 
-let option = "option1";
+  if (
+    nameValue.trim() &&
+    emailValue.trim() &&
+    phoneValue.trim() &&
+    addressVAlue.trim() &&
+    governoratesValue
+  ) {
+    document.querySelector('.offcanvasTopButton').click();
+  }
+});
 
+let option = 'option1';
 
-let radio = document.querySelectorAll(".radio");
+let radio = document.querySelectorAll('.radio');
 
-radio.forEach(ele => {
-    ele.addEventListener("change", (event) => {
-        option = event.target.value;
-    })
-})
+radio.forEach((ele) => {
+  ele.addEventListener('change', (event) => {
+    option = event.target.value;
+  });
+});
 
 let frameId;
 let integration_id;
 
-document.querySelectorAll("#checkoutFinal").forEach(item => {
-    item.addEventListener("click", () => {
-        if (option === "option1") {
-            integration_id = 2456978;
-            frameId = "436037";
-            firstStep();
-        } else if (option === "option3") {
-            integration_id = 2928191;
-            frameId = "686450";
-            firstStep();
-        } else {
-            sendEmail();
-        }
-        listItems = [];
-        setDataLocal(listItems)
-    })
-})
-
-
+document.querySelectorAll('#checkoutFinal').forEach((item) => {
+  item.addEventListener('click', () => {
+    if (option === 'option1') {
+      integration_id = 3925798;
+      frameId = '767482';
+      firstStep();
+    } else if (option === 'option3') {
+      integration_id = 4086195;
+      frameId = '779852';
+      firstStep();
+    } else {
+      sendEmail();
+    }
+    listItems = [];
+    setDataLocal(listItems);
+  });
+});
 
 function dataApi() {
-    let list = [];
-    listItems.forEach(item => {
-        let x = {
-            name: item.title,
-            amount_cents: String(item.discount),
-            description: item.title + item.size + item.discount + item.color,
-            quantity: String(item.quantity)
-        }
-        list.push(x);
-    })
-    return list;
+  let list = [];
+  listItems.forEach((item) => {
+    let x = {
+      name: item.title,
+      amount_cents: String(item.price),
+      description: item.title + item.size + item.price + item.color,
+      quantity: String(item.quantity),
+    };
+    list.push(x);
+  });
+  return list;
 }
 
-
-
 // Paymob
-const API = 'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2T0RJMU1UUTVMQ0p1WVcxbElqb2lhVzVwZEdsaGJDSjkuYi14V1NwbHhmbUVlYnUwWDZxTk5ZMi1Ba1hrZldjaFZrQ0JtZ3NaenAyQ0JBTEQxWFR4eW4tYm9WYkRFc0NfYmEzOTMtRmliVmtJXzM3WEJKUHJsS1E='        // your api here
+const API =
+  'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2T0RJMU1UUTVMQ0p1WVcxbElqb2lhVzVwZEdsaGJDSjkuYi14V1NwbHhmbUVlYnUwWDZxTk5ZMi1Ba1hrZldjaFZrQ0JtZ3NaenAyQ0JBTEQxWFR4eW4tYm9WYkRFc0NfYmEzOTMtRmliVmtJXzM3WEJKUHJsS1E='; // your api here
 
 async function firstStep() {
-    let data = {
-        "api_key": API
-    }
+  let data = {
+    api_key: API,
+  };
 
-    let request = await fetch('https://accept.paymob.com/api/auth/tokens', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
+  let request = await fetch('https://accept.paymob.com/api/auth/tokens', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
 
-    let response = await request.json()
+  let response = await request.json();
+  console.log(response)
 
-    let token = response.token
+  let token = response.token;
 
-    secondStep(token)
+  secondStep(token);
 }
 
 async function secondStep(token) {
-    let data = {
-        "auth_token": token,
-        "delivery_needed": "false",
-        "amount_cents": getDataLocal().map(e => +e.quantity * +e.discount).reduce((acc, ele) => acc + ele) + 60 === 60 ? "0" : ((getDataLocal().map(e => +e.quantity * +e.discount).reduce((acc, ele) => acc + ele) + 60) * 100),
-        "currency": "EGP",
-        "items": dataApi(),
-    }
+  let data = {
+    auth_token: token,
+    delivery_needed: 'false',
+    amount_cents:
+      getDataLocal()
+        .map((e) => +e.quantity * +e.price)
+        .reduce((acc, ele) => acc + ele) +
+        60 ===
+      60
+        ? '0'
+        : (getDataLocal()
+            .map((e) => +e.quantity * +e.price)
+            .reduce((acc, ele) => acc + ele) +
+            60) *
+          100,
+    currency: 'EGP',
+    items: dataApi(),
+  };
 
-    let request = await fetch('https://accept.paymob.com/api/ecommerce/orders', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
+  let request = await fetch('https://accept.paymob.com/api/ecommerce/orders', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
 
-    let response = await request.json()
+  let response = await request.json();
+  console.log(response)
 
-    let id = response.id
+  let id = response.id;
 
-    thirdStep(token, id)
+  thirdStep(token, id);
 }
 
 async function thirdStep(token, id) {
-    let data = {
-        "auth_token": token,
-        "amount_cents": getDataLocal().map(e => +e.quantity * +e.discount).reduce((acc, ele) => acc + ele) + 60 === 60 ? "0" : ((getDataLocal().map(e => +e.quantity * +e.discount).reduce((acc, ele) => acc + ele) + 60) * 100),
-        "expiration": 3600,
-        "order_id": id,
-        "billing_data": {
-            "apartment": "803",
-            "email": emailValue,
-            "floor": "42",
-            "first_name": nameValue,
-            "street": addressVAlue,
-            "building": "8028",
-            "phone_number": phoneValue,
-            "shipping_method": "PKG",
-            "postal_code": "01898",
-            "city": governoratesValue,
-            "country": "CR",
-            "last_name": nameValue,
-            "state": "Utah"
-        },
-        "currency": "EGP",
-        "integration_id": integration_id
+  let data = {
+    auth_token: token,
+    amount_cents:
+      getDataLocal()
+        .map((e) => +e.quantity * +e.price)
+        .reduce((acc, ele) => acc + ele) +
+        60 ===
+      60
+        ? '0'
+        : (getDataLocal()
+            .map((e) => +e.quantity * +e.price)
+            .reduce((acc, ele) => acc + ele) +
+            60) *
+          100,
+    expiration: 3600,
+    order_id: id,
+    billing_data: {
+      apartment: '803',
+      email: emailValue,
+      floor: '42',
+      first_name: nameValue,
+      street: addressVAlue,
+      building: '8028',
+      phone_number: phoneValue,
+      shipping_method: 'PKG',
+      postal_code: '01898',
+      city: governoratesValue,
+      country: 'CR',
+      last_name: nameValue,
+      state: 'Utah',
+    },
+    currency: 'EGP',
+    integration_id: integration_id,
+  };
+
+  let request = await fetch(
+    'https://accept.paymob.com/api/acceptance/payment_keys',
+    {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     }
+  );
 
-    let request = await fetch('https://accept.paymob.com/api/acceptance/payment_keys', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
+  let response = await request.json();
+  console.log(response)
 
-    let response = await request.json()
+  let TheToken = response.token;
 
-    let TheToken = response.token
-
-    cardPayment(TheToken)
+  cardPayment(TheToken);
 }
-
 
 async function cardPayment(token) {
-    let iframURL = `https://accept.paymob.com/api/acceptance/iframes/${frameId}?payment_token=${token}`
-    window.location = iframURL;
+  let iframURL = `https://accept.paymob.com/api/acceptance/iframes/${frameId}?payment_token=${token}`;
+  window.location = iframURL;
 }
 
-
 function sendEmail() {
+  const emailService = 'service_rsz3w73';
+  const templateId = 'template_p1e1wnf';
+  const userId = 'a6WnoANAOoKUXUnyE';
 
-    const emailService = 'service_rsz3w73';   
-    const templateId = 'template_p1e1wnf';      
-    const userId = 'a6WnoANAOoKUXUnyE'; 
-
-    const emailContent = {
-        subject: `New Order`, 
-        message: `
+  const emailContent = {
+    subject: `New Order`,
+    message: `
         Email : ${emailValue},
         phone : ${phoneValue},
         address : ${addressVAlue},
@@ -230,28 +275,45 @@ function sendEmail() {
         ---------------------------------------------------
         details Order:
         ---------------------------------
-        ${listItems.map((item, index) =>
-            `
-        order ${index + 1} : ${item.title} ,size : ${item.size},price :${item.discount} ,color :${item.color} ,quantity : ${item.quantity} 
+        ${listItems
+          .map(
+            (item, index) =>
+              `
+        order ${index + 1} : ${item.title} ,size : ${item.size},price :${
+                item.price
+              } ,color :${item.color} ,quantity : ${item.quantity} 
         --------------------------------------------------------------------------------------------------------------------
-        `).join(" ")}
-    `
-    }
+        `
+          )
+          .join(' ')}
+    `,
+  };
 
-    emailjs.send(emailService, templateId, emailContent, userId)
-        .then((response) => {
-            Swal.fire({
-                title: 'successfully registered',
-                text: 'Well, you will be contacted within 48 hours. If there is no response, please contact us 0109-833-6319 ',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            })
-        })
-        const myTimeout = setTimeout(reloadWindow, 7000);
-        function reloadWindow() {
-            window.location.reload()
-        }
+  emailjs
+    .send(emailService, templateId, emailContent, userId)
+    .then((response) => {
+        console.log(response);
+
+      swal({
+        title: 'successfully registered',
+        text: 'Well, you will be contacted within 48 hours. If there is no response, please contact us 0109-833-6319 ',
+        icon: 'success',
+        button: 'Ok',
+      });
+    });
+  const myTimeout = setTimeout(reloadWindow, 7000);
+  function reloadWindow() {
+    window.location.reload();
+  }
 }
 
+function validateEmail(email) {
+  const emailRegex =
+    /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-]+)(\.[a-zA-Z]{2,5}){1,2}$/;
+  return emailRegex.test(email);
+}
 
-
+function validatePhone(phone) {
+  const phoneRegex = /^(\+?\d{12}|\d{11})$/;
+  return phoneRegex.test(phone);
+}

@@ -120,3 +120,11 @@ section {
   text-align: center;
   font-size: 15px;
 }
+
+.offcanvas-body table {
+  overflow-x: auto;
+}
+
+.swal-overlay {
+  z-index: 999999999;
+}

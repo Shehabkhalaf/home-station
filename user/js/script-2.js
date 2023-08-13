@@ -322,6 +322,12 @@ fetchAllProducts().then((data) => {
     // Add Object In Local Storage
     setDataLocal(listItems);
     count.innerHTML = listItems.length;
+
+    swal({
+      title: 'successfully added',
+      icon: 'success',
+      button: 'Ok',
+    });
   }
 
   // Click Card
