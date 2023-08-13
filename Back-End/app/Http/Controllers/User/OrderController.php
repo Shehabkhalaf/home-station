@@ -34,6 +34,7 @@ class OrderController extends Controller
         $UserOrdered = $order->save();
         $products = json_decode($request->products);
         foreach ($products as $product) {
+            $product=json_decode($product);
             $product_id = $product['product_id'];
             $product_data = Product::find($product_id);
             $product_data->stock = ($product_data->stock) - ($product['amount']);
