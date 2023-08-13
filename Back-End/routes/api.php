@@ -76,11 +76,11 @@ Route::prefix('user')->group(function () {
         ###############User Controller#################
         Route::controller(UserUserController::class)->group(function () {
             Route::get('home', 'index');
-            Route::get('products', 'allProducts');
+            Route::get('products', 'allProducts')->withoutMiddleware(['auth:sanctum']);
             Route::post('update', 'updateData');
-            Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum', 'verified']);
-            Route::get('show_product/{id}', 'showProduct');
-            Route::get('all_categories', 'allCategories');
+            Route::post('Contact_Us', 'contactUs')->withoutMiddleware(['auth:sanctum']);
+            Route::get('show_product/{id}', 'showProduct')->withoutMiddleware(['auth:sanctum']);
+            Route::get('all_categories', 'allCategories')->withoutMiddleware(['auth:sanctum']);
         });
         ###############Order Controller################
         Route::controller(OrderController::class)->group(function () {
