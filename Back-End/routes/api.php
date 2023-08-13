@@ -89,7 +89,7 @@ Route::prefix('user')->group(function () {
         });
         ##############Offer Controller#################
         Route::controller(UserOfferController::class)->group(function () {
-            Route::get('all_offers', 'allOffers');
+            Route::get('all_offers', 'allOffers')->withoutMiddleware(['auth:sanctum']);
         });
     });
 });
