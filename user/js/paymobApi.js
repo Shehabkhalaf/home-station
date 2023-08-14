@@ -163,7 +163,6 @@ document.getElementById('checkOut').addEventListener('click', () => {
     addressVAlue.trim() &&
     governoratesValue
   ) {
-    console.log(document.querySelector('.offcanvasTopButton'))
     document.querySelector('.offcanvasTopButton').click();
   }
 });
@@ -194,8 +193,6 @@ document.querySelectorAll('#checkoutFinal').forEach((item) => {
     } else {
       SendProduct(listItems, userToken);
     }
-    listItems = [];
-    setDataLocal(listItems);
   });
 });
 
@@ -254,7 +251,7 @@ async function secondStep(token) {
           (1 - (sentPromoValue ? sentPromoValue : 0) / 100) *
           100,
     currency: 'EGP',
-    items: [...dataApi(), promoValue],
+    items: dataApi(),
   };
 
   let request = await fetch('https://accept.paymob.com/api/ecommerce/orders', {
@@ -288,7 +285,7 @@ async function thirdStep(token, id) {
           (1 - (sentPromoValue ? sentPromoValue : 0) / 100) *
           100,
     expiration: 3600,
-    order_id: id,
+    order_id: `${id}`,
     billing_data: {
       apartment: '803',
       email: emailValue,
@@ -396,14 +393,17 @@ async function sendOrder(orderData, UserToken) {
 
     if (data.status === 200) {
       swal(
-        'successfully registered',
+        'successfully Ordered',
         'Well, you will be contacted within 48 hours. If there is no response, please contact us 0109-833-6319',
         'success'
       );
 
+      listItems = [];
+      setDataLocal(listItems);
+
       setTimeout(() => {
         window.location.reload();
-      }, 7000);
+      }, 5000);
     } else {
       swal('Error', 'An error occurred. Please try again later.', 'error');
     }
