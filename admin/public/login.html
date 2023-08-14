@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="./css/styles.css" />
     <title>Dashboard | Home Staion</title>
   </head>
-  <body class="md:flex">
+  <body class="md:flex md:h-screen">
     <div
       id="overlay"
       class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10 hidden"
@@ -33,7 +33,7 @@
     <div
       class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
     >
-      <div class="md:fixed md:w-[200px] lg:w-[250px]">
+      <div class="md:h-full md:min-w-[200px]">
         <div class="md:mx-auto md:px-6 md:mb-10">
           <img
             src="https://res.cloudinary.com/dvagmtn4y/image/upload/v1679078730/home%20station/334207739_608659187398631_5067190693077913909_n_v94z5r.jpg"
@@ -44,7 +44,7 @@
 
         <ul
           id="nav-lists"
-          class="flex flex-col z-20 md:relative md:w-[200px] lg:w-[250px] gap-8 md:bg-gr-1 md:left-0 md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
+          class="flex flex-col z-20 md:relative md:w-auto gap-8 md:bg-gr-1 md:left-0 md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
         >
           <button
             id="close-side"
@@ -119,7 +119,7 @@
       </button>
     </div>
 
-    <div class="flex-1 md:w-[80%]">
+    <div class="flex-1 md:h-screen md:overflow-y-scroll px-5">
       <header class="py-5 px-7">
         <h1 class="font-bold text-3xl">Hello there, Admin</h1>
         <p class="text-main text-[15px] mt-1">
@@ -128,63 +128,61 @@
       </header>
     </div>
 
+    <div class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10"></div>
     <div
-    class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10"
-  ></div>
-  <div class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20 bg-white rounded-sm py-[2rem] w-[60%]">
-    <p class="mb-3 ml-[2rem] text-main text-xl">You should login first</p>
-    <form id="login-form" class="mx-auto w-[80%]">
-      <div class="flex flex-col">
-        <label htmlFor="mail" class="text-md mb-1"
-          >User Name:
-        </label>
-        <input
-          type="text"
-          placeholder="User Name"
-          id="mail"
-          class=" outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
-        />
-        <div
-          class="error-message text-red-500 text-sm mb-1"
-          id="mail-error-message"
-        ></div>
-      </div>
-    
-      <div class="flex flex-col my-2 relative">
-        <label htmlFor="password" class="text-md mb-1">Password:</label>
-        <input
-          type="password"
-          min="0"
-          placeholder="Add Your Password"
-          id="password"
-          class="outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
-        />
-        <div id="togglePassword" class="absolute bottom-2.5 right-2 cursor-pointer opacity-70">
-          <i class="fa-solid fa-eye-slash"></i>
+      class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20 bg-white rounded-sm py-[2rem] w-[60%]"
+    >
+      <p class="mb-3 ml-[2rem] text-main text-xl">You should login first</p>
+      <form id="login-form" class="mx-auto w-[80%]">
+        <div class="flex flex-col">
+          <label htmlFor="mail" class="text-md mb-1">User Name: </label>
+          <input
+            type="text"
+            placeholder="User Name"
+            id="mail"
+            class="outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+          />
+          <div
+            class="error-message text-red-500 text-sm mb-1"
+            id="mail-error-message"
+          ></div>
         </div>
+
+        <div class="flex flex-col my-2 relative">
+          <label htmlFor="password" class="text-md mb-1">Password:</label>
+          <input
+            type="password"
+            min="0"
+            placeholder="Add Your Password"
+            id="password"
+            class="outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-main hover:border-main placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+          />
+          <div
+            id="togglePassword"
+            class="absolute bottom-2.5 right-2 cursor-pointer opacity-70"
+          >
+            <i class="fa-solid fa-eye-slash"></i>
+          </div>
+          <div
+            class="error-message text-red-500 text-sm mb-1"
+            id="password-error-message"
+          ></div>
+        </div>
+
+        <button
+          class="mt-1 py-2 px-4 hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white"
+          type="submit"
+          id="offer-submit"
+        >
+          Login
+        </button>
         <div
-          class="error-message text-red-500 text-sm mb-1"
-          id="password-error-message"
+          class="success-message text-green-500 text-sm mt-1"
+          id="success"
         ></div>
-      </div>
-    
-      <button
-        class="mt-1 py-2 px-4 hover:opacity-[80%] duration-100 ease-in bg-main rounded-md text-white"
-        type="submit"
-        id="offer-submit"
-      >
-        Login
-      </button>
-      <div
-        class="success-message text-green-500 text-sm mt-1"
-        id="success"
-      ></div>
-      <div
-        class="success-message text-red-500 text-sm mt-1"
-        id="error"
-      ></div>
-    </form>
-  </div>
+        <div class="success-message text-red-500 text-sm mt-1" id="error"></div>
+      </form>
+    </div>
 
     <script src="./js/login.js"></script>
   </body>

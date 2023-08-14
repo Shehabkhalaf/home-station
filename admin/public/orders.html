@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="./css/styles.css" />
     <title>Dashboard | Home Staion</title>
   </head>
-  <body class="md:flex">
+  <body class="md:flex md:h-screen">
     <div
       id="overlay"
       class="absolute top-0 bottom-0 left-0 right-0 bg-black/50 z-10 hidden"
@@ -33,7 +33,7 @@
     <div
       class="w-full md:w-[200px] lg:w-[250px] bg-gr-1 py-5 h-[100px] md:min-h-screen md:h-auto relative flex items-center justify-between px-8 md:px-0 md:block"
     >
-      <div class="md:fixed md:w-[200px] lg:w-[250px]">
+      <div class="md:h-full md:min-w-[200px]">
         <div class="md:mx-auto md:px-6 md:mb-10">
           <img
             src="https://res.cloudinary.com/dvagmtn4y/image/upload/v1679078730/home%20station/334207739_608659187398631_5067190693077913909_n_v94z5r.jpg"
@@ -44,7 +44,7 @@
 
         <ul
           id="nav-lists"
-          class="flex flex-col z-20 md:relative gap-8 md:w-[200px] lg:w-[250px] md:bg-gr-1 md:left-0 md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
+          class="flex flex-col z-20 md:relative md:w-auto gap-8 md:bg-gr-1 md:left-0 md:py-0 absolute h-screen md:h-auto bg-white top-0 bottom-0 w-[250px] py-12 -left-[999px] duration-100"
         >
           <button
             id="close-side"
@@ -119,7 +119,7 @@
       </button>
     </div>
 
-    <div class="flex-1 md:w-[80%]">
+    <div class="flex-1 md:h-screen md:overflow-y-scroll px-5">
       <header class="py-5 px-7">
         <h1 class="font-bold text-3xl">Hello there, Admin</h1>
         <p class="text-main text-[15px] mt-1">
@@ -127,8 +127,10 @@
         </p>
       </header>
 
-      <div class="mt-10 mx-auto w-[90%] max-h-[500px] h-auto overflow-auto mb-5">
-        <h2 class="mb-2 text-main text-xl font-semibold"><i class="fa-solid fa-spinner text-green-500"></i> Undelivered Orders</h2>
+      <div class="mt-10 max-h-[500px] h-auto overflow-auto mb-5">
+        <h2 class="mb-2 text-main text-xl font-semibold">
+          <i class="fa-solid fa-spinner text-green-500"></i> Undelivered Orders
+        </h2>
         <div id="delivere" class="text-green-500 mb-2"></div>
         <table class="w-full">
           <thead class="bg-main text-white border-b-2 border-gray-300">
@@ -171,8 +173,11 @@
         </table>
       </div>
 
-      <div class="mt-10 mx-auto w-[90%] max-h-[500px] h-auto overflow-auto mb-5">
-        <h2 class="mb-2 text-main text-xl font-semibold"><i class="fa-regular fa-circle-check text-green-500"></i> Delivered Orders</h2>
+      <div class="mt-10 max-h-[500px] h-auto overflow-auto mb-5">
+        <h2 class="mb-2 text-main text-xl font-semibold">
+          <i class="fa-regular fa-circle-check text-green-500"></i> Delivered
+          Orders
+        </h2>
         <div id="delivered" class="px-11 text-green-500 mb-2"></div>
         <table class="w-full">
           <thead class="bg-main text-white border-b-2 border-gray-300">

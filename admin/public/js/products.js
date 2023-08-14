@@ -131,12 +131,16 @@ function editProduct(productId) {
     sizeArr.forEach((size, i) => {
       sizeAndPrice.push(`${size}: ${priceArr[i]}EGP`);
     });
-
-    data.image.forEach((img) => {
-      const blob = new Blob([img], { type: 'image/jpeg' });
-      const imageFile = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+    console.log(data.image);
+    data.image.forEach((img, i) => {
+      const imageType = img.substring(img.lastIndexOf('.'));
+      const blob = new Blob([img], { type: `image/${imageType}` });
+      const imageFile = new File([blob], `image${i + 1}${imageType}`, {
+        type: `image/${imageType.slice(1)}`,
+      });
       imagesArr.push(imageFile);
     });
+    console.log(imagesArr);
 
     editFormContainer.innerHTML = `
     <form id="product-form" enctype="multipart/form-data">

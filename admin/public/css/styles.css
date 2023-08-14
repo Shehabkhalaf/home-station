@@ -748,6 +748,10 @@ video {
   width: 100%;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .min-w-\[200px\] {
   min-width: 200px;
 }
@@ -871,6 +875,11 @@ video {
 
 .p-3 {
   padding: 0.75rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .px-11 {
@@ -1276,6 +1285,14 @@ button.active {
     height: auto;
   }
 
+  .md\:h-full {
+    height: 100%;
+  }
+
+  .md\:h-screen {
+    height: 100vh;
+  }
+
   .md\:min-h-screen {
     min-height: 100vh;
   }
@@ -1292,8 +1309,20 @@ button.active {
     width: 80%;
   }
 
+  .md\:w-auto {
+    width: auto;
+  }
+
+  .md\:min-w-\[200px\] {
+    min-width: 200px;
+  }
+
   .md\:max-w-\[250px\] {
     max-width: 250px;
+  }
+
+  .md\:overflow-y-scroll {
+    overflow-y: scroll;
   }
 
   .md\:bg-gr-1 {
