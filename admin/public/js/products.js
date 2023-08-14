@@ -131,7 +131,7 @@ function editProduct(productId) {
     sizeArr.forEach((size, i) => {
       sizeAndPrice.push(`${size}: ${priceArr[i]}EGP`);
     });
-    console.log(data.image);
+
     data.image.forEach((img, i) => {
       const imageType = img.substring(img.lastIndexOf('.'));
       const blob = new Blob([img], { type: `image/${imageType}` });
@@ -140,7 +140,6 @@ function editProduct(productId) {
       });
       imagesArr.push(imageFile);
     });
-    console.log(imagesArr);
 
     editFormContainer.innerHTML = `
     <form id="product-form" enctype="multipart/form-data">
@@ -313,9 +312,9 @@ function editProduct(productId) {
         id="images-error-message"
       ></div>
       <ul id="images-list" class="list-disc ml-6 mt-1">
-      ${imagesArr
+      ${data.image
         .map((img, i) => {
-          return `<li><img src="${URL}${data.image[i]}" alt="product" class="w-[50px]"/><span>${img.name}</span><i data-index="${i}" data-type="img" id="delete-list" class="fa-solid fa-trash-can text-red-500 ml-4 cursor-pointer"></i></li>`;
+          return `<li><img src="${URL}${img}" alt="product" class="w-[50px]"/><i data-index="${i}" data-type="img" id="delete-list" class="fa-solid fa-trash-can text-red-500 ml-4 cursor-pointer"></i></li>`;
         })
         .join('')}
       </ul>

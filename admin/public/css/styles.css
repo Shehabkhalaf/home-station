@@ -1321,6 +1321,10 @@ button.active {
     max-width: 250px;
   }
 
+  .md\:overflow-y-auto {
+    overflow-y: auto;
+  }
+
   .md\:overflow-y-scroll {
     overflow-y: scroll;
   }
