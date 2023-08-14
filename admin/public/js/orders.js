@@ -37,9 +37,6 @@ function updateUnDeliveredTable() {
         <td class="p-3 text-gray-700 text-sm whitespace-pre-wrap">${
           order.paid_method
         }</td>
-        <td class="p-3 text-gray-700 text-sm whitespace-pre-wrap">${
-          order.promocode
-        }</td>
         <td class="text-green-500 text-center"><button id="delivere-order" data-id="${
           order.order_id
         }" class="cursor-pointer"><i class="fa-solid fa-arrow-right-to-bracket"></i></button></td>
@@ -97,9 +94,6 @@ function updateDeliveredTable() {
         </td>
         <td class="p-3 text-gray-700 text-sm whitespace-pre-wrap">${
           order.paid_method
-        }</td>
-        <td class="p-3 text-gray-700 text-sm whitespace-pre-wrap">${
-          order.promocode
         }</td>
         `;
 
