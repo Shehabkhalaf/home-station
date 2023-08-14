@@ -6,7 +6,8 @@ import {
 const URL = 'http://127.0.0.1:8000';
 
 let listItems = getDataLocal();
-const userToken = JSON.parse(localStorage.getItem('user')).token;
+const user = localStorage.getItem('user');
+const userToken = user ? JSON.parse(user).token : null;
 
 // Get Elements
 const nameI = document.getElementById('nameInput');
@@ -82,6 +83,18 @@ function handlePromo(e) {
 
 // Click Button Check Out
 document.getElementById('checkOut').addEventListener('click', () => {
+  if (!userToken) {
+    swal(
+      'Please, login first',
+      'You cant check out without login or register!',
+      'error'
+    );
+    setTimeout(() => {
+      window.location = './loginen.html';
+    }, 2000);
+    return;
+  }
+
   nameValue = nameI.value;
   phoneValue = phone.value;
   emailValue = email.value;
@@ -150,6 +163,7 @@ document.getElementById('checkOut').addEventListener('click', () => {
     addressVAlue.trim() &&
     governoratesValue
   ) {
+    console.log(document.querySelector('.offcanvasTopButton'))
     document.querySelector('.offcanvasTopButton').click();
   }
 });
