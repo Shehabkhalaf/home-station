@@ -93,6 +93,8 @@ fetchAllProducts().then((data) => {
                     addCard.forEach((element) => {
                       element.addEventListener('click', addCartOut);
                     });
+                  } else {
+                    products.innerHTML = `<img src="./images/coming-soon.jpg" class="w-50 m-auto" alt="Comming Soon"/>`
                   }
                 });
               }
