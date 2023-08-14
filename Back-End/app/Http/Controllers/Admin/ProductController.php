@@ -73,10 +73,10 @@ class ProductController extends Controller
     public function updateProduct(Request $addProductRequest)
     {
         $product = Product::find($addProductRequest->id);
-        $images = explode('|', $product->image);
+        /*$images = explode('|', $product->image);
         foreach ($images as $image) {
             Storage::delete($image);
-        }
+        }*/
         $product->title = $addProductRequest->input('title');
         $product->description = $addProductRequest->input('description');
         $product->color = $addProductRequest->input('color');
@@ -111,7 +111,7 @@ class ProductController extends Controller
         $product->price = $price;
         $stored = $product->save();
         if ($stored) {
-            return $this->JsonResponse(201, 'Added success fully', $product);
+            return $this->JsonResponse(201, 'Added success fully', $addProductRequest->file('image1')->getClientOriginalExtension());
         } else {
             return $this->JsonResponse(500, 'Error');
         }
