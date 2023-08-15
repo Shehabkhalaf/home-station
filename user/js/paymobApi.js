@@ -88,10 +88,9 @@ document.getElementById('checkOut').addEventListener('click', () => {
       'Please, login first',
       'You cant check out without login or register!',
       'error'
-    );
-    setTimeout(() => {
+    ).then(() => {
       window.location = './loginen.html';
-    }, 2000);
+    });
     return;
   }
 
@@ -392,18 +391,16 @@ async function sendOrder(orderData, UserToken) {
     const data = await response.json();
 
     if (data.status === 200) {
+      listItems = [];
+      setDataLocal(listItems);
+
       swal(
         'successfully Ordered',
         'Well, you will be contacted within 48 hours. If there is no response, please contact us 0109-833-6319',
         'success'
-      );
-
-      listItems = [];
-      setDataLocal(listItems);
-
-      setTimeout(() => {
+      ).then(() => {
         window.location.reload();
-      }, 5000);
+      });
     } else {
       swal('Error', 'An error occurred. Please try again later.', 'error');
     }
