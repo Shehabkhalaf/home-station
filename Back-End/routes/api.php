@@ -73,7 +73,10 @@ Route::prefix('user')->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login');
     });
-    Route::post('state', [PaymobController::class, 'state']);
+    Route::controller(PaymobController::class)->group(function () {
+        Route::post('state', 'processedCallback');
+        Route::post('pay_details', 'payDetails');
+    });
     Route::middleware(['auth:sanctum'])->group(function () {
         ###############User Controller#################
         Route::controller(UserUserController::class)->group(function () {
