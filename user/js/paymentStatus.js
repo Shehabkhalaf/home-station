@@ -35,20 +35,18 @@ if (isSuccess === 'true') {
   };
 
   sendOrder(orderData, userToken);
+  
+    listItems = [];
+    setDataLocal(listItems);
 
-  swal('successfully Ordered',"Success Payment.", 'success');
-
-  listItems = [];
-  setDataLocal(listItems);
-
-  setTimeout(() => {
+  swal('successfully Ordered',"Success Payment.", 'success').then(() => {
     window.location = './products.html';
-  }, 5000);
+  });
+
 } else {
-  swal('Error Accurred!', 'Check your card and try again later', 'error');
-  setTimeout(() => {
+  swal('Error Accurred!', 'Check your card and try again later', 'error').then(() => {
     window.location = './products.html';
-  }, 5000);
+  });
 }
 
 async function sendOrder(orderData, UserToken) {
