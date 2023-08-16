@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\user\AuthController;
 use App\Http\Controllers\User\OfferController as UserOfferController;
 use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\User\PaymobController;
 use App\Http\Controllers\User\UserController as UserUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -72,6 +73,7 @@ Route::prefix('user')->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login');
     });
+    Route::post('state', [PaymobController::class, 'state']);
     Route::middleware(['auth:sanctum'])->group(function () {
         ###############User Controller#################
         Route::controller(UserUserController::class)->group(function () {
