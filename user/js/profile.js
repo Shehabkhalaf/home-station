@@ -15,4 +15,4 @@ nameField.value = user.name;
 mailField.value = user.email;
 phoneField.value = user.phone;
 addressField.value = user.location;
-userName.innerHTML = user.name.slice(0, user.name.indexOf(' '));
+userName.innerHTML = user.name;
