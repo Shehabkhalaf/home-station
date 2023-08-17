@@ -108,7 +108,7 @@ function showDetails() {
                             <div class="col-lg-6 col-md-12">
                                 <div class="qty">
                                     <label for="">Quantity</label>
-                                    <input type="number" min="1" id="quantity" value="1">
+                                    <input type="number" min="1" id="quantity" value="1" max="${product.stock}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
