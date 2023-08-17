@@ -26,6 +26,7 @@ class PaymobController extends Controller
         $paymob->amount_cents = $amount_cents;
         $saved = $paymob->save();
         if ($saved) {
+            $order_id = /*(double)*/$order_id * (100 / 500);
             return redirect('http://127.0.0.1:5501/payment.html?order_id=' . $order_id);
         } else {
             return abort(404);
