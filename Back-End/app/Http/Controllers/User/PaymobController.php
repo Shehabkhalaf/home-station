@@ -17,11 +17,13 @@ class PaymobController extends Controller
         $trasction_id = $request->id;
         $pending = $request->pending;
         $success = $request->success;
+        $amount_cents = $request->amount_cents;
         $paymob = new Paymob;
         $paymob->order_id = $order_id;
         $paymob->transction_id = $trasction_id;
         $paymob->success = $success;
         $paymob->pending = $pending;
+        $paymob->amount_cents = $amount_cents;
         $saved = $paymob->save();
         if ($saved) {
             return redirect('http://127.0.0.1:5501/payment.html?order_id=' . $order_id);
@@ -33,9 +35,10 @@ class PaymobController extends Controller
     {
         $order_id = $request->order_id;
         $paymob = Paymob::where('order_id', '=', $order_id)->first();
-        $success['success'] = $paymob->success;
+        $data['success'] = $paymob->success;
+        $data['amount_cents'] = $paymob->amount_cents;
         if ($paymob) {
-            return $this->JsonResponse(200, 'Here is the order details', $success);
+            return $this->JsonResponse(200, 'Here is the order details', $data);
         } else {
             return $this->JsonResponse(402, 'No content');
         }
