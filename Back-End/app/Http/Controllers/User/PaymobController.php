@@ -11,15 +11,12 @@ use Illuminate\Http\Request;
 class PaymobController extends Controller
 {
     use ApiResponse;
-    public function processedCallback(Request $request)
+    public function responseCallback(Request $request)
     {
-        $string = $request;
-        $json = strstr($string, '{');
-        $json = json_decode($json);
-        $order_id = $json->obj->order->id;
-        $trasction_id = $json->obj->id;
-        $pending = $json->obj->pending;
-        $success = $json->obj->success;
+        $order_id = $request->order;
+        $trasction_id = $request->id;
+        $pending = $request->pending;
+        $success = $request->success;
         $paymob = new Paymob;
         $paymob->order_id = $order_id;
         $paymob->transction_id = $trasction_id;
@@ -35,7 +32,7 @@ class PaymobController extends Controller
     public function payDetails(Request $request)
     {
         $order_id = $request->order_id;
-        $paymob = Paymob::find($order_id);
+        $paymob = Paymob::where('order_id', '=', $order_id)->get();
         if ($paymob) {
             return $this->JsonResponse(200, 'Here is the order details', $paymob);
         } else {
