@@ -13,9 +13,11 @@ const currentHref = window.location.href;
 const queryParams = currentHref.split('?')[1];
 const searchParams = new URLSearchParams(queryParams);
 
-const orderId = searchParams.get('order_id');
+// Encryption & Decryption for order ID
+const orderIdBefore = searchParams.get('order_id');
+const orderIdAfter = orderIdBefore * 500 / 100;
 
-getPaymentStatus({ order_id: orderId }).then((data) => {
+getPaymentStatus({ order_id: orderIdAfter }).then((data) => {
   // Check if user try to access the url again
   if (listItems.length !== 0) {
     if (data.data.success === 'true') {
