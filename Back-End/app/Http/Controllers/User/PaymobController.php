@@ -33,8 +33,9 @@ class PaymobController extends Controller
     {
         $order_id = $request->order_id;
         $paymob = Paymob::where('order_id', '=', $order_id)->get();
+        $success['success'] = $paymob->success;
         if ($paymob) {
-            return $this->JsonResponse(200, 'Here is the order details', $paymob);
+            return $this->JsonResponse(200, 'Here is the order details', $success);
         } else {
             return $this->JsonResponse(402, 'No content');
         }
