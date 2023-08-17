@@ -322,7 +322,7 @@ async function thirdStep(token, id) {
 
 async function cardPayment(token) {
   let iframURL = `https://accept.paymob.com/api/acceptance/iframes/${frameId}?payment_token=${token}`;
-  window.open(iframURL, '_blank');
+  window.location = iframURL;
 }
 
 function SendProduct(listItems, userToken) {

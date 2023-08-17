@@ -36,7 +36,7 @@ function createProduct(product) {
   }</td>
     <td><input type="number" id="${
       product.id
-    }" class="quantityNew" min="1" value="${product.quantity}"></td>
+    }" class="quantityNew" min="1" value="${product.quantity}" max="${product.stock}"></td>
     <td class="priceproduct none" id="priceproduct">${product.price}</td>
     <td><button id="${product.id}" class="remove">X</button></td>
 `;

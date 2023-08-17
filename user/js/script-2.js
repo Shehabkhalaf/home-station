@@ -94,7 +94,7 @@ fetchAllProducts().then((data) => {
                       element.addEventListener('click', addCartOut);
                     });
                   } else {
-                    products.innerHTML = `<img src="./images/coming-soon.jpg" class="w-50 m-auto" alt="Comming Soon"/>`
+                    products.innerHTML = `<img src="./images/coming-soon.jpg" class="w-50 m-auto" alt="Comming Soon"/>`;
                   }
                 });
               }
@@ -210,7 +210,9 @@ fetchAllProducts().then((data) => {
                               <div class="col-lg-6 col-md-12">
                                   <div class="qty">
                                       <label for="">Quantity</label>
-                                      <input type="number" min="1" id="quantity" value="1">
+                                      <input type="number" min="1" id="quantity" value="1" max="${
+                                        product.stock
+                                      }">
                                   </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
@@ -323,7 +325,8 @@ fetchAllProducts().then((data) => {
             priceAfterDiscount,
             +quantity.value,
             colorChoose,
-            product.product_id
+            product.product_id,
+            product.stock
           );
           document.getElementById('success').innerHTML = 'Product Added';
           setTimeout(() => {
@@ -335,11 +338,30 @@ fetchAllProducts().then((data) => {
   }
 
   // ADD To Cart
-  function addToCard(img, title, size, price, quantity, color = 'white', product_id) {
+  function addToCard(
+    img,
+    title,
+    size,
+    price,
+    quantity,
+    color = 'white',
+    product_id,
+    stock
+  ) {
     let id =
       listItems.length === 0 ? 0 : listItems[listItems.length - 1].id + 1;
     // Create Object Task Store Text and Place
-    const newPrduct = { img, title, size, price, quantity, id, color, product_id };
+    const newPrduct = {
+      img,
+      title,
+      size,
+      price,
+      quantity,
+      id,
+      color,
+      product_id,
+      stock,
+    };
     // Call Function Create Task
     createProduct(newPrduct);
     // Add Object In Array CardsData
@@ -374,14 +396,10 @@ fetchAllProducts().then((data) => {
     let priceAfterDiscount =
       item[0].price[0] - item[0].price[0] * (item[0].discount / 100);
 
-      if (item[0].stock === 0) {
-        swal(
-          'This Product Is Out Of Stock',
-          'It will be back soon.',
-          'error'
-        );
-        return;
-      }
+    if (item[0].stock === 0) {
+      swal('This Product Is Out Of Stock', 'It will be back soon.', 'error');
+      return;
+    }
 
     addToCard(
       URL + item[0].image[0],
@@ -390,14 +408,15 @@ fetchAllProducts().then((data) => {
       priceAfterDiscount,
       1,
       'white',
-      item[0].product_id
+      item[0].product_id,
+      item[0].stock
     );
 
     document.getElementById('success').innerHTML = 'Product Added';
     setTimeout(() => {
       document.getElementById('success').innerHTML = '';
     }, 5000);
-    
+
     swal({
       title: 'successfully added',
       icon: 'success',

@@ -11,48 +11,58 @@ const userToken = user ? JSON.parse(user).token : null;
 
 const currentHref = window.location.href;
 const queryParams = currentHref.split('?')[1];
-console.log(queryParams);
 const searchParams = new URLSearchParams(queryParams);
-console.log(searchParams);
 
 const orderId = searchParams.get('order_id');
 
-getPaymentStatus(orderId).then((data) => {
-  console.log(data);
-})
+getPaymentStatus({ order_id: orderId }).then((data) => {
+  // Check if user try to access the url again
+  if (listItems.length !== 0) {
+    if (data.data.success === 'true') {
+      const ordersDetails = [];
+      const products = [];
 
-// if (isSuccess === 'true') {
-//   const ordersDetails = [];
-//   const products = [];
+      listItems.forEach((item) => {
+        ordersDetails.push(
+          `${item.title}, ${item.size}, ${item.color}, ${item.price}`
+        );
+        products.push({ product_id: item.product_id, amount: item.quantity });
+      });
 
-//   listItems.forEach((item) => {
-//     ordersDetails.push(
-//       `${item.title}, ${item.size}, ${item.color}, ${item.price}`
-//     );
-//     products.push({ product_id: item.product_id, amount: item.quantity });
-//   });
+      const orderData = {
+        order_details: JSON.stringify(ordersDetails),
+        total_price: data.data.amount_cents / 100,
+        paid_method: 'paid',
+        products: products,
+      };
 
-//   const orderData = {
-//     order_details: JSON.stringify(ordersDetails),
-//     total_price: totalPrice / 100,
-//     paid_method: 'paid',
-//     products: products,
-//   };
+      sendOrder(orderData, userToken);
 
-//   sendOrder(orderData, userToken);
-  
-//     listItems = [];
-//     setDataLocal(listItems);
+      listItems = [];
+      setDataLocal(listItems);
 
-//   swal('successfully Ordered',"Success Payment.", 'success').then(() => {
-//     window.location = './products.html';
-//   });
-
-// } else {
-//   swal('Error Accurred!', 'Check your card and try again later', 'error').then(() => {
-//     window.location = './products.html';
-//   });
-// }
+      swal('successfully Ordered', 'Success Payment.', 'success').then(() => {
+        window.location.replace('./products.html');
+      });
+    } else {
+      swal(
+        'Error Accurred!',
+        'Check your card and try again later',
+        'error'
+      ).then(() => {
+        window.location.replace('./products.html');
+      });
+    }
+  } else {
+    swal(
+      'You Already Ordered!',
+      'Go back to products page and make another order.',
+      'error'
+    ).then(() => {
+      window.location.replace('./products.html');
+    });
+  }
+});
 
 async function sendOrder(orderData, UserToken) {
   try {
@@ -83,14 +93,14 @@ async function sendOrder(orderData, UserToken) {
   }
 }
 
-async function getPaymentStatus(id) {
+async function getPaymentStatus(paymentData) {
   try {
-    const response = await fetch(`${URL}/api/user/make_order`, {
+    const response = await fetch(`${URL}/api/user/pay_details`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: id,
+      body: JSON.stringify(paymentData),
     });
 
     const data = await response.json();
