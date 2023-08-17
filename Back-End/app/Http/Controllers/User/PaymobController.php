@@ -32,7 +32,7 @@ class PaymobController extends Controller
     public function payDetails(Request $request)
     {
         $order_id = $request->order_id;
-        $paymob = Paymob::where('order_id', '=', $order_id)->get();
+        $paymob = Paymob::where('order_id', '=', $order_id)->first();
         $success['success'] = $paymob->success;
         if ($paymob) {
             return $this->JsonResponse(200, 'Here is the order details', $success);
