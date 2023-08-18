@@ -43,7 +43,7 @@ class PaymobController extends Controller
             $data['amount_cents'] = $paymob->amount_cents;
             return $this->JsonResponse(200, 'Here is the order details', $data);
         } else {
-            return $this->JsonResponse(402, 'No content');
+            return $this->JsonResponse(402, 'Order not found');
         }
     }
 }
