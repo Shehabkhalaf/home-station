@@ -558,33 +558,34 @@ function editProduct(productId) {
           image.type === 'image/tiff' ||
           image.type === 'image/webp'
         ) {
+          imagesArr.push(image);
           const reader = new FileReader();
-      reader.readAsDataURL(image);
+          reader.readAsDataURL(image);
 
-      const listItem = document.createElement('li');
-      const imageTag = document.createElement('img');
-      imageTag.classList = 'w-[50px]';
-      reader.onload = (e) => {
-        imageTag.src = e.target.result;
-      };
-      imageTag.alt = 'product';
+          const listItem = document.createElement('li');
+          const imageTag = document.createElement('img');
+          imageTag.classList = 'w-[50px]';
+          reader.onload = (e) => {
+            imageTag.src = e.target.result;
+          };
+          imageTag.alt = 'product';
 
-      const span = document.createElement('span');
-      span.textContent = image.name;
+          const span = document.createElement('span');
+          span.textContent = image.name;
 
-      const deleteBtn = document.createElement('button');
-      deleteBtn.id = 'delete-list';
-      deleteBtn.classList.add('ml-4');
-      deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can text-red-500"></i>`;
+          const deleteBtn = document.createElement('button');
+          deleteBtn.id = 'delete-list';
+          deleteBtn.classList.add('ml-4');
+          deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can text-red-500"></i>`;
 
-      listItem.appendChild(imageTag);
-      listItem.appendChild(span);
-      listItem.appendChild(deleteBtn);
-      imagesList.appendChild(listItem);
+          listItem.appendChild(imageTag);
+          listItem.appendChild(span);
+          listItem.appendChild(deleteBtn);
+          imagesList.appendChild(listItem);
 
-      deleteBtn.addEventListener('click', () =>
-        deleteListItem(listItem, imagesArr, image)
-      );
+          deleteBtn.addEventListener('click', () =>
+            deleteListItem(listItem, imagesArr, image)
+          );
         } else {
           errorMessage.textContent = 'Please Enter Valid Image Type.';
           setTimeout(() => {
