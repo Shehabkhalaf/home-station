@@ -642,9 +642,9 @@ function editProduct(productId) {
       }
 
       let index = targetArr.indexOf(value);
-      if (index !== -1) {
-        targetArr.splice(index, 1);
-      }
+
+      targetArr.splice(index, 1);
+      console.log(targetArr);
     }
 
     function resetForm() {
