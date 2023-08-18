@@ -15,11 +15,11 @@ const searchParams = new URLSearchParams(queryParams);
 
 // Encryption & Decryption for order ID
 const orderIdBefore = searchParams.get('order_id');
-const orderIdAfter = orderIdBefore * 500 / 100;
+const orderIdAfter = (orderIdBefore * 500) / 100;
 
 getPaymentStatus({ order_id: orderIdAfter }).then((data) => {
   // Check if user try to access the url again
-  if (listItems.length !== 0) {
+  if (data.data) {
     if (data.data.success === 'true') {
       const ordersDetails = [];
       const products = [];
@@ -55,14 +55,6 @@ getPaymentStatus({ order_id: orderIdAfter }).then((data) => {
         window.location.replace('./products.html');
       });
     }
-  } else {
-    swal(
-      'You Already Ordered!',
-      'Go back to products page and make another order.',
-      'error'
-    ).then(() => {
-      window.location.replace('./products.html');
-    });
   }
 });
 
@@ -109,10 +101,12 @@ async function getPaymentStatus(paymentData) {
 
     if (data.status !== 200) {
       swal(
-        'Error',
-        'Server error, contact with us to confirm your order',
+        `${data.message}!`,
+        'Go back to products page and make another order.',
         'error'
-      );
+      ).then(() => {
+        window.location.replace('./products.html');
+      });
     } else {
       return data;
     }
