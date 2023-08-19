@@ -1,4 +1,4 @@
-const URL = 'http://127.0.0.1:8000/';
+const URL = 'http://127.0.0.1:8000';
 
 const tableBody = document.getElementById('message-body');
 
@@ -50,7 +50,7 @@ updateTable();
 
 async function getAllMessages() {
   try {
-    const res = await fetch(`${URL}api/admin/all_messages`);
+    const res = await fetch(`${URL}/api/admin/all_messages`);
     const data = await res.json();
     return data;
   } catch (err) {
@@ -60,7 +60,7 @@ async function getAllMessages() {
 
 async function deleteMsg(id, deleteMsgEle) {
   try {
-    const res = await fetch(`${URL}api/admin/reply_message/${id}`);
+    const res = await fetch(`${URL}/api/admin/reply_message/${id}`);
 
     const resData = await res.json();
 
