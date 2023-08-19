@@ -1,4 +1,4 @@
-const URL = 'http://127.0.0.1:8000/';
+const URL = 'http://127.0.0.1:8000';
 const formContainer = document.getElementById('form__container');
 let allCategories = [];
 
@@ -40,7 +40,7 @@ updateTable();
 
 async function getAllCategories() {
   try {
-    const res = await fetch(`${URL}api/admin/all_categories`);
+    const res = await fetch(`${URL}/api/admin/all_categories`);
     const data = await res.json();
     return data;
   } catch (err) {
@@ -215,7 +215,7 @@ async function AddCategory(data, errorMessageELe, successMessage, submitBtn) {
     submitBtn.innerHTML = 'Submitting...';
     submitBtn.disabled = true;
 
-    const res = await fetch(`${URL}api/admin/add_category`, {
+    const res = await fetch(`${URL}/api/admin/add_category`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -253,7 +253,7 @@ async function UpdateCategory(data, id, successMessage, submitBtn) {
     submitBtn.innerHTML = 'Submitting...';
     submitBtn.disabled = true;
 
-    const res = await fetch(`${URL}api/admin/update_category/${id}`, {
+    const res = await fetch(`${URL}/api/admin/update_category/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
