@@ -1,4 +1,4 @@
-const URL = 'http://127.0.0.1:8000/';
+const URL = 'http://127.0.0.1:8000';
 const formContainer = document.getElementById('form__container');
 let allOffers = [];
 
@@ -370,7 +370,7 @@ async function addOffer(data, errorMessageELe, successMessage, submitBtn) {
     submitBtn.innerHTML = 'Submitting...';
     submitBtn.disabled = true;
 
-    const res = await fetch(`${URL}api/admin/add_offer`, {
+    const res = await fetch(`${URL}/api/admin/add_offer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -408,7 +408,7 @@ async function UpdateOffer(data, successMessage, submitBtn) {
     submitBtn.innerHTML = 'Submitting...';
     submitBtn.disabled = true;
 
-    const res = await fetch(`${URL}api/admin/update_offer`, {
+    const res = await fetch(`${URL}/api/admin/update_offer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -435,7 +435,7 @@ async function UpdateOffer(data, successMessage, submitBtn) {
 
 async function getAllOffers() {
   try {
-    const res = await fetch(`${URL}api/admin/all_offers`);
+    const res = await fetch(`${URL}/api/admin/all_offers`);
     const data = await res.json();
     return data;
   } catch (err) {
@@ -445,7 +445,7 @@ async function getAllOffers() {
 
 async function getSingleOffer(id) {
   try {
-    const res = await fetch(`${URL}api/admin/show_offer/${id}`);
+    const res = await fetch(`${URL}/api/admin/show_offer/${id}`);
     const data = await res.json();
     return data;
   } catch (err) {
@@ -455,7 +455,7 @@ async function getSingleOffer(id) {
 
 async function deleteOffer(id, deleteMsg) {
   try {
-    const res = await fetch(`${URL}api/admin/delete_offer/${id}`);
+    const res = await fetch(`${URL}/api/admin/delete_offer/${id}`);
 
     const resData = await res.json();
 
