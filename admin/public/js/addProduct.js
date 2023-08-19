@@ -1,4 +1,4 @@
-const URL = 'http://127.0.0.1:8000/';
+const URL = 'http://127.0.0.1:8000';
 let colorsArr = [];
 let imagesArr = [];
 let sizeArr = [];
@@ -317,7 +317,7 @@ async function addProduct(product, formSuccessMsg, formErrorMsg) {
       formData.append(`image${i + 1}`, image);
     });
 
-    const res = await fetch(`${URL}api/admin/add_product`, {
+    const res = await fetch(`${URL}/api/admin/add_product`, {
       method: 'POST',
       body: formData,
     });
@@ -359,7 +359,7 @@ getAllCategories().then((data) => {
 
 async function getAllCategories() {
   try {
-    const res = await fetch(`${URL}api/admin/all_categories`);
+    const res = await fetch(`${URL}/api/admin/all_categories`);
     const data = await res.json();
     return data;
   } catch (err) {
