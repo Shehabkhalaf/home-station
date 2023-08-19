@@ -1,4 +1,4 @@
-const URL = 'http://127.0.0.1:8000/';
+const URL = 'http://127.0.0.1:8000';
 
 const tableBody = document.getElementById('user-body');
 
@@ -40,7 +40,7 @@ updateTable();
 
 async function getAllUSers() {
   try {
-    const res = await fetch(`${URL}api/admin/all_users`);
+    const res = await fetch(`${URL}/api/admin/all_users`);
     const data = await res.json();
     return data;
   } catch (err) {
